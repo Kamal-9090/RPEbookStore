@@ -1,13 +1,1018 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RP Ebook Store</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RP Ebook Store - Quality eBooks for Your Success</title>
+<meta name="description" content="Premium ebooks and PDF study materials for students, job aspirants and competitive exam preparation.">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#10233f;
+    background:#fff;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+}
+
+/* HEADER */
+header{
+    height:76px;
+    background:#fff;
+    border-bottom:1px solid #eee;
+    display:flex;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.nav{
+    width:92%;
+    max-width:1180px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    font-size:34px;
+}
+
+.logo-text h2{
+    font-size:21px;
+    margin-bottom:2px;
+}
+
+.logo-text span{
+    font-size:11px;
+    color:#777;
+}
+
+.menu{
+    display:flex;
+    gap:32px;
+    align-items:center;
+}
+
+.menu a{
+    font-size:14px;
+    font-weight:600;
+    color:#17253d;
+}
+
+.menu a:hover{
+    color:#d99d19;
+}
+
+.my-library{
+    background:#e9ab27;
+    color:#fff !important;
+    padding:13px 20px;
+    border-radius:8px;
+}
+
+/* HERO */
+.hero{
+    padding:70px 0 60px;
+    background:linear-gradient(135deg,#fff 60%,#f7faff);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+}
+
+.badge{
+    display:inline-block;
+    background:#fff7e4;
+    color:#d59a16;
+    border:1px solid #f3d48a;
+    padding:7px 13px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:.5px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:53px;
+    line-height:1.1;
+    margin-bottom:20px;
+    color:#10233f;
+}
+
+.hero h1 span{
+    color:#dda426;
+}
+
+.hero p{
+    color:#5e6878;
+    font-size:17px;
+    line-height:1.7;
+    max-width:520px;
+    margin-bottom:28px;
+}
+
+.buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 24px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:bold;
+    border:1px solid #ddd;
+}
+
+.btn-gold{
+    background:#e8a923;
+    color:#fff;
+    border-color:#e8a923;
+}
+
+.btn-white{
+    background:#fff;
+}
+
+.trust{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:#555;
+    font-size:13px;
+}
+
+.stars{
+    color:#e8a923;
+    font-size:16px;
+}
+
+/* HERO BOOK */
+.hero-book{
+    min-height:390px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.book-stack{
+    position:relative;
+    width:300px;
+}
+
+.book{
+    height:85px;
+    border-radius:8px 12px 12px 8px;
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+    margin-top:-10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.book:nth-child(1){
+    background:#10233f;
+    height:180px;
+    position:relative;
+    z-index:5;
+    font-size:24px;
+}
+
+.book:nth-child(2){
+    background:#dca326;
+    transform:rotate(-2deg);
+}
+
+.book:nth-child(3){
+    background:#536657;
+    transform:rotate(2deg);
+}
+
+.book:nth-child(4){
+    background:#777;
+}
+
+/* STATS */
+.stats{
+    margin-top:20px;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    border-radius:18px;
+    padding:25px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    text-align:center;
+    border-right:1px solid #eee;
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat strong{
+    display:block;
+    font-size:25px;
+    margin-bottom:5px;
+}
+
+.stat span{
+    color:#777;
+    font-size:12px;
+}
+
+/* EBOOK SECTION */
+.ebooks{
+    padding:75px 0;
+    background:#fafcff;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title small{
+    color:#dca326;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    font-size:34px;
+    margin:10px 0;
+}
+
+.section-title p{
+    color:#777;
+}
+
+/* CARDS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:16px;
+    padding:15px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 35px rgba(0,0,0,.09);
+}
+
+.cover{
+    height:230px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    color:#fff;
+    font-size:24px;
+    font-weight:800;
+    line-height:1.15;
+    margin-bottom:18px;
+}
+
+.cover small{
+    display:block;
+    font-size:12px;
+    margin-top:10px;
+    font-weight:normal;
+}
+
+.c1{background:linear-gradient(145deg,#10233f,#315a85);}
+.c2{background:linear-gradient(145deg,#8c1717,#d94731);}
+.c3{background:linear-gradient(145deg,#153d31,#39785b);}
+.c4{background:linear-gradient(145deg,#102d50,#1e71ad);}
+.c5{background:linear-gradient(145deg,#34205e,#7440a5);}
+.c6{background:linear-gradient(145deg,#123e3b,#16736a);}
+
+.card h3{
+    font-size:17px;
+    margin-bottom:9px;
+}
+
+.category{
+    display:inline-block;
+    background:#f0f5ff;
+    color:#3970bd;
+    border-radius:15px;
+    padding:5px 9px;
+    font-size:10px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+    min-height:38px;
+}
+
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.price{
+    color:#159447;
+    font-size:21px;
+    font-weight:bold;
+}
+
+.buy{
+    background:#e8a923;
+    color:#fff;
+    padding:11px 17px;
+    border-radius:7px;
+    font-size:12px;
+    font-weight:bold;
+    border:0;
+    cursor:pointer;
+}
+
+/* FEATURES */
+.features{
+    padding:35px 0;
+}
+
+.feature-box{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    background:#fff;
+    border:1px solid #eee;
+    border-radius:18px;
+    padding:25px;
+}
+
+.feature{
+    text-align:center;
+    padding:10px;
+}
+
+.feature-icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.feature strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.feature span{
+    color:#777;
+    font-size:12px;
+}
+
+/* FOOTER */
+footer{
+    background:#102b4d;
+    color:#fff;
+    padding:50px 0 20px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:35px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p,
+footer a{
+    color:#cbd5e1;
+    font-size:13px;
+    line-height:2;
+}
+
+footer a{
+    display:block;
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.15);
+    margin-top:35px;
+    padding-top:20px;
+    text-align:center;
+    color:#b8c4d2;
+    font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+    .menu{
+        display:none;
+    }
+
+    .hero{
+        padding:45px 0;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .trust{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat:nth-child(2){
+        border-right:0;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .feature-box{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        height:65px;
+    }
+
+    .logo-text h2{
+        font-size:17px;
+    }
+
+    .logo-text span{
+        display:none;
+    }
+
+    .logo-icon{
+        font-size:28px;
+    }
+
+    .my-library{
+        padding:10px 12px;
+        font-size:11px !important;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .hero-book{
+        min-height:280px;
+    }
+
+    .book-stack{
+        width:230px;
+    }
+
+    .book:nth-child(1){
+        height:140px;
+        font-size:19px;
+    }
+
+    .book{
+        height:65px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        padding:15px;
+    }
+
+    .stat{
+        border-right:0;
+        border-bottom:1px solid #eee;
+        padding:12px 5px;
+    }
+
+    .stat:nth-child(3),
+    .stat:nth-child(4){
+        border-bottom:0;
+    }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .cover{
+        height:260px;
+    }
+
+    .feature-box{
+        grid-template-columns:1fr 1fr;
+        padding:15px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
-<body style="font-family:Arial;text-align:center;padding:50px;">
-    <h1>📚 Welcome to RP Ebook Store</h1>
-    <p>Website is Live Successfully 🎉</p>
-    <button style="padding:10px 20px;font-size:18px;">Buy Ebook</button>
+
+<body>
+
+<header>
+    <div class="nav">
+
+        <div class="logo">
+            <div class="logo-icon">📖</div>
+            <div class="logo-text">
+                <h2>RP Ebook Store</h2>
+                <span>Learn More, Achieve More</span>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#ebooks">eBooks</a>
+            <a href="#how">How It Works</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#" class="my-library">👤 My Library</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="container hero-grid">
+
+    <div>
+
+        <span class="badge">PREMIUM EBOOKS</span>
+
+        <h1>
+            Quality eBooks<br>
+            for Your <span>Success</span>
+        </h1>
+
+        <p>
+            Premium study materials for students, job aspirants
+            and competitive exam preparation.
+        </p>
+
+        <div class="buttons">
+            <a href="#ebooks" class="btn btn-gold">
+                📖 Browse eBooks
+            </a>
+
+            <a href="#how" class="btn btn-white">
+                ▶ How It Works
+            </a>
+        </div>
+
+        <div class="trust">
+            <div class="stars">★★★★★</div>
+            <div>Trusted by ebook readers</div>
+        </div>
+
+    </div>
+
+
+    <div class="hero-book">
+
+        <div class="book-stack">
+
+            <div class="book">
+                KNOWLEDGE<br>
+                IS POWER
+            </div>
+
+            <div class="book">
+                Better Knowledge
+            </div>
+
+            <div class="book">
+                Better Preparation
+            </div>
+
+            <div class="book">
+                Brighter Future
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>500+</strong>
+            <span>eBooks Available</span>
+        </div>
+
+        <div class="stat">
+            <strong>50,000+</strong>
+            <span>Happy Students</span>
+        </div>
+
+        <div class="stat">
+            <strong>100,000+</strong>
+            <span>Downloads</span>
+        </div>
+
+        <div class="stat">
+            <strong>100%</strong>
+            <span>Secure Payments</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- EBOOKS -->
+<section class="ebooks" id="ebooks">
+
+<div class="container">
+
+    <div class="section-title">
+
+        <small>FEATURED EBOOKS</small>
+
+        <h2>Popular eBooks</h2>
+
+        <p>
+            Choose the right ebook and start learning today.
+        </p>
+
+    </div>
+
+
+    <div class="grid">
+
+
+        <!-- BOOK 1 -->
+        <div class="card">
+
+            <div class="cover c1">
+                RAILWAY<br>
+                GK 2026
+                <small>COMPLETE GUIDE</small>
+            </div>
+
+            <h3>Railway GK 2026</h3>
+
+            <span class="category">Railway</span>
+
+            <p>
+                Complete General Knowledge for Railway Exams.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹10</span>
+                <button class="buy" onclick="buyBook('Railway GK 2026',10)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BOOK 2 -->
+        <div class="card">
+
+            <div class="cover c2">
+                UP POLICE<br>
+                NOTES
+                <small>COMPLETE STUDY MATERIAL</small>
+            </div>
+
+            <h3>UP Police Constable Notes</h3>
+
+            <span class="category">UP Police</span>
+
+            <p>
+                Complete notes for UP Police Constable preparation.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹25</span>
+                <button class="buy" onclick="buyBook('UP Police Notes',25)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BOOK 3 -->
+        <div class="card">
+
+            <div class="cover c3">
+                CCC<br>
+                COMPLETE<br>
+                GUIDE
+            </div>
+
+            <h3>CCC Complete Guide</h3>
+
+            <span class="category">CCC</span>
+
+            <p>
+                All important topics with MCQs and practice questions.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹49</span>
+                <button class="buy" onclick="buyBook('CCC Complete Guide',49)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BOOK 4 -->
+        <div class="card">
+
+            <div class="cover c4">
+                COMPUTER<br>
+                NOTES
+                <small>BASIC TO ADVANCED</small>
+            </div>
+
+            <h3>Computer Notes</h3>
+
+            <span class="category">Computer</span>
+
+            <p>
+                Basic to advanced computer concepts in easy language.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹99</span>
+                <button class="buy" onclick="buyBook('Computer Notes',99)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BOOK 5 -->
+        <div class="card">
+
+            <div class="cover c5">
+                SSC<br>
+                CHSL TIER 1
+                <small>PREVIOUS PAPERS</small>
+            </div>
+
+            <h3>SSC CHSL Previous Papers</h3>
+
+            <span class="category">SSC</span>
+
+            <p>
+                Previous year papers with detailed solutions.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹149</span>
+                <button class="buy" onclick="buyBook('SSC CHSL Previous Papers',149)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- BOOK 6 -->
+        <div class="card">
+
+            <div class="cover c6">
+                PDF<br>
+                BUNDLE
+                <small>ALL IN ONE</small>
+            </div>
+
+            <h3>All Competitive Exams Bundle</h3>
+
+            <span class="category">Bundle</span>
+
+            <p>
+                All-in-one bundle for multiple competitive exams.
+            </p>
+
+            <div class="price-row">
+                <span class="price">₹199</span>
+                <button class="buy" onclick="buyBook('PDF Bundle',199)">
+                    🛒 Buy Now
+                </button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="features" id="how">
+
+<div class="container">
+
+    <div class="section-title">
+        <small>HOW IT WORKS</small>
+        <h2>Simple & Easy</h2>
+    </div>
+
+    <div class="feature-box">
+
+        <div class="feature">
+            <div class="feature-icon">📖</div>
+            <strong>Choose Ebook</strong>
+            <span>Select your ebook from the store.</span>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">💳</div>
+            <strong>Make Payment</strong>
+            <span>Pay securely online.</span>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <strong>Get Download</strong>
+            <span>Receive your ebook after payment.</span>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">📥</div>
+            <strong>Download & Enjoy</strong>
+            <span>Read your ebook anytime.</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<div class="container footer-grid">
+
+    <div>
+        <h3>📖 RP Ebook Store</h3>
+
+        <p>
+            Your trusted destination for quality
+            ebooks and useful study materials.
+        </p>
+    </div>
+
+    <div>
+        <h3>Quick Links</h3>
+        <a href="#">Home</a>
+        <a href="#ebooks">eBooks</a>
+        <a href="#how">How It Works</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div>
+        <h3>Categories</h3>
+        <a href="#">Railway Exams</a>
+        <a href="#">UP Police</a>
+        <a href="#">SSC Exams</a>
+        <a href="#">CCC / Computer</a>
+        <a href="#">Other Exams</a>
+    </div>
+
+    <div>
+        <h3>Important</h3>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+
+</div>
+
+<div class="container footer-bottom">
+    © 2026 RP Ebook Store. All Rights Reserved.
+</div>
+
+</footer>
+
+
+<script>
+
+function buyBook(bookName, price){
+
+    alert(
+        "You selected: " +
+        bookName +
+        "\nPrice: ₹" +
+        price +
+        "\n\nPayment system will be connected next."
+    );
+
+}
+
+</script>
+
 </body>
 </html>
