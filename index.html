@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,8 @@
 
 <title>RP Ebook Store | Premium eBooks</title>
 <meta name="description" content="RP Ebook Store - Premium ebooks for students, job aspirants and competitive exam preparation.">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
@@ -338,36 +341,15 @@ header{
     line-height:1.05;
     font-weight:900;
     margin-bottom:10px;
-}
-
-.cover small{
-    font-size:9px;
-    margin-top:7px;
-    font-weight:bold;
-}
-
-.railway{
+    overflow:hidden;
     background:linear-gradient(145deg,#132e4c,#356b9c);
 }
 
-.police{
-    background:linear-gradient(145deg,#761313,#bd3025);
-}
-
-.ccc{
-    background:linear-gradient(145deg,#174634,#398061);
-}
-
-.computer{
-    background:linear-gradient(145deg,#102e4d,#22689c);
-}
-
-.ssc{
-    background:linear-gradient(145deg,#302052,#68408c);
-}
-
-.bundle{
-    background:linear-gradient(145deg,#123f3d,#167069);
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:7px;
 }
 
 .card h3{
@@ -418,6 +400,21 @@ header{
 
 .buy:hover{
     background:#e5a719;
+}
+
+.loading,
+.no-books,
+.error-box{
+    grid-column:1/-1;
+    text-align:center;
+    padding:35px 15px;
+    color:#666;
+}
+
+.error-box{
+    color:#b42318;
+    background:#fff4f2;
+    border-radius:10px;
 }
 
 /* ================= TRUST ================= */
@@ -515,7 +512,6 @@ footer a{
         height:auto;
         min-height:300px;
     }
-
 }
 
 @media(max-width:700px){
@@ -648,6 +644,7 @@ footer a{
 <body>
 
 <!-- HEADER -->
+
 <header>
 <div class="nav">
 
@@ -673,6 +670,7 @@ footer a{
 
 
 <!-- HERO -->
+
 <section class="hero">
 
 <div class="container hero-inner">
@@ -692,6 +690,7 @@ footer a{
         </p>
 
         <div class="hero-buttons">
+
             <a href="#ebooks" class="btn btn-gold">
                 📖 Browse eBooks
             </a>
@@ -699,6 +698,7 @@ footer a{
             <a href="#how" class="btn btn-white">
                 ▶ How It Works
             </a>
+
         </div>
 
     </div>
@@ -739,6 +739,7 @@ footer a{
 
 
 <!-- BENEFITS -->
+
 <div class="container">
 
 <div class="benefits">
@@ -781,193 +782,29 @@ footer a{
 
 
 <!-- EBOOKS -->
+
 <section class="ebooks" id="ebooks">
 
 <div class="container">
 
     <div class="section-title">
+
         <small>POPULAR EBOOKS</small>
+
         <h2>Our Popular eBooks</h2>
+
         <div class="section-line"></div>
+
     </div>
 
 
-    <div class="ebook-grid">
+    <!-- SUPABASE BOOKS WILL APPEAR HERE -->
 
+    <div class="ebook-grid" id="ebookGrid">
 
-        <!-- 1 -->
-        <div class="card">
-
-            <div class="cover railway">
-                RAILWAY<br>
-                GK 2026
-                <small>COMPLETE GUIDE</small>
-            </div>
-
-            <h3>Railway GK 2026</h3>
-
-            <span class="category">Railway</span>
-
-            <p>
-                Complete General Knowledge for Railway Exams.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹10</span>
-
-                <button class="buy"
-                onclick="buyBook('Railway GK 2026',10)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
+        <div class="loading">
+            📚 Loading Ebooks...
         </div>
-
-
-        <!-- 2 -->
-        <div class="card">
-
-            <div class="cover police">
-                UP POLICE<br>
-                CONSTABLE<br>
-                NOTES
-            </div>
-
-            <h3>UP Police Constable Notes</h3>
-
-            <span class="category">UP Police</span>
-
-            <p>
-                Complete notes as per latest syllabus and pattern.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹25</span>
-
-                <button class="buy"
-                onclick="buyBook('UP Police Constable Notes',25)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
-        </div>
-
-
-        <!-- 3 -->
-        <div class="card">
-
-            <div class="cover ccc">
-                CCC<br>
-                COMPLETE<br>
-                GUIDE
-            </div>
-
-            <h3>CCC Complete Guide</h3>
-
-            <span class="category">CCC</span>
-
-            <p>
-                All topics with MCQs and practice sets.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹49</span>
-
-                <button class="buy"
-                onclick="buyBook('CCC Complete Guide',49)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
-        </div>
-
-
-        <!-- 4 -->
-        <div class="card">
-
-            <div class="cover computer">
-                COMPUTER<br>
-                NOTES
-                <small>FOR ALL EXAMS</small>
-            </div>
-
-            <h3>Computer Notes</h3>
-
-            <span class="category">Computer</span>
-
-            <p>
-                Basic to Advanced Computer Concepts.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹99</span>
-
-                <button class="buy"
-                onclick="buyBook('Computer Notes',99)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
-        </div>
-
-
-        <!-- 5 -->
-        <div class="card">
-
-            <div class="cover ssc">
-                SSC<br>
-                CHSL TIER 1
-                <small>PREVIOUS PAPERS</small>
-            </div>
-
-            <h3>SSC CHSL Previous Papers</h3>
-
-            <span class="category">SSC</span>
-
-            <p>
-                Previous year papers with solutions.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹149</span>
-
-                <button class="buy"
-                onclick="buyBook('SSC CHSL Previous Papers',149)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
-        </div>
-
-
-        <!-- 6 -->
-        <div class="card">
-
-            <div class="cover bundle">
-                PDF<br>
-                BUNDLE
-                <small>ALL IN ONE</small>
-            </div>
-
-            <h3>All Competitive Exams Bundle</h3>
-
-            <span class="category">Bundle</span>
-
-            <p>
-                All in One Bundle for Multiple Exams.
-            </p>
-
-            <div class="price-row">
-                <span class="price">₹199</span>
-
-                <button class="buy"
-                onclick="buyBook('All Competitive Exams Bundle',199)">
-                    🛒 Buy Now
-                </button>
-            </div>
-
-        </div>
-
 
     </div>
 
@@ -977,40 +814,56 @@ footer a{
 
 
 <!-- TRUST -->
+
 <div class="container">
 
 <div class="trust">
 
     <div class="trust-item">
+
         <div class="trust-icon">👨‍🎓</div>
+
         <div>
-            <strong>10,000+ Students Trust Us</strong>
-            <span>★★★★★ 4.8 (1200+ Reviews)</span>
+            <strong>Quality Learning Materials</strong>
+            <span>For Students & Aspirants</span>
         </div>
+
     </div>
 
+
     <div class="trust-item">
+
         <div class="trust-icon">🛡️</div>
+
         <div>
             <strong>Secure Payment</strong>
             <span>100% Protected</span>
         </div>
+
     </div>
 
+
     <div class="trust-item">
+
         <div class="trust-icon">⚡</div>
+
         <div>
             <strong>Instant Access</strong>
             <span>After Payment</span>
         </div>
+
     </div>
 
+
     <div class="trust-item">
+
         <div class="trust-icon">⬇️</div>
+
         <div>
             <strong>Easy Download</strong>
             <span>PDF Format</span>
         </div>
+
     </div>
 
 </div>
@@ -1019,47 +872,66 @@ footer a{
 
 
 <!-- FOOTER -->
+
 <footer>
 
 <div class="container footer-grid">
 
     <div>
+
         <h3>📖 RP Ebook Store</h3>
+
         <p>
             Your trusted destination for quality ebooks
             that help you achieve your goals.
         </p>
+
     </div>
 
+
     <div>
+
         <h3>Quick Links</h3>
+
         <a href="#">Home</a>
         <a href="#ebooks">eBooks</a>
         <a href="#how">How It Works</a>
         <a href="#">About Us</a>
         <a href="#">Contact Us</a>
+
     </div>
 
+
     <div>
+
         <h3>Categories</h3>
+
         <a href="#">Railway Exams</a>
         <a href="#">UP Police</a>
         <a href="#">SSC Exams</a>
         <a href="#">CCC / Computer</a>
+
     </div>
 
+
     <div>
+
         <h3>Important</h3>
+
         <a href="#">Privacy Policy</a>
         <a href="#">Terms & Conditions</a>
         <a href="#">Refund Policy</a>
         <a href="#">Disclaimer</a>
+
     </div>
 
 </div>
 
+
 <div class="container footer-bottom">
+
     © 2026 RP Ebook Store. All Rights Reserved.
+
 </div>
 
 </footer>
@@ -1067,17 +939,251 @@ footer a{
 
 <script>
 
-function buyBook(name,price){
+/* ==========================================
+   SUPABASE CONFIGURATION
+========================================== */
+
+const SUPABASE_URL =
+"https://whtiyeyqcvbajschqbli.supabase.co";
+
+
+/*
+IMPORTANT:
+Paste your Supabase PUBLISHABLE KEY below.
+
+It starts with:
+sb_publishable_
+
+DO NOT put your sb_secret_ key here.
+*/
+
+const SUPABASE_KEY =
+"sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
+
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* ==========================================
+   LOAD PUBLISHED EBOOKS
+========================================== */
+
+async function loadEbooks(){
+
+    const grid =
+        document.getElementById("ebookGrid");
+
+    grid.innerHTML =
+        `<div class="loading">📚 Loading Ebooks...</div>`;
+
+
+    const { data, error } =
+        await supabaseClient
+        .from("Ebooks")
+        .select(
+            "id, Title, Price, category, Description, cover_url, Published"
+        )
+        .eq("Published", true)
+        .order("created_at", {
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        grid.innerHTML = `
+            <div class="error-box">
+                Ebooks load नहीं हो सकीं।<br>
+                कृपया थोड़ी देर बाद फिर कोशिश करें।
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if(!data || data.length === 0){
+
+        grid.innerHTML = `
+            <div class="no-books">
+                📚 अभी कोई Ebook प्रकाशित नहीं है।
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML = "";
+
+
+    data.forEach(book => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        const title =
+            escapeHtml(book.Title || "Untitled Ebook");
+
+        const category =
+            escapeHtml(book.category || "Ebook");
+
+        const description =
+            escapeHtml(
+                book.Description ||
+                "Premium study material."
+            );
+
+
+        const price =
+            Number(book.Price || 0);
+
+
+        let coverHTML = "";
+
+
+        if(book.cover_url){
+
+            coverHTML = `
+                <div class="cover">
+                    <img
+                        src="${escapeAttribute(book.cover_url)}"
+                        alt="${escapeAttribute(title)}"
+                        loading="lazy"
+                    >
+                </div>
+            `;
+
+        }else{
+
+            coverHTML = `
+                <div class="cover">
+                    📖
+                    <br>
+                    ${title}
+                </div>
+            `;
+
+        }
+
+
+        card.innerHTML = `
+
+            ${coverHTML}
+
+            <h3>${title}</h3>
+
+            <span class="category">
+                ${category}
+            </span>
+
+            <p>
+                ${description}
+            </p>
+
+            <div class="price-row">
+
+                <span class="price">
+                    ₹${price}
+                </span>
+
+                <button
+                    class="buy"
+                    onclick="buyBook('${escapeJs(title)}', ${price}, '${escapeJs(book.id)}')"
+                >
+                    🛒 Buy Now
+                </button>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* ==========================================
+   BUY BUTTON
+========================================== */
+
+function buyBook(name, price, id){
+
+    /*
+    Payment system will be connected next.
+    */
 
     alert(
-        "Selected Ebook: " + name +
-        "\nPrice: ₹" + price +
+        "Selected Ebook: " +
+        name +
+        "\nPrice: ₹" +
+        price +
         "\n\nPayment system will be connected next."
     );
 
 }
 
+
+/* ==========================================
+   SECURITY HELPERS
+========================================== */
+
+function escapeHtml(value){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value;
+
+    return div.innerHTML;
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+function escapeJs(value){
+
+    return String(value)
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,'\\"')
+        .replace(/\n/g,"\\n")
+        .replace(/\r/g,"\\r");
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+loadEbooks();
+
 </script>
 
 </body>
 </html>
+```
