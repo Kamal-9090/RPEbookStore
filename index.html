@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RP Ebook Store - Quality eBooks for Your Success</title>
-<meta name="description" content="Premium ebooks and PDF study materials for students, job aspirants and competitive exam preparation.">
+<title>RP Ebook Store | Premium eBooks</title>
+<meta name="description" content="RP Ebook Store - Premium ebooks for students, job aspirants and competitive exam preparation.">
 
 <style>
 *{
@@ -15,7 +15,7 @@
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     color:#10233f;
     background:#fff;
 }
@@ -27,25 +27,23 @@ a{
 
 .container{
     width:92%;
-    max-width:1180px;
+    max-width:1280px;
     margin:auto;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
-    height:76px;
-    background:#fff;
-    border-bottom:1px solid #eee;
+    height:74px;
+    background:#061d3a;
+    color:#fff;
     display:flex;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:1000;
 }
 
 .nav{
     width:92%;
-    max-width:1180px;
+    max-width:1280px;
     margin:auto;
     display:flex;
     align-items:center;
@@ -59,300 +57,339 @@ header{
 }
 
 .logo-icon{
-    font-size:34px;
+    font-size:35px;
 }
 
-.logo-text h2{
+.logo h2{
     font-size:21px;
     margin-bottom:2px;
 }
 
-.logo-text span{
+.logo small{
     font-size:11px;
-    color:#777;
+    color:#d6dce5;
 }
 
 .menu{
     display:flex;
-    gap:32px;
     align-items:center;
+    gap:35px;
 }
 
 .menu a{
+    color:#fff;
     font-size:14px;
     font-weight:600;
-    color:#17253d;
 }
 
 .menu a:hover{
-    color:#d99d19;
+    color:#f4b522;
 }
 
-.my-library{
-    background:#e9ab27;
-    color:#fff !important;
-    padding:13px 20px;
-    border-radius:8px;
+.menu .active{
+    color:#f4b522;
+    border-bottom:3px solid #f4b522;
+    padding-bottom:22px;
 }
 
-/* HERO */
+.library{
+    background:#f4b522;
+    color:#111 !important;
+    padding:12px 20px;
+    border-radius:7px;
+}
+
+/* ================= HERO ================= */
+
 .hero{
-    padding:70px 0 60px;
-    background:linear-gradient(135deg,#fff 60%,#f7faff);
+    height:300px;
+    background:linear-gradient(110deg,#ffffff 60%,#eef6ff);
+    overflow:hidden;
 }
 
-.hero-grid{
+.hero-inner{
+    height:100%;
     display:grid;
     grid-template-columns:1fr 1fr;
     align-items:center;
-    gap:50px;
+}
+
+.hero-content{
+    padding-left:35px;
 }
 
 .badge{
     display:inline-block;
-    background:#fff7e4;
-    color:#d59a16;
-    border:1px solid #f3d48a;
-    padding:7px 13px;
+    color:#d99a0c;
+    background:#fff7e3;
+    border:1px solid #f1d58b;
     border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:.5px;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:53px;
-    line-height:1.1;
-    margin-bottom:20px;
-    color:#10233f;
-}
-
-.hero h1 span{
-    color:#dda426;
-}
-
-.hero p{
-    color:#5e6878;
-    font-size:17px;
-    line-height:1.7;
-    max-width:520px;
-    margin-bottom:28px;
-}
-
-.buttons{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    display:inline-block;
-    padding:15px 24px;
-    border-radius:8px;
-    font-size:14px;
-    font-weight:bold;
-    border:1px solid #ddd;
-}
-
-.btn-gold{
-    background:#e8a923;
-    color:#fff;
-    border-color:#e8a923;
-}
-
-.btn-white{
-    background:#fff;
-}
-
-.trust{
-    margin-top:30px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    color:#555;
-    font-size:13px;
-}
-
-.stars{
-    color:#e8a923;
-    font-size:16px;
-}
-
-/* HERO BOOK */
-.hero-book{
-    min-height:390px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.book-stack{
-    position:relative;
-    width:300px;
-}
-
-.book{
-    height:85px;
-    border-radius:8px 12px 12px 8px;
-    box-shadow:0 15px 30px rgba(0,0,0,.12);
-    margin-top:-10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-weight:bold;
-    font-size:18px;
-}
-
-.book:nth-child(1){
-    background:#10233f;
-    height:180px;
-    position:relative;
-    z-index:5;
-    font-size:24px;
-}
-
-.book:nth-child(2){
-    background:#dca326;
-    transform:rotate(-2deg);
-}
-
-.book:nth-child(3){
-    background:#536657;
-    transform:rotate(2deg);
-}
-
-.book:nth-child(4){
-    background:#777;
-}
-
-/* STATS */
-.stats{
-    margin-top:20px;
-    background:#fff;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-    border-radius:18px;
-    padding:25px;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-}
-
-.stat{
-    text-align:center;
-    border-right:1px solid #eee;
-}
-
-.stat:last-child{
-    border-right:0;
-}
-
-.stat strong{
-    display:block;
-    font-size:25px;
-    margin-bottom:5px;
-}
-
-.stat span{
-    color:#777;
-    font-size:12px;
-}
-
-/* EBOOK SECTION */
-.ebooks{
-    padding:75px 0;
-    background:#fafcff;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
-}
-
-.section-title small{
-    color:#dca326;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.section-title h2{
-    font-size:34px;
-    margin:10px 0;
-}
-
-.section-title p{
-    color:#777;
-}
-
-/* CARDS */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.card{
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:16px;
-    padding:15px;
-    transition:.25s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 35px rgba(0,0,0,.09);
-}
-
-.cover{
-    height:230px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:20px;
-    color:#fff;
-    font-size:24px;
-    font-weight:800;
-    line-height:1.15;
-    margin-bottom:18px;
-}
-
-.cover small{
-    display:block;
-    font-size:12px;
-    margin-top:10px;
-    font-weight:normal;
-}
-
-.c1{background:linear-gradient(145deg,#10233f,#315a85);}
-.c2{background:linear-gradient(145deg,#8c1717,#d94731);}
-.c3{background:linear-gradient(145deg,#153d31,#39785b);}
-.c4{background:linear-gradient(145deg,#102d50,#1e71ad);}
-.c5{background:linear-gradient(145deg,#34205e,#7440a5);}
-.c6{background:linear-gradient(145deg,#123e3b,#16736a);}
-
-.card h3{
-    font-size:17px;
-    margin-bottom:9px;
-}
-
-.category{
-    display:inline-block;
-    background:#f0f5ff;
-    color:#3970bd;
-    border-radius:15px;
-    padding:5px 9px;
+    padding:5px 11px;
     font-size:10px;
     margin-bottom:10px;
 }
 
-.card p{
-    color:#777;
-    font-size:12px;
+.hero h1{
+    font-size:39px;
+    line-height:1.1;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#e3a51a;
+}
+
+.hero p{
+    color:#404d60;
+    font-size:14px;
     line-height:1.5;
+    max-width:480px;
+    margin-bottom:17px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.btn{
+    padding:11px 20px;
+    border-radius:6px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.btn-gold{
+    background:#f4b522;
+    color:#111;
+}
+
+.btn-white{
+    border:1px solid #aeb6c0;
+    background:#fff;
+}
+
+/* BOOK IMAGE AREA */
+
+.hero-art{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.books{
+    position:relative;
+    width:430px;
+    height:260px;
+}
+
+.big-book{
+    position:absolute;
+    width:290px;
+    height:70px;
+    border-radius:8px;
+    left:65px;
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.book-top{
+    top:35px;
+    height:90px;
+    background:#fff;
+    color:#243852;
+    border:1px solid #ddd;
+    transform:rotate(-2deg);
+    z-index:5;
+}
+
+.book-blue{
+    top:103px;
+    background:#17477e;
+    z-index:4;
+}
+
+.book-gold{
+    top:151px;
+    background:#df9e16;
+    z-index:3;
+}
+
+.book-green{
+    top:199px;
+    background:#315a43;
+    z-index:2;
+}
+
+.book-purple{
+    top:247px;
+    background:#55417e;
+    z-index:1;
+}
+
+/* ================= BENEFITS ================= */
+
+.benefits{
+    margin-top:14px;
+    background:#fff;
+    border:1px solid #eee;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    border-radius:12px;
+    padding:14px 20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.benefit{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border-right:1px solid #eee;
+}
+
+.benefit:last-child{
+    border-right:0;
+}
+
+.benefit-icon{
+    font-size:27px;
+}
+
+.benefit strong{
+    display:block;
+    font-size:13px;
+}
+
+.benefit span{
+    font-size:11px;
+    color:#777;
+}
+
+/* ================= EBOOKS ================= */
+
+.ebooks{
+    padding:25px 0 18px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.section-title small{
+    color:#e1a019;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.section-title h2{
+    font-size:28px;
+    margin:5px 0 7px;
+}
+
+.section-line{
+    width:40px;
+    height:3px;
+    background:#e9ad24;
+    margin:auto;
+}
+
+/* ================= CARDS ================= */
+
+.ebook-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+}
+
+.card{
+    border:1px solid #e7e9ed;
+    border-radius:11px;
+    padding:10px;
+    background:#fff;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+}
+
+.cover{
+    height:175px;
+    border-radius:7px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    padding:10px;
+    font-size:20px;
+    line-height:1.05;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.cover small{
+    font-size:9px;
+    margin-top:7px;
+    font-weight:bold;
+}
+
+.railway{
+    background:linear-gradient(145deg,#132e4c,#356b9c);
+}
+
+.police{
+    background:linear-gradient(145deg,#761313,#bd3025);
+}
+
+.ccc{
+    background:linear-gradient(145deg,#174634,#398061);
+}
+
+.computer{
+    background:linear-gradient(145deg,#102e4d,#22689c);
+}
+
+.ssc{
+    background:linear-gradient(145deg,#302052,#68408c);
+}
+
+.bundle{
+    background:linear-gradient(145deg,#123f3d,#167069);
+}
+
+.card h3{
+    font-size:12px;
+    min-height:28px;
+    line-height:1.2;
+}
+
+.category{
+    display:inline-block;
+    font-size:8px;
+    margin:6px 0;
+    background:#eaf2ff;
+    color:#2768b5;
+    padding:4px 7px;
+    border-radius:12px;
+}
+
+.card p{
+    color:#626b76;
+    font-size:9px;
+    line-height:1.4;
     min-height:38px;
 }
 
@@ -360,83 +397,93 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-top:15px;
+    margin-top:7px;
 }
 
 .price{
-    color:#159447;
-    font-size:21px;
+    color:#118943;
+    font-size:17px;
     font-weight:bold;
 }
 
 .buy{
-    background:#e8a923;
-    color:#fff;
-    padding:11px 17px;
-    border-radius:7px;
-    font-size:12px;
-    font-weight:bold;
+    background:#f5b521;
     border:0;
+    border-radius:5px;
+    padding:8px 12px;
+    font-size:9px;
+    font-weight:bold;
     cursor:pointer;
 }
 
-/* FEATURES */
-.features{
-    padding:35px 0;
+.buy:hover{
+    background:#e5a719;
 }
 
-.feature-box{
+/* ================= TRUST ================= */
+
+.trust{
+    margin-top:15px;
+    background:#f9fbfe;
+    border:1px solid #e8edf4;
+    border-radius:10px;
+    padding:12px 18px;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:18px;
-    padding:25px;
+    grid-template-columns:1.7fr 1fr 1fr 1fr;
+    align-items:center;
 }
 
-.feature{
-    text-align:center;
-    padding:10px;
+.trust-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    border-right:1px solid #e4e7eb;
 }
 
-.feature-icon{
-    font-size:28px;
-    margin-bottom:10px;
+.trust-item:last-child{
+    border-right:0;
 }
 
-.feature strong{
+.trust-icon{
+    font-size:22px;
+}
+
+.trust strong{
     display:block;
-    margin-bottom:6px;
+    font-size:11px;
 }
 
-.feature span{
+.trust span{
     color:#777;
-    font-size:12px;
+    font-size:9px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
-    background:#102b4d;
+    margin-top:20px;
+    background:#061d3a;
     color:#fff;
-    padding:50px 0 20px;
+    padding:25px 0 12px;
 }
 
 .footer-grid{
     display:grid;
     grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:35px;
+    gap:30px;
 }
 
 footer h3{
-    margin-bottom:15px;
+    font-size:14px;
+    margin-bottom:9px;
 }
 
 footer p,
 footer a{
     color:#cbd5e1;
-    font-size:13px;
-    line-height:2;
+    font-size:11px;
+    line-height:1.9;
 }
 
 footer a{
@@ -445,27 +492,58 @@ footer a{
 
 .footer-bottom{
     border-top:1px solid rgba(255,255,255,.15);
-    margin-top:35px;
-    padding-top:20px;
+    margin-top:18px;
+    padding-top:12px;
     text-align:center;
-    color:#b8c4d2;
-    font-size:12px;
+    color:#aeb9c7;
+    font-size:10px;
 }
 
-/* MOBILE */
-@media(max-width:900px){
+/* ================= MOBILE ================= */
+
+@media(max-width:1050px){
+
+    .menu{
+        gap:15px;
+    }
+
+    .ebook-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .hero{
+        height:auto;
+        min-height:300px;
+    }
+
+}
+
+@media(max-width:700px){
+
+    header{
+        height:65px;
+    }
 
     .menu{
         display:none;
     }
 
     .hero{
-        padding:45px 0;
+        height:auto;
+        padding:28px 0;
     }
 
-    .hero-grid{
+    .hero-inner{
         grid-template-columns:1fr;
+    }
+
+    .hero-content{
+        padding-left:0;
         text-align:center;
+    }
+
+    .hero h1{
+        font-size:32px;
     }
 
     .hero p{
@@ -473,32 +551,46 @@ footer a{
         margin-right:auto;
     }
 
-    .buttons{
+    .hero-buttons{
         justify-content:center;
+    }
+
+    .hero-art{
+        height:220px;
+        margin-top:10px;
+    }
+
+    .books{
+        transform:scale(.75);
+    }
+
+    .benefits{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .benefit{
+        border-right:0;
+        padding:8px;
+    }
+
+    .ebook-grid{
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+
+    .cover{
+        height:210px;
     }
 
     .trust{
-        justify-content:center;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
     }
 
-    .hero h1{
-        font-size:40px;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .stat:nth-child(2){
+    .trust-item{
         border-right:0;
-    }
-
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .feature-box{
-        grid-template-columns:repeat(2,1fr);
+        padding:8px;
     }
 
     .footer-grid{
@@ -506,89 +598,48 @@ footer a{
     }
 }
 
-@media(max-width:600px){
+@media(max-width:430px){
 
-    header{
-        height:65px;
+    .container{
+        width:94%;
     }
 
-    .logo-text h2{
-        font-size:17px;
-    }
-
-    .logo-text span{
-        display:none;
-    }
-
-    .logo-icon{
-        font-size:28px;
-    }
-
-    .my-library{
-        padding:10px 12px;
-        font-size:11px !important;
-    }
-
-    .hero h1{
-        font-size:34px;
-    }
-
-    .hero p{
-        font-size:14px;
-    }
-
-    .hero-book{
-        min-height:280px;
-    }
-
-    .book-stack{
-        width:230px;
-    }
-
-    .book:nth-child(1){
-        height:140px;
-        font-size:19px;
-    }
-
-    .book{
-        height:65px;
-    }
-
-    .stats{
+    .ebook-grid{
         grid-template-columns:1fr 1fr;
-        padding:15px;
-    }
-
-    .stat{
-        border-right:0;
-        border-bottom:1px solid #eee;
-        padding:12px 5px;
-    }
-
-    .stat:nth-child(3),
-    .stat:nth-child(4){
-        border-bottom:0;
-    }
-
-    .section-title h2{
-        font-size:28px;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
     }
 
     .cover{
-        height:260px;
+        height:180px;
+        font-size:17px;
     }
 
-    .feature-box{
-        grid-template-columns:1fr 1fr;
-        padding:15px;
+    .card{
+        padding:8px;
     }
 
-    .footer-grid{
-        grid-template-columns:1fr;
+    .price{
+        font-size:15px;
+    }
+
+    .buy{
+        padding:7px 8px;
+        font-size:8px;
+    }
+
+    .benefits{
+        padding:10px;
+    }
+
+    .benefit-icon{
+        font-size:20px;
+    }
+
+    .benefit strong{
+        font-size:10px;
+    }
+
+    .benefit span{
+        font-size:8px;
     }
 }
 </style>
@@ -596,36 +647,37 @@ footer a{
 
 <body>
 
+<!-- HEADER -->
 <header>
-    <div class="nav">
+<div class="nav">
 
-        <div class="logo">
-            <div class="logo-icon">📖</div>
-            <div class="logo-text">
-                <h2>RP Ebook Store</h2>
-                <span>Learn More, Achieve More</span>
-            </div>
+    <div class="logo">
+        <div class="logo-icon">📖</div>
+        <div>
+            <h2>RP Ebook Store</h2>
+            <small>Learn More, Achieve More</small>
         </div>
-
-        <nav class="menu">
-            <a href="#">Home</a>
-            <a href="#ebooks">eBooks</a>
-            <a href="#how">How It Works</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#" class="my-library">👤 My Library</a>
-        </nav>
-
     </div>
+
+    <nav class="menu">
+        <a href="#" class="active">Home</a>
+        <a href="#ebooks">eBooks</a>
+        <a href="#how">How It Works</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#" class="library">👤 My Library</a>
+    </nav>
+
+</div>
 </header>
 
 
 <!-- HERO -->
 <section class="hero">
 
-<div class="container hero-grid">
+<div class="container hero-inner">
 
-    <div>
+    <div class="hero-content">
 
         <span class="badge">PREMIUM EBOOKS</span>
 
@@ -639,7 +691,7 @@ footer a{
             and competitive exam preparation.
         </p>
 
-        <div class="buttons">
+        <div class="hero-buttons">
             <a href="#ebooks" class="btn btn-gold">
                 📖 Browse eBooks
             </a>
@@ -649,64 +701,34 @@ footer a{
             </a>
         </div>
 
-        <div class="trust">
-            <div class="stars">★★★★★</div>
-            <div>Trusted by ebook readers</div>
-        </div>
-
     </div>
 
 
-    <div class="hero-book">
+    <div class="hero-art">
 
-        <div class="book-stack">
+        <div class="books">
 
-            <div class="book">
-                KNOWLEDGE<br>
-                IS POWER
+            <div class="big-book book-top">
+                📖<br>
+                KNOWLEDGE IS POWER
             </div>
 
-            <div class="book">
+            <div class="big-book book-blue">
                 Better Knowledge
             </div>
 
-            <div class="book">
-                Better Preparation
+            <div class="big-book book-gold">
+                Brighter Tomorrow
             </div>
 
-            <div class="book">
-                Brighter Future
+            <div class="big-book book-green">
+                Stronger Preparation
             </div>
 
-        </div>
+            <div class="big-book book-purple">
+                Greater Success
+            </div>
 
-    </div>
-
-</div>
-
-
-<div class="container">
-
-    <div class="stats">
-
-        <div class="stat">
-            <strong>500+</strong>
-            <span>eBooks Available</span>
-        </div>
-
-        <div class="stat">
-            <strong>50,000+</strong>
-            <span>Happy Students</span>
-        </div>
-
-        <div class="stat">
-            <strong>100,000+</strong>
-            <span>Downloads</span>
-        </div>
-
-        <div class="stat">
-            <strong>100%</strong>
-            <span>Secure Payments</span>
         </div>
 
     </div>
@@ -716,31 +738,67 @@ footer a{
 </section>
 
 
+<!-- BENEFITS -->
+<div class="container">
+
+<div class="benefits">
+
+    <div class="benefit">
+        <div class="benefit-icon">🛡️</div>
+        <div>
+            <strong>100% Safe</strong>
+            <span>Secure & Trusted</span>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <div class="benefit-icon">⚡</div>
+        <div>
+            <strong>Instant Access</strong>
+            <span>Get Instantly</span>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <div class="benefit-icon">⬇️</div>
+        <div>
+            <strong>PDF Download</strong>
+            <span>Easy & Fast</span>
+        </div>
+    </div>
+
+    <div class="benefit">
+        <div class="benefit-icon">🎧</div>
+        <div>
+            <strong>24/7 Support</strong>
+            <span>We Are Always Here</span>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+
 <!-- EBOOKS -->
 <section class="ebooks" id="ebooks">
 
 <div class="container">
 
     <div class="section-title">
-
-        <small>FEATURED EBOOKS</small>
-
-        <h2>Popular eBooks</h2>
-
-        <p>
-            Choose the right ebook and start learning today.
-        </p>
-
+        <small>POPULAR EBOOKS</small>
+        <h2>Our Popular eBooks</h2>
+        <div class="section-line"></div>
     </div>
 
 
-    <div class="grid">
+    <div class="ebook-grid">
 
 
-        <!-- BOOK 1 -->
+        <!-- 1 -->
         <div class="card">
 
-            <div class="cover c1">
+            <div class="cover railway">
                 RAILWAY<br>
                 GK 2026
                 <small>COMPLETE GUIDE</small>
@@ -756,7 +814,9 @@ footer a{
 
             <div class="price-row">
                 <span class="price">₹10</span>
-                <button class="buy" onclick="buyBook('Railway GK 2026',10)">
+
+                <button class="buy"
+                onclick="buyBook('Railway GK 2026',10)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -764,13 +824,13 @@ footer a{
         </div>
 
 
-        <!-- BOOK 2 -->
+        <!-- 2 -->
         <div class="card">
 
-            <div class="cover c2">
+            <div class="cover police">
                 UP POLICE<br>
+                CONSTABLE<br>
                 NOTES
-                <small>COMPLETE STUDY MATERIAL</small>
             </div>
 
             <h3>UP Police Constable Notes</h3>
@@ -778,12 +838,14 @@ footer a{
             <span class="category">UP Police</span>
 
             <p>
-                Complete notes for UP Police Constable preparation.
+                Complete notes as per latest syllabus and pattern.
             </p>
 
             <div class="price-row">
                 <span class="price">₹25</span>
-                <button class="buy" onclick="buyBook('UP Police Notes',25)">
+
+                <button class="buy"
+                onclick="buyBook('UP Police Constable Notes',25)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -791,10 +853,10 @@ footer a{
         </div>
 
 
-        <!-- BOOK 3 -->
+        <!-- 3 -->
         <div class="card">
 
-            <div class="cover c3">
+            <div class="cover ccc">
                 CCC<br>
                 COMPLETE<br>
                 GUIDE
@@ -805,12 +867,14 @@ footer a{
             <span class="category">CCC</span>
 
             <p>
-                All important topics with MCQs and practice questions.
+                All topics with MCQs and practice sets.
             </p>
 
             <div class="price-row">
                 <span class="price">₹49</span>
-                <button class="buy" onclick="buyBook('CCC Complete Guide',49)">
+
+                <button class="buy"
+                onclick="buyBook('CCC Complete Guide',49)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -818,13 +882,13 @@ footer a{
         </div>
 
 
-        <!-- BOOK 4 -->
+        <!-- 4 -->
         <div class="card">
 
-            <div class="cover c4">
+            <div class="cover computer">
                 COMPUTER<br>
                 NOTES
-                <small>BASIC TO ADVANCED</small>
+                <small>FOR ALL EXAMS</small>
             </div>
 
             <h3>Computer Notes</h3>
@@ -832,12 +896,14 @@ footer a{
             <span class="category">Computer</span>
 
             <p>
-                Basic to advanced computer concepts in easy language.
+                Basic to Advanced Computer Concepts.
             </p>
 
             <div class="price-row">
                 <span class="price">₹99</span>
-                <button class="buy" onclick="buyBook('Computer Notes',99)">
+
+                <button class="buy"
+                onclick="buyBook('Computer Notes',99)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -845,10 +911,10 @@ footer a{
         </div>
 
 
-        <!-- BOOK 5 -->
+        <!-- 5 -->
         <div class="card">
 
-            <div class="cover c5">
+            <div class="cover ssc">
                 SSC<br>
                 CHSL TIER 1
                 <small>PREVIOUS PAPERS</small>
@@ -859,12 +925,14 @@ footer a{
             <span class="category">SSC</span>
 
             <p>
-                Previous year papers with detailed solutions.
+                Previous year papers with solutions.
             </p>
 
             <div class="price-row">
                 <span class="price">₹149</span>
-                <button class="buy" onclick="buyBook('SSC CHSL Previous Papers',149)">
+
+                <button class="buy"
+                onclick="buyBook('SSC CHSL Previous Papers',149)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -872,10 +940,10 @@ footer a{
         </div>
 
 
-        <!-- BOOK 6 -->
+        <!-- 6 -->
         <div class="card">
 
-            <div class="cover c6">
+            <div class="cover bundle">
                 PDF<br>
                 BUNDLE
                 <small>ALL IN ONE</small>
@@ -886,12 +954,14 @@ footer a{
             <span class="category">Bundle</span>
 
             <p>
-                All-in-one bundle for multiple competitive exams.
+                All in One Bundle for Multiple Exams.
             </p>
 
             <div class="price-row">
                 <span class="price">₹199</span>
-                <button class="buy" onclick="buyBook('PDF Bundle',199)">
+
+                <button class="buy"
+                onclick="buyBook('All Competitive Exams Bundle',199)">
                     🛒 Buy Now
                 </button>
             </div>
@@ -906,47 +976,46 @@ footer a{
 </section>
 
 
-<!-- HOW IT WORKS -->
-<section class="features" id="how">
-
+<!-- TRUST -->
 <div class="container">
 
-    <div class="section-title">
-        <small>HOW IT WORKS</small>
-        <h2>Simple & Easy</h2>
+<div class="trust">
+
+    <div class="trust-item">
+        <div class="trust-icon">👨‍🎓</div>
+        <div>
+            <strong>10,000+ Students Trust Us</strong>
+            <span>★★★★★ 4.8 (1200+ Reviews)</span>
+        </div>
     </div>
 
-    <div class="feature-box">
-
-        <div class="feature">
-            <div class="feature-icon">📖</div>
-            <strong>Choose Ebook</strong>
-            <span>Select your ebook from the store.</span>
+    <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <div>
+            <strong>Secure Payment</strong>
+            <span>100% Protected</span>
         </div>
+    </div>
 
-        <div class="feature">
-            <div class="feature-icon">💳</div>
-            <strong>Make Payment</strong>
-            <span>Pay securely online.</span>
+    <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div>
+            <strong>Instant Access</strong>
+            <span>After Payment</span>
         </div>
+    </div>
 
-        <div class="feature">
-            <div class="feature-icon">⚡</div>
-            <strong>Get Download</strong>
-            <span>Receive your ebook after payment.</span>
+    <div class="trust-item">
+        <div class="trust-icon">⬇️</div>
+        <div>
+            <strong>Easy Download</strong>
+            <span>PDF Format</span>
         </div>
-
-        <div class="feature">
-            <div class="feature-icon">📥</div>
-            <strong>Download & Enjoy</strong>
-            <span>Read your ebook anytime.</span>
-        </div>
-
     </div>
 
 </div>
 
-</section>
+</div>
 
 
 <!-- FOOTER -->
@@ -956,10 +1025,9 @@ footer a{
 
     <div>
         <h3>📖 RP Ebook Store</h3>
-
         <p>
-            Your trusted destination for quality
-            ebooks and useful study materials.
+            Your trusted destination for quality ebooks
+            that help you achieve your goals.
         </p>
     </div>
 
@@ -969,7 +1037,7 @@ footer a{
         <a href="#ebooks">eBooks</a>
         <a href="#how">How It Works</a>
         <a href="#">About Us</a>
-        <a href="#">Contact</a>
+        <a href="#">Contact Us</a>
     </div>
 
     <div>
@@ -978,7 +1046,6 @@ footer a{
         <a href="#">UP Police</a>
         <a href="#">SSC Exams</a>
         <a href="#">CCC / Computer</a>
-        <a href="#">Other Exams</a>
     </div>
 
     <div>
@@ -1000,13 +1067,11 @@ footer a{
 
 <script>
 
-function buyBook(bookName, price){
+function buyBook(name,price){
 
     alert(
-        "You selected: " +
-        bookName +
-        "\nPrice: ₹" +
-        price +
+        "Selected Ebook: " + name +
+        "\nPrice: ₹" + price +
         "\n\nPayment system will be connected next."
     );
 
