@@ -10,6 +10,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
 <style>
 *{
     margin:0;
@@ -305,30 +306,32 @@ header{
     margin:auto;
 }
 
-/* ================= CARDS ================= */
+/* ================= EBOOK CARDS ================= */
 
 .ebook-grid{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:10px;
+    gap:14px;
 }
 
+/* BORDER REMOVED */
 .card{
-    border:1px solid #e7e9ed;
+    border:none;
     border-radius:11px;
-    padding:10px;
+    padding:8px;
     background:#fff;
-    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    box-shadow:none;
     transition:.2s;
 }
 
 .card:hover{
     transform:translateY(-4px);
-    box-shadow:0 10px 25px rgba(0,0,0,.10);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
+/* COVER HEIGHT INCREASED */
 .cover{
-    height:175px;
+    height:220px;
     border-radius:7px;
     display:flex;
     flex-direction:column;
@@ -340,7 +343,7 @@ header{
     font-size:20px;
     line-height:1.05;
     font-weight:900;
-    margin-bottom:10px;
+    margin-bottom:11px;
     overflow:hidden;
     background:linear-gradient(145deg,#132e4c,#356b9c);
 }
@@ -353,19 +356,21 @@ header{
 }
 
 .card h3{
-    font-size:12px;
-    min-height:28px;
-    line-height:1.2;
+    font-size:13px;
+    min-height:30px;
+    line-height:1.25;
 }
 
+/* CATEGORY BIGGER */
 .category{
     display:inline-block;
-    font-size:8px;
-    margin:6px 0;
+    font-size:11px;
+    margin:7px 0;
     background:#eaf2ff;
     color:#2768b5;
-    padding:4px 7px;
-    border-radius:12px;
+    padding:5px 9px;
+    border-radius:14px;
+    font-weight:600;
 }
 
 .card p{
@@ -379,7 +384,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-top:7px;
+    margin-top:9px;
 }
 
 .price{
@@ -388,14 +393,16 @@ header{
     font-weight:bold;
 }
 
+/* BUY NOW BIGGER */
 .buy{
     background:#f5b521;
     border:0;
-    border-radius:5px;
-    padding:8px 12px;
-    font-size:9px;
+    border-radius:6px;
+    padding:10px 15px;
+    font-size:11px;
     font-weight:bold;
     cursor:pointer;
+    min-height:36px;
 }
 
 .buy:hover{
@@ -496,7 +503,7 @@ footer a{
     font-size:10px;
 }
 
-/* ================= MOBILE ================= */
+/* ================= TABLET ================= */
 
 @media(max-width:1050px){
 
@@ -513,6 +520,8 @@ footer a{
         min-height:300px;
     }
 }
+
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -575,8 +584,20 @@ footer a{
         gap:12px;
     }
 
+    /* MOBILE COVER */
     .cover{
-        height:210px;
+        height:220px;
+    }
+
+    .category{
+        font-size:10px;
+        padding:5px 8px;
+    }
+
+    .buy{
+        padding:9px 11px;
+        font-size:10px;
+        min-height:35px;
     }
 
     .trust{
@@ -594,6 +615,8 @@ footer a{
     }
 }
 
+/* ================= SMALL MOBILE ================= */
+
 @media(max-width:430px){
 
     .container{
@@ -602,15 +625,25 @@ footer a{
 
     .ebook-grid{
         grid-template-columns:1fr 1fr;
+        gap:10px;
     }
 
     .cover{
-        height:180px;
+        height:190px;
         font-size:17px;
     }
 
     .card{
-        padding:8px;
+        padding:6px;
+    }
+
+    .card h3{
+        font-size:12px;
+    }
+
+    .category{
+        font-size:9px;
+        padding:4px 7px;
     }
 
     .price{
@@ -618,8 +651,9 @@ footer a{
     }
 
     .buy{
-        padding:7px 8px;
-        font-size:8px;
+        padding:8px 9px;
+        font-size:9px;
+        min-height:34px;
     }
 
     .benefits{
@@ -797,9 +831,6 @@ footer a{
 
     </div>
 
-
-    <!-- SUPABASE BOOKS WILL APPEAR HERE -->
-
     <div class="ebook-grid" id="ebookGrid">
 
         <div class="loading">
@@ -945,17 +976,6 @@ footer a{
 
 const SUPABASE_URL =
 "https://whtiyeyqcvbajschqbli.supabase.co";
-
-
-/*
-IMPORTANT:
-Paste your Supabase PUBLISHABLE KEY below.
-
-It starts with:
-sb_publishable_
-
-DO NOT put your sb_secret_ key here.
-*/
 
 const SUPABASE_KEY =
 "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
@@ -1143,6 +1163,7 @@ async function buyBook(name, price, id) {
         const data = await response.json();
 
         if (!response.ok) {
+
             console.error(data);
 
             alert(
@@ -1154,7 +1175,11 @@ async function buyBook(name, price, id) {
         }
 
         if (!data.payment_session_id) {
-            alert("Payment session नहीं मिला.");
+
+            alert(
+                "Payment session नहीं मिला."
+            );
+
             return;
         }
 
@@ -1163,8 +1188,11 @@ async function buyBook(name, price, id) {
         });
 
         await cashfree.checkout({
-            paymentSessionId: data.payment_session_id,
-            redirectTarget: "_self"
+            paymentSessionId:
+                data.payment_session_id,
+
+            redirectTarget:
+                "_self"
         });
 
     } catch (error) {
@@ -1176,6 +1204,7 @@ async function buyBook(name, price, id) {
         );
     }
 }
+
 
 /* ==========================================
    SECURITY HELPERS
@@ -1190,7 +1219,6 @@ function escapeHtml(value){
         value;
 
     return div.innerHTML;
-
 }
 
 
@@ -1201,7 +1229,6 @@ function escapeAttribute(value){
         .replace(/"/g,"&quot;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;");
-
 }
 
 
@@ -1213,7 +1240,6 @@ function escapeJs(value){
         .replace(/"/g,'\\"')
         .replace(/\n/g,"\\n")
         .replace(/\r/g,"\\r");
-
 }
 
 
