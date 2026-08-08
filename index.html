@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +41,10 @@ a{
     margin:auto;
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
     height:74px;
@@ -109,7 +112,10 @@ header{
     border-radius:7px;
 }
 
-/* ================= HERO ================= */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     min-height:300px;
@@ -179,7 +185,10 @@ header{
     background:#fff;
 }
 
-/* ================= BOOK ART ================= */
+
+/* =====================================================
+   BOOK ART
+===================================================== */
 
 .hero-art{
     min-height:300px;
@@ -246,7 +255,10 @@ header{
     z-index:1;
 }
 
-/* ================= BENEFITS ================= */
+
+/* =====================================================
+   BENEFITS
+===================================================== */
 
 .benefits{
     margin-top:14px;
@@ -285,7 +297,10 @@ header{
     color:#777;
 }
 
-/* ================= EBOOKS ================= */
+
+/* =====================================================
+   EBOOKS
+===================================================== */
 
 .ebooks{
     padding:32px 0 22px;
@@ -315,7 +330,10 @@ header{
     margin:auto;
 }
 
-/* ================= EBOOK GRID ================= */
+
+/* =====================================================
+   EBOOK GRID
+===================================================== */
 
 .ebook-grid{
     display:grid;
@@ -323,7 +341,10 @@ header{
     gap:18px;
 }
 
-/* ================= EBOOK CARD ================= */
+
+/* =====================================================
+   EBOOK CARD
+===================================================== */
 
 .card{
     border:none !important;
@@ -342,7 +363,10 @@ header{
     box-shadow:none !important;
 }
 
-/* ================= COVER ================= */
+
+/* =====================================================
+   COVER
+===================================================== */
 
 .cover{
     width:100%;
@@ -375,7 +399,10 @@ header{
     padding:0 !important;
 }
 
-/* ================= BOOK TITLE ================= */
+
+/* =====================================================
+   BOOK TITLE
+===================================================== */
 
 .card h3{
     font-size:14px;
@@ -385,7 +412,10 @@ header{
     color:#10233f;
 }
 
-/* ================= CATEGORY ================= */
+
+/* =====================================================
+   CATEGORY
+===================================================== */
 
 .category{
     display:inline-block;
@@ -398,7 +428,10 @@ header{
     border-radius:15px;
 }
 
-/* ================= DESCRIPTION ================= */
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
 
 .card p{
     color:#626b76;
@@ -408,7 +441,10 @@ header{
     padding:0 4px;
 }
 
-/* ================= PRICE ================= */
+
+/* =====================================================
+   PRICE AREA
+===================================================== */
 
 .price-row{
     display:flex;
@@ -419,13 +455,40 @@ header{
     padding:0 4px;
 }
 
-.price{
-    color:#118943;
-    font-size:19px;
-    font-weight:bold;
+.price-box{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
 }
 
-/* ================= BUY ================= */
+.old-price{
+    color:#888;
+    font-size:12px;
+    text-decoration:line-through;
+    font-weight:600;
+}
+
+.price{
+    color:#118943;
+    font-size:20px;
+    font-weight:800;
+}
+
+.discount{
+    display:inline-block;
+    background:#e9f8ef;
+    color:#118943;
+    border-radius:5px;
+    padding:3px 6px;
+    font-size:10px;
+    font-weight:800;
+}
+
+
+/* =====================================================
+   BUY NOW
+===================================================== */
 
 .buy{
     background:#f5b521;
@@ -447,7 +510,10 @@ header{
     transform:scale(1.03);
 }
 
-/* ================= LOADING ================= */
+
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading,
 .no-books,
@@ -463,6 +529,7 @@ header{
     background:#fff4f2;
     border-radius:10px;
 }
+
 
 /* =====================================================
    HOW IT WORKS
@@ -520,6 +587,7 @@ header{
     line-height:1.6;
 }
 
+
 /* =====================================================
    ABOUT
 ===================================================== */
@@ -570,6 +638,7 @@ header{
     margin-bottom:5px;
     color:#f4b522;
 }
+
 
 /* =====================================================
    CONTACT
@@ -635,6 +704,7 @@ header{
     color:#667085;
 }
 
+
 /* =====================================================
    TRUST
 ===================================================== */
@@ -675,6 +745,7 @@ header{
     color:#777;
     font-size:9px;
 }
+
 
 /* =====================================================
    FOOTER
@@ -728,6 +799,7 @@ footer a:hover{
     font-size:10px;
 }
 
+
 /* =====================================================
    TABLET
 ===================================================== */
@@ -768,6 +840,7 @@ footer a:hover{
         padding:12px 17px !important;
     }
 }
+
 
 /* =====================================================
    MOBILE
@@ -865,15 +938,26 @@ footer a:hover{
         padding:5px 8px !important;
     }
 
-    /* BIG BUY NOW BUTTON ON MOBILE */
-
     .price-row{
         gap:6px;
         align-items:center;
     }
 
+    .price-box{
+        gap:4px;
+    }
+
+    .old-price{
+        font-size:11px;
+    }
+
     .price{
-        font-size:17px;
+        font-size:18px;
+    }
+
+    .discount{
+        font-size:9px;
+        padding:3px 5px;
     }
 
     .buy{
@@ -936,6 +1020,7 @@ footer a:hover{
     }
 }
 
+
 /* =====================================================
    SMALL MOBILE
 ===================================================== */
@@ -945,8 +1030,6 @@ footer a:hover{
     .container{
         width:94%;
     }
-
-    /* HERO/BANNER FIX */
 
     .hero{
         padding-top:22px;
@@ -1001,14 +1084,25 @@ footer a:hover{
         font-size:8px;
     }
 
+    .price-row{
+        gap:4px;
+    }
+
+    .price-box{
+        gap:3px;
+    }
+
+    .old-price{
+        font-size:9px;
+    }
+
     .price{
         font-size:15px;
     }
 
-    /* BUY NOW CLEAR & BIG */
-
-    .price-row{
-        gap:5px;
+    .discount{
+        font-size:8px;
+        padding:2px 4px;
     }
 
     .buy{
@@ -1057,6 +1151,7 @@ footer a:hover{
 </head>
 
 <body>
+
 
 <!-- =====================================================
      HEADER
@@ -1792,7 +1887,7 @@ async function loadEbooks(){
         await supabaseClient
         .from("Ebooks")
         .select(
-            "id, Title, Price, category, Description, cover_url, Published"
+            "id, Title, Price, Original_Price, category, Description, cover_url, Published"
         )
         .eq("Published", true)
         .order("created_at", {
@@ -1862,9 +1957,96 @@ async function loadEbooks(){
             );
 
 
-        const price =
+        /* =============================================
+           PRICE SYSTEM
+        ============================================= */
+
+        const salePrice =
             Number(book.Price || 0);
 
+
+        let originalPrice =
+            Number(
+                book.Original_Price ||
+                salePrice
+            );
+
+
+        /* Safety:
+           Original price should not be lower
+           than sale price.
+        */
+
+        if(originalPrice < salePrice){
+
+            originalPrice =
+                salePrice;
+
+        }
+
+
+        let priceHTML = "";
+
+
+        /* =============================================
+           DISCOUNT CALCULATION
+        ============================================= */
+
+        if(
+            originalPrice > salePrice &&
+            salePrice >= 0
+        ){
+
+            const discountPercent =
+                Math.round(
+                    (
+                        (originalPrice - salePrice)
+                        /
+                        originalPrice
+                    ) * 100
+                );
+
+
+            priceHTML = `
+
+                <div class="price-box">
+
+                    <span class="old-price">
+                        ₹${originalPrice}
+                    </span>
+
+                    <span class="price">
+                        ₹${salePrice}
+                    </span>
+
+                    <span class="discount">
+                        ${discountPercent}% OFF
+                    </span>
+
+                </div>
+
+            `;
+
+        }else{
+
+            priceHTML = `
+
+                <div class="price-box">
+
+                    <span class="price">
+                        ₹${salePrice}
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =============================================
+           COVER
+        ============================================= */
 
         let coverHTML = "";
 
@@ -1898,6 +2080,10 @@ async function loadEbooks(){
         }
 
 
+        /* =============================================
+           CARD
+        ============================================= */
+
         card.innerHTML = `
 
             ${coverHTML}
@@ -1916,16 +2102,13 @@ async function loadEbooks(){
 
             <div class="price-row">
 
-                <span class="price">
-                    ₹${price}
-                </span>
-
+                ${priceHTML}
 
                 <button
                     class="buy"
                     onclick="buyBook(
                         '${escapeJs(title)}',
-                        ${price},
+                        ${salePrice},
                         '${escapeJs(book.id)}'
                     )"
                 >
