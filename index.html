@@ -1119,7 +1119,7 @@ async function loadEbooks(){
    BUY BUTTON
 ========================================== */
 
-async function buyBook(name, price, id){
+async function buyBook(name, price, id) {
 
     try {
 
@@ -1140,12 +1140,9 @@ async function buyBook(name, price, id){
             }
         );
 
-
         const data = await response.json();
 
-
         if (!response.ok) {
-
             console.error(data);
 
             alert(
@@ -1156,35 +1153,19 @@ async function buyBook(name, price, id){
             return;
         }
 
-
         if (!data.payment_session_id) {
-
-            alert(
-                "Payment session नहीं मिला."
-            );
-
+            alert("Payment session नहीं मिला.");
             return;
         }
 
-
-        /* Cashfree Checkout */
-
-        const cashfree =
-            Cashfree({
-                mode: "sandbox"
-            });
-
-
-        await cashfree.checkout({
-
-            paymentSessionId:
-                data.payment_session_id,
-
-            redirectTarget:
-                "_self"
-
+        const cashfree = Cashfree({
+            mode: "sandbox"
         });
 
+        await cashfree.checkout({
+            paymentSessionId: data.payment_session_id,
+            redirectTarget: "_self"
+        });
 
     } catch (error) {
 
@@ -1193,9 +1174,7 @@ async function buyBook(name, price, id){
         alert(
             "Payment connection error.\nPlease try again."
         );
-
     }
-
 }
 
 /* ==========================================
