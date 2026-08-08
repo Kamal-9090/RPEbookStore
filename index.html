@@ -12,6 +12,7 @@
 <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -173,7 +174,7 @@ header{
     background:#fff;
 }
 
-/* BOOK IMAGE AREA */
+/* ================= BOOK IMAGE AREA ================= */
 
 .hero-art{
     height:100%;
@@ -276,138 +277,207 @@ header{
     color:#777;
 }
 
-/* ================= EBOOKS ================= */
+/* =====================================================
+   EBOOKS
+===================================================== */
 
 .ebooks{
-    padding:25px 0 18px;
+    padding:32px 0 22px;
 }
 
 .section-title{
     text-align:center;
-    margin-bottom:15px;
+    margin-bottom:22px;
 }
 
 .section-title small{
     color:#e1a019;
-    font-size:11px;
+    font-size:12px;
     font-weight:bold;
-    letter-spacing:1px;
+    letter-spacing:1.5px;
 }
 
 .section-title h2{
-    font-size:28px;
-    margin:5px 0 7px;
+    font-size:30px;
+    margin:6px 0 8px;
 }
 
 .section-line{
-    width:40px;
+    width:48px;
     height:3px;
     background:#e9ad24;
     margin:auto;
 }
 
-/* ================= EBOOK CARDS ================= */
+/* ================= EBOOK GRID ================= */
 
 .ebook-grid{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:14px;
+    gap:18px;
 }
 
-/* BORDER REMOVED */
+/* ================= EBOOK CARD ================= */
+
+/*
+   IMPORTANT:
+   No border
+   No outer coloured strip
+   No card padding
+*/
+
 .card{
-    border:none;
-    border-radius:11px;
-    padding:8px;
+    border:none !important;
+    outline:none !important;
+    border-radius:0 !important;
+    padding:0 !important;
+    margin:0 !important;
     background:#fff;
-    box-shadow:none;
-    transition:.2s;
+    box-shadow:none !important;
+    overflow:hidden;
+    transition:transform .2s ease;
 }
 
 .card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    transform:translateY(-5px);
+    box-shadow:none !important;
 }
 
-/* COVER HEIGHT INCREASED */
+/* ================= LARGE COVER ================= */
+
 .cover{
-    height:220px;
-    border-radius:7px;
+    width:100%;
+    height:255px !important;
+
+    border:none !important;
+    border-radius:0 !important;
+
+    margin:0 0 13px 0 !important;
+    padding:0 !important;
+
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+
     text-align:center;
+
     color:#fff;
-    padding:10px;
     font-size:20px;
     line-height:1.05;
     font-weight:900;
-    margin-bottom:11px;
+
     overflow:hidden;
-    background:linear-gradient(145deg,#132e4c,#356b9c);
+
+    background:linear-gradient(
+        145deg,
+        #132e4c,
+        #356b9c
+    );
 }
 
 .cover img{
-    width:100%;
-    height:100%;
+    display:block;
+
+    width:100% !important;
+    height:100% !important;
+
     object-fit:cover;
-    border-radius:7px;
+
+    border:none !important;
+    border-radius:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
 }
+
+/* ================= BOOK TITLE ================= */
 
 .card h3{
-    font-size:13px;
-    min-height:30px;
-    line-height:1.25;
+    font-size:14px;
+    min-height:32px;
+    line-height:1.3;
+    padding:0 4px;
+    color:#10233f;
 }
 
-/* CATEGORY BIGGER */
+/* ================= CATEGORY ================= */
+
 .category{
     display:inline-block;
-    font-size:11px;
-    margin:7px 0;
+
+    font-size:11px !important;
+    font-weight:700;
+
+    margin:7px 4px !important;
+
     background:#eaf2ff;
     color:#2768b5;
-    padding:5px 9px;
-    border-radius:14px;
-    font-weight:600;
+
+    padding:5px 10px !important;
+
+    border-radius:15px;
 }
+
+/* ================= DESCRIPTION ================= */
 
 .card p{
     color:#626b76;
     font-size:9px;
     line-height:1.4;
+
     min-height:38px;
+
+    padding:0 4px;
 }
+
+/* ================= PRICE + BUTTON ================= */
 
 .price-row{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-top:9px;
+
+    margin-top:10px;
+
+    padding:0 4px;
 }
 
 .price{
     color:#118943;
-    font-size:17px;
+    font-size:18px;
     font-weight:bold;
 }
 
-/* BUY NOW BIGGER */
+/* ================= LARGE BUY NOW ================= */
+
 .buy{
     background:#f5b521;
-    border:0;
-    border-radius:6px;
-    padding:10px 15px;
-    font-size:11px;
+
+    border:0 !important;
+
+    border-radius:7px;
+
+    padding:11px 16px !important;
+
+    min-height:40px;
+
+    font-size:12px !important;
     font-weight:bold;
+
     cursor:pointer;
-    min-height:36px;
+
+    white-space:nowrap;
+
+    transition:.2s;
 }
 
 .buy:hover{
     background:#e5a719;
+    transform:scale(1.03);
 }
+
+/* ================= LOADING ================= */
 
 .loading,
 .no-books,
@@ -503,7 +573,9 @@ footer a{
     font-size:10px;
 }
 
-/* ================= TABLET ================= */
+/* =====================================================
+   TABLET
+===================================================== */
 
 @media(max-width:1050px){
 
@@ -513,15 +585,22 @@ footer a{
 
     .ebook-grid{
         grid-template-columns:repeat(3,1fr);
+        gap:18px;
     }
 
     .hero{
         height:auto;
         min-height:300px;
     }
+
+    .cover{
+        height:270px !important;
+    }
 }
 
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
@@ -579,25 +658,30 @@ footer a{
         padding:8px;
     }
 
+    /* TWO EBOOKS PER ROW */
     .ebook-grid{
         grid-template-columns:1fr 1fr;
-        gap:12px;
+        gap:16px 12px;
     }
 
-    /* MOBILE COVER */
+    /* LARGE MOBILE COVER */
     .cover{
-        height:220px;
+        height:250px !important;
+    }
+
+    .card h3{
+        font-size:13px;
     }
 
     .category{
-        font-size:10px;
-        padding:5px 8px;
+        font-size:10px !important;
+        padding:5px 8px !important;
     }
 
     .buy{
-        padding:9px 11px;
-        font-size:10px;
-        min-height:35px;
+        padding:10px 12px !important;
+        font-size:10px !important;
+        min-height:38px;
     }
 
     .trust{
@@ -615,7 +699,9 @@ footer a{
     }
 }
 
-/* ================= SMALL MOBILE ================= */
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
 
 @media(max-width:430px){
 
@@ -625,25 +711,26 @@ footer a{
 
     .ebook-grid{
         grid-template-columns:1fr 1fr;
-        gap:10px;
+        gap:13px 9px;
     }
 
+    /* STILL BIGGER THAN OLD VERSION */
     .cover{
-        height:190px;
-        font-size:17px;
-    }
-
-    .card{
-        padding:6px;
+        height:225px !important;
     }
 
     .card h3{
         font-size:12px;
+        min-height:30px;
     }
 
     .category{
-        font-size:9px;
-        padding:4px 7px;
+        font-size:9px !important;
+        padding:4px 7px !important;
+    }
+
+    .card p{
+        font-size:8px;
     }
 
     .price{
@@ -651,9 +738,9 @@ footer a{
     }
 
     .buy{
-        padding:8px 9px;
-        font-size:9px;
-        min-height:34px;
+        padding:9px 9px !important;
+        font-size:9px !important;
+        min-height:36px;
     }
 
     .benefits{
@@ -672,6 +759,7 @@ footer a{
         font-size:8px;
     }
 }
+
 </style>
 </head>
 
@@ -831,6 +919,7 @@ footer a{
 
     </div>
 
+
     <div class="ebook-grid" id="ebookGrid">
 
         <div class="loading">
@@ -976,6 +1065,7 @@ footer a{
 
 const SUPABASE_URL =
 "https://whtiyeyqcvbajschqbli.supabase.co";
+
 
 const SUPABASE_KEY =
 "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
@@ -1176,9 +1266,7 @@ async function buyBook(name, price, id) {
 
         if (!data.payment_session_id) {
 
-            alert(
-                "Payment session नहीं मिला."
-            );
+            alert("Payment session नहीं मिला.");
 
             return;
         }
