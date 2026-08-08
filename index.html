@@ -1271,8 +1271,9 @@ async function buyBook(name, price, id) {
             return;
         }
 
-        const cashfree = Cashfree({
-            mode: "sandbox"
+       const cashfree = Cashfree({
+    mode: "sandbox"
+});
         });
 
         await cashfree.checkout({
