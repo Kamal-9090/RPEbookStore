@@ -112,13 +112,13 @@ header{
 /* ================= HERO ================= */
 
 .hero{
-    height:300px;
+    min-height:300px;
     background:linear-gradient(110deg,#ffffff 60%,#eef6ff);
     overflow:hidden;
 }
 
 .hero-inner{
-    height:100%;
+    min-height:300px;
     display:grid;
     grid-template-columns:1fr 1fr;
     align-items:center;
@@ -163,9 +163,9 @@ header{
 }
 
 .btn{
-    padding:11px 20px;
+    padding:12px 22px;
     border-radius:6px;
-    font-size:12px;
+    font-size:13px;
     font-weight:bold;
 }
 
@@ -182,16 +182,19 @@ header{
 /* ================= BOOK ART ================= */
 
 .hero-art{
+    min-height:300px;
     height:100%;
     display:flex;
     justify-content:center;
     align-items:center;
+    overflow:visible;
 }
 
 .books{
     position:relative;
     width:430px;
-    height:260px;
+    height:280px;
+    flex-shrink:0;
 }
 
 .big-book{
@@ -210,7 +213,7 @@ header{
 }
 
 .book-top{
-    top:35px;
+    top:5px;
     height:90px;
     background:#fff;
     color:#243852;
@@ -220,25 +223,25 @@ header{
 }
 
 .book-blue{
-    top:103px;
+    top:73px;
     background:#17477e;
     z-index:4;
 }
 
 .book-gold{
-    top:151px;
+    top:121px;
     background:#df9e16;
     z-index:3;
 }
 
 .book-green{
-    top:199px;
+    top:169px;
     background:#315a43;
     z-index:2;
 }
 
 .book-purple{
-    top:247px;
+    top:217px;
     background:#55417e;
     z-index:1;
 }
@@ -411,13 +414,14 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:8px;
     margin-top:10px;
     padding:0 4px;
 }
 
 .price{
     color:#118943;
-    font-size:18px;
+    font-size:19px;
     font-weight:bold;
 }
 
@@ -425,15 +429,17 @@ header{
 
 .buy{
     background:#f5b521;
+    color:#111;
     border:0 !important;
     border-radius:7px;
-    padding:11px 16px !important;
-    min-height:40px;
-    font-size:12px !important;
-    font-weight:bold;
+    padding:12px 18px !important;
+    min-height:44px;
+    font-size:14px !important;
+    font-weight:800;
     cursor:pointer;
     white-space:nowrap;
     transition:.2s;
+    box-shadow:0 3px 8px rgba(0,0,0,.12);
 }
 
 .buy:hover{
@@ -738,7 +744,10 @@ footer a:hover{
     }
 
     .hero{
-        height:auto;
+        min-height:300px;
+    }
+
+    .hero-inner{
         min-height:300px;
     }
 
@@ -752,6 +761,11 @@ footer a:hover{
 
     .about-box{
         grid-template-columns:1fr;
+    }
+
+    .buy{
+        font-size:14px !important;
+        padding:12px 17px !important;
     }
 }
 
@@ -770,11 +784,14 @@ footer a:hover{
     }
 
     .hero{
+        min-height:auto;
         height:auto;
-        padding:28px 0;
+        padding:25px 0 20px;
+        overflow:hidden;
     }
 
     .hero-inner{
+        min-height:auto;
         grid-template-columns:1fr;
     }
 
@@ -794,15 +811,30 @@ footer a:hover{
 
     .hero-buttons{
         justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .btn{
+        padding:13px 20px;
+        font-size:13px;
     }
 
     .hero-art{
         height:220px;
-        margin-top:10px;
+        min-height:220px;
+        margin-top:5px;
+        overflow:visible;
     }
 
     .books{
-        transform:scale(.75);
+        width:360px;
+        height:220px;
+        transform:scale(.68);
+        transform-origin:center center;
+    }
+
+    .big-book{
+        left:35px;
     }
 
     .benefits{
@@ -833,10 +865,22 @@ footer a:hover{
         padding:5px 8px !important;
     }
 
+    /* BIG BUY NOW BUTTON ON MOBILE */
+
+    .price-row{
+        gap:6px;
+        align-items:center;
+    }
+
+    .price{
+        font-size:17px;
+    }
+
     .buy{
-        padding:10px 12px !important;
-        font-size:10px !important;
-        min-height:38px;
+        padding:12px 13px !important;
+        font-size:13px !important;
+        min-height:44px;
+        border-radius:7px;
     }
 
     .steps{
@@ -902,6 +946,38 @@ footer a:hover{
         width:94%;
     }
 
+    /* HERO/BANNER FIX */
+
+    .hero{
+        padding-top:22px;
+        padding-bottom:12px;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .hero-art{
+        height:205px;
+        min-height:205px;
+        margin-top:0;
+    }
+
+    .books{
+        width:340px;
+        height:210px;
+        transform:scale(.61);
+        transform-origin:center center;
+    }
+
+    .big-book{
+        left:25px;
+    }
+
     .ebook-grid{
         grid-template-columns:1fr 1fr;
         gap:13px 9px;
@@ -929,10 +1005,17 @@ footer a:hover{
         font-size:15px;
     }
 
+    /* BUY NOW CLEAR & BIG */
+
+    .price-row{
+        gap:5px;
+    }
+
     .buy{
-        padding:9px 9px !important;
-        font-size:9px !important;
-        min-height:36px;
+        padding:10px 10px !important;
+        font-size:11px !important;
+        min-height:40px;
+        font-weight:800;
     }
 
     .benefits{
@@ -1846,7 +1929,7 @@ async function loadEbooks(){
                         '${escapeJs(book.id)}'
                     )"
                 >
-                    🛒 Buy Now
+                    BUY NOW
                 </button>
 
             </div>
