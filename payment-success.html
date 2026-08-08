@@ -1,131 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Payment Successful</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    padding:30px;
-    background:#f5f5f5;
-}
+  <meta charset="UTF-8">
 
-.box{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    max-width:400px;
-    margin:auto;
-    box-shadow:0 0 10px #ccc;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-button{
-    background:#16a34a;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-}
+  <title>Payment Successful</title>
 
-#status{
-    margin:20px;
-}
-</style>
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: #f5f5f5;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    button {
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #status {
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+    #download {
+      display: none;
+      text-decoration: none;
+    }
+
+  </style>
 
 </head>
 
+
 <body>
 
-<div class="box">
+  <div class="box">
 
-<h2>✅ Payment Successful</h2>
+    <h2>✅ Payment Successful</h2>
 
-<p id="status">Payment verify ho raha hai...</p>
+    <p id="status">
+      Payment verify ho raha hai...
+    </p>
 
-<a id="download" style="display:none;" target="_blank">
-<button>Download Ebook PDF</button>
-</a>
+    <a
+      id="download"
+      target="_blank"
+      rel="noopener"
+    >
 
-</div>
+      <button>
+        📥 Download Ebook
+      </button>
 
+    </a>
 
-<script>
-
-const params = new URLSearchParams(window.location.search);
-
-const order_id = params.get("order_id");
-
-
-/*
-  IMPORTANT:
-  Ye wahi ebook id honi chahiye
-  jiska payment hua hai.
-*/
-
-const ebook_id = "1";
+  </div>
 
 
-async function verifyPayment(){
+  <script>
 
-try{
+    // ==============================
+    // GET PAYMENT DETAILS
+    // ==============================
 
-const response = await fetch(
-"https://whtiyeyqcvbajschqbli.supabase.co/functions/v1/verify-payment",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-order_id:order_id,
-ebook_id:ebook_id
-})
-}
-);
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
 
+    const order_id =
+      params.get("order_id");
 
-const data = await response.json();
+    const ebook_id =
+      params.get("ebook_id");
 
 
-if(data.success){
+    const status =
+      document.getElementById("status");
 
-document.getElementById("status").innerHTML =
-"Payment Verified ✅";
-
-
-const btn=document.getElementById("download");
-
-btn.href=data.pdf_url;
-btn.style.display="inline-block";
+    const download =
+      document.getElementById("download");
 
 
-}
-else{
+    // ==============================
+    // CHECK PARAMETERS
+    // ==============================
 
-document.getElementById("status").innerHTML =
-data.message || "Payment pending";
+    if (!order_id) {
 
-}
+      status.innerHTML =
+        "❌ Order ID नहीं मिला।";
+
+    }
+
+    else if (!ebook_id) {
+
+      status.innerHTML =
+        "❌ Ebook ID नहीं मिली।";
+
+    }
+
+    else {
+
+      verifyPayment();
+
+    }
 
 
-}
-catch(error){
+    // ==============================
+    // VERIFY PAYMENT
+    // ==============================
 
-document.getElementById("status").innerHTML =
-"Error: "+error.message;
+    async function verifyPayment() {
 
-}
+      try {
 
-}
+        const response =
+          await fetch(
+            "https://whtiyeyqcvbajschqbli.supabase.co/functions/v1/verify-payment",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                order_id:
+                  order_id,
+
+                ebook_id:
+                  ebook_id
+
+              })
+
+            }
+          );
 
 
-verifyPayment();
+        const data =
+          await response.json();
 
-</script>
+
+        // ==============================
+        // PAYMENT SUCCESS
+        // ==============================
+
+        if (data.success) {
+
+          status.innerHTML =
+            "Payment Verified ✅<br><br>" +
+            "<strong>" +
+            (data.title || "Your Ebook") +
+            "</strong>";
+
+
+          if (data.pdf_url) {
+
+            download.href =
+              data.pdf_url;
+
+            download.style.display =
+              "inline-block";
+
+          }
+
+        }
+
+
+        // ==============================
+        // PAYMENT NOT COMPLETED
+        // ==============================
+
+        else {
+
+          status.innerHTML =
+            data.message ||
+            data.error ||
+            "Payment pending.";
+
+        }
+
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+          "❌ Error: " +
+          error.message;
+
+      }
+
+    }
+
+  </script>
 
 </body>
+
 </html>
