@@ -1887,7 +1887,7 @@ async function loadEbooks(){
         await supabaseClient
         .from("Ebooks")
         .select(
-            "id, Title, Price, Original_Price, category, Description, cover_url, Published"
+            "id, Title, Price, OriginalPrice, category, Description, cover_url, Published"
         )
         .eq("Published", true)
         .order("created_at", {
@@ -1967,7 +1967,7 @@ async function loadEbooks(){
 
         let originalPrice =
             Number(
-                book.Original_Price ||
+                book.OriginalPrice ||
                 salePrice
             );
 
