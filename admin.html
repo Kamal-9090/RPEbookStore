@@ -208,6 +208,151 @@ textarea{
 }
 
 /* =========================
+   COVER SELECT AREA
+========================= */
+
+.cover-select-box{
+    border:1px dashed #9fb3ca;
+    background:#f8fbff;
+    padding:15px;
+    border-radius:10px;
+}
+
+.crop-preview{
+    display:none;
+    margin-top:12px;
+    text-align:center;
+}
+
+.crop-preview img{
+    width:120px;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+    border:1px solid #d8e0ea;
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+}
+
+.crop-preview-name{
+    margin-top:7px;
+    color:#667085;
+    font-size:12px;
+}
+
+/* =========================
+   CROP MODAL
+========================= */
+
+.crop-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    z-index:99999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.crop-modal.active{
+    display:flex;
+}
+
+.crop-box{
+    width:100%;
+    max-width:650px;
+    background:#fff;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+}
+
+.crop-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.crop-header h3{
+    font-size:20px;
+    color:#10233f;
+}
+
+.crop-close{
+    border:0;
+    background:#ef4444;
+    color:#fff;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.crop-area{
+    width:100%;
+    height:420px;
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    touch-action:none;
+    user-select:none;
+}
+
+.crop-canvas{
+    width:100%;
+    height:100%;
+    display:block;
+    cursor:grab;
+}
+
+.crop-canvas:active{
+    cursor:grabbing;
+}
+
+.crop-controls{
+    margin-top:14px;
+}
+
+.crop-controls label{
+    margin:0 0 6px;
+}
+
+.crop-controls input[type="range"]{
+    padding:0;
+    border:0;
+    box-shadow:none;
+}
+
+.crop-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.crop-actions button{
+    flex:1;
+    border:0;
+    border-radius:8px;
+    padding:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.crop-cancel{
+    background:#e5e7eb;
+    color:#111;
+}
+
+.crop-apply{
+    background:#118943;
+    color:#fff;
+}
+
+/* =========================
    BOOK LIST
 ========================= */
 
@@ -387,6 +532,31 @@ textarea{
         font-size:10px;
     }
 
+    .crop-box{
+        padding:12px;
+        border-radius:12px;
+    }
+
+    .crop-area{
+        height:350px;
+    }
+
+    .crop-header h3{
+        font-size:17px;
+    }
+
+    .crop-actions button{
+        font-size:13px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .crop-area{
+        height:310px;
+    }
+
 }
 
 </style>
@@ -411,7 +581,6 @@ textarea{
         RP Ebook Store Administration
     </p>
 
-
     <label>
         Admin Email
     </label>
@@ -421,7 +590,6 @@ textarea{
         id="email"
         placeholder="Admin Email"
     >
-
 
     <label>
         Password
@@ -433,7 +601,6 @@ textarea{
         placeholder="Password"
     >
 
-
     <button
         class="primary"
         onclick="login()"
@@ -441,14 +608,12 @@ textarea{
         Login
     </button>
 
-
     <div
         id="loginMessage"
         class="message"
     ></div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -483,7 +648,6 @@ textarea{
 </div>
 
 
-
 <!-- =====================================================
      ADD EBOOK
 ===================================================== -->
@@ -506,7 +670,6 @@ textarea{
         id="title"
         placeholder="Example: Railway GK 2026"
     >
-
 
 
     <!-- PRICES -->
@@ -555,7 +718,6 @@ textarea{
     </div>
 
 
-
     <!-- CATEGORY -->
 
     <label>
@@ -567,7 +729,6 @@ textarea{
         id="category"
         placeholder="Example: Railway"
     >
-
 
 
     <!-- DESCRIPTION -->
@@ -582,19 +743,39 @@ textarea{
     ></textarea>
 
 
-
     <!-- COVER -->
 
     <label>
         Cover Image
     </label>
 
-    <input
-        type="file"
-        id="coverFile"
-        accept="image/*"
-    >
+    <div class="cover-select-box">
 
+        <input
+            type="file"
+            id="coverFile"
+            accept="image/*"
+        >
+
+        <div
+            id="cropPreview"
+            class="crop-preview"
+        >
+
+            <img
+                id="cropPreviewImage"
+                src=""
+                alt="Cover Preview"
+            >
+
+            <div
+                id="cropPreviewName"
+                class="crop-preview-name"
+            ></div>
+
+        </div>
+
+    </div>
 
 
     <!-- PDF -->
@@ -608,7 +789,6 @@ textarea{
         id="pdfFile"
         accept="application/pdf"
     >
-
 
 
     <!-- PUBLISHED -->
@@ -630,7 +810,6 @@ textarea{
     </select>
 
 
-
     <!-- ADD BUTTON -->
 
     <button
@@ -647,7 +826,6 @@ textarea{
     ></div>
 
 </div>
-
 
 
 <!-- =====================================================
@@ -672,6 +850,83 @@ textarea{
 </div>
 
 
+<!-- =====================================================
+     CROP MODAL
+===================================================== -->
+
+<div
+    id="cropModal"
+    class="crop-modal"
+>
+
+    <div class="crop-box">
+
+        <div class="crop-header">
+
+            <h3>
+                ✂️ Crop Ebook Cover
+            </h3>
+
+            <button
+                class="crop-close"
+                onclick="cancelCrop()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="crop-area">
+
+            <canvas
+                id="cropCanvas"
+                class="crop-canvas"
+            ></canvas>
+
+        </div>
+
+
+        <div class="crop-controls">
+
+            <label>
+                🔍 Zoom
+            </label>
+
+            <input
+                type="range"
+                id="cropZoom"
+                min="1"
+                max="3"
+                step="0.01"
+                value="1"
+            >
+
+        </div>
+
+
+        <div class="crop-actions">
+
+            <button
+                class="crop-cancel"
+                onclick="cancelCrop()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="crop-apply"
+                onclick="applyCrop()"
+            >
+                ✅ Apply Crop
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <script>
 
@@ -682,10 +937,8 @@ textarea{
 const SUPABASE_URL =
 "https://whtiyeyqcvbajschqbli.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
-
 
 const supabaseClient =
 supabase.createClient(
@@ -693,6 +946,704 @@ supabase.createClient(
     SUPABASE_KEY
 );
 
+
+/* =====================================================
+   CROP VARIABLES
+===================================================== */
+
+let cropOriginalFile = null;
+
+let cropImage = new Image();
+
+let cropCanvas =
+    document.getElementById("cropCanvas");
+
+let cropCtx =
+    cropCanvas.getContext("2d");
+
+let cropScale = 1;
+
+let cropZoom = 1;
+
+let cropX = 0;
+
+let cropY = 0;
+
+let cropDragging = false;
+
+let cropStartX = 0;
+
+let cropStartY = 0;
+
+let cropStartImageX = 0;
+
+let cropStartImageY = 0;
+
+
+/* =====================================================
+   COVER FILE SELECT
+===================================================== */
+
+document
+.getElementById("coverFile")
+.addEventListener(
+    "change",
+    function(){
+
+        const file =
+            this.files[0];
+
+        if(!file){
+
+            return;
+
+        }
+
+        if(
+            !file.type.startsWith("image/")
+        ){
+
+            alert(
+                "Please select a valid image."
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+        cropOriginalFile = file;
+
+        openCrop(file);
+
+    }
+);
+
+
+/* =====================================================
+   OPEN CROP
+===================================================== */
+
+function openCrop(file){
+
+    const reader =
+        new FileReader();
+
+    reader.onload =
+        function(event){
+
+            cropImage.onload =
+                function(){
+
+                    cropZoom = 1;
+
+                    document
+                    .getElementById("cropZoom")
+                    .value = "1";
+
+                    setupCrop();
+
+                    document
+                    .getElementById("cropModal")
+                    .classList
+                    .add("active");
+
+                };
+
+            cropImage.src =
+                event.target.result;
+
+        };
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   SETUP CROP
+===================================================== */
+
+function setupCrop(){
+
+    const area =
+        document
+        .querySelector(".crop-area");
+
+    const width =
+        area.clientWidth;
+
+    const height =
+        area.clientHeight;
+
+    cropCanvas.width =
+        width * 2;
+
+    cropCanvas.height =
+        height * 2;
+
+    cropCanvas.style.width =
+        width + "px";
+
+    cropCanvas.style.height =
+        height + "px";
+
+    cropCtx.setTransform(
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+    );
+
+    const canvasRatio =
+        cropCanvas.width /
+        cropCanvas.height;
+
+    const imageRatio =
+        cropImage.width /
+        cropImage.height;
+
+    if(imageRatio > canvasRatio){
+
+        cropScale =
+            cropCanvas.height /
+            cropImage.height;
+
+    }else{
+
+        cropScale =
+            cropCanvas.width /
+            cropImage.width;
+
+    }
+
+    cropX =
+        (cropCanvas.width -
+        cropImage.width *
+        cropScale) / 2;
+
+    cropY =
+        (cropCanvas.height -
+        cropImage.height *
+        cropScale) / 2;
+
+    drawCrop();
+
+}
+
+
+/* =====================================================
+   DRAW CROP
+===================================================== */
+
+function drawCrop(){
+
+    if(!cropImage.width){
+
+        return;
+
+    }
+
+    const w =
+        cropCanvas.width;
+
+    const h =
+        cropCanvas.height;
+
+    cropCtx.clearRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+    cropCtx.fillStyle =
+        "#111";
+
+    cropCtx.fillRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    const scaledWidth =
+        cropImage.width *
+        cropScale *
+        cropZoom;
+
+    const scaledHeight =
+        cropImage.height *
+        cropScale *
+        cropZoom;
+
+
+    cropCtx.drawImage(
+        cropImage,
+        cropX -
+        (
+            scaledWidth -
+            cropImage.width *
+            cropScale
+        ) / 2,
+
+        cropY -
+        (
+            scaledHeight -
+            cropImage.height *
+            cropScale
+        ) / 2,
+
+        scaledWidth,
+        scaledHeight
+    );
+
+}
+
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+document
+.getElementById("cropZoom")
+.addEventListener(
+    "input",
+    function(){
+
+        cropZoom =
+            Number(this.value);
+
+        drawCrop();
+
+    }
+);
+
+
+/* =====================================================
+   MOUSE DRAG
+===================================================== */
+
+cropCanvas.addEventListener(
+    "mousedown",
+    function(event){
+
+        cropDragging = true;
+
+        cropStartX =
+            event.clientX;
+
+        cropStartY =
+            event.clientY;
+
+        cropStartImageX =
+            cropX;
+
+        cropStartImageY =
+            cropY;
+
+    }
+);
+
+
+window.addEventListener(
+    "mousemove",
+    function(event){
+
+        if(!cropDragging){
+
+            return;
+
+        }
+
+        const rect =
+            cropCanvas
+            .getBoundingClientRect();
+
+        const scaleX =
+            cropCanvas.width /
+            rect.width;
+
+        const scaleY =
+            cropCanvas.height /
+            rect.height;
+
+        cropX =
+            cropStartImageX +
+            (
+                event.clientX -
+                cropStartX
+            ) *
+            scaleX;
+
+        cropY =
+            cropStartImageY +
+            (
+                event.clientY -
+                cropStartY
+            ) *
+            scaleY;
+
+        drawCrop();
+
+    }
+);
+
+
+window.addEventListener(
+    "mouseup",
+    function(){
+
+        cropDragging = false;
+
+    }
+);
+
+
+/* =====================================================
+   TOUCH DRAG
+===================================================== */
+
+cropCanvas.addEventListener(
+    "touchstart",
+    function(event){
+
+        if(!event.touches[0]){
+
+            return;
+
+        }
+
+        const touch =
+            event.touches[0];
+
+        cropDragging = true;
+
+        cropStartX =
+            touch.clientX;
+
+        cropStartY =
+            touch.clientY;
+
+        cropStartImageX =
+            cropX;
+
+        cropStartImageY =
+            cropY;
+
+        event.preventDefault();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+cropCanvas.addEventListener(
+    "touchmove",
+    function(event){
+
+        if(
+            !cropDragging ||
+            !event.touches[0]
+        ){
+
+            return;
+
+        }
+
+        const touch =
+            event.touches[0];
+
+        const rect =
+            cropCanvas
+            .getBoundingClientRect();
+
+        const scaleX =
+            cropCanvas.width /
+            rect.width;
+
+        const scaleY =
+            cropCanvas.height /
+            rect.height;
+
+        cropX =
+            cropStartImageX +
+            (
+                touch.clientX -
+                cropStartX
+            ) *
+            scaleX;
+
+        cropY =
+            cropStartImageY +
+            (
+                touch.clientY -
+                cropStartY
+            ) *
+            scaleY;
+
+        drawCrop();
+
+        event.preventDefault();
+
+    },
+    {
+        passive:false
+    }
+);
+
+
+cropCanvas.addEventListener(
+    "touchend",
+    function(){
+
+        cropDragging = false;
+
+    }
+);
+
+
+/* =====================================================
+   CANCEL CROP
+===================================================== */
+
+function cancelCrop(){
+
+    document
+    .getElementById("cropModal")
+    .classList
+    .remove("active");
+
+    cropOriginalFile = null;
+
+    document
+    .getElementById("coverFile")
+    .value = "";
+
+    document
+    .getElementById("cropPreview")
+    .style
+    .display = "none";
+
+}
+
+
+/* =====================================================
+   APPLY CROP
+===================================================== */
+
+function applyCrop(){
+
+    if(!cropOriginalFile){
+
+        return;
+
+    }
+
+
+    /*
+       Ebook cover output
+       2 : 3 ratio
+    */
+
+    const outputWidth =
+        1000;
+
+    const outputHeight =
+        1500;
+
+
+    const outputCanvas =
+        document.createElement(
+            "canvas"
+        );
+
+    outputCanvas.width =
+        outputWidth;
+
+    outputCanvas.height =
+        outputHeight;
+
+    const outputCtx =
+        outputCanvas.getContext(
+            "2d"
+        );
+
+
+    const canvasRatio =
+        cropCanvas.width /
+        cropCanvas.height;
+
+
+    /*
+       Crop visible center area
+       into 2:3 ebook ratio.
+    */
+
+    let sourceWidth;
+    let sourceHeight;
+    let sourceX;
+    let sourceY;
+
+
+    if(canvasRatio > (2/3)){
+
+        sourceHeight =
+            cropCanvas.height;
+
+        sourceWidth =
+            sourceHeight *
+            (2/3);
+
+        sourceX =
+            (
+                cropCanvas.width -
+                sourceWidth
+            ) / 2;
+
+        sourceY = 0;
+
+    }else{
+
+        sourceWidth =
+            cropCanvas.width;
+
+        sourceHeight =
+            sourceWidth *
+            (3/2);
+
+        sourceX = 0;
+
+        sourceY =
+            (
+                cropCanvas.height -
+                sourceHeight
+            ) / 2;
+
+    }
+
+
+    /*
+       Draw from displayed crop.
+    */
+
+    outputCtx.drawImage(
+        cropCanvas,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        0,
+        0,
+        outputWidth,
+        outputHeight
+    );
+
+
+    outputCanvas.toBlob(
+        function(blob){
+
+            if(!blob){
+
+                alert(
+                    "Crop failed. Please try again."
+                );
+
+                return;
+
+            }
+
+
+            const croppedFile =
+                new File(
+                    [
+                        blob
+                    ],
+                    "ebook-cover-" +
+                    Date.now() +
+                    ".jpg",
+                    {
+                        type:
+                            "image/jpeg"
+                    }
+                );
+
+
+            /*
+               Put cropped file back
+               into file input.
+            */
+
+            const dataTransfer =
+                new DataTransfer();
+
+            dataTransfer.items.add(
+                croppedFile
+            );
+
+            document
+            .getElementById("coverFile")
+            .files =
+                dataTransfer.files;
+
+
+            cropOriginalFile =
+                croppedFile;
+
+
+            /*
+               Preview
+            */
+
+            const previewUrl =
+                URL.createObjectURL(
+                    croppedFile
+                );
+
+            document
+            .getElementById(
+                "cropPreviewImage"
+            )
+            .src =
+                previewUrl;
+
+            document
+            .getElementById(
+                "cropPreviewName"
+            )
+            .textContent =
+                "✅ Cropped cover ready";
+
+
+            document
+            .getElementById(
+                "cropPreview"
+            )
+            .style
+            .display =
+                "block";
+
+
+            document
+            .getElementById(
+                "cropModal"
+            )
+            .classList
+            .remove("active");
+
+
+        },
+        "image/jpeg",
+        0.92
+    );
+
+}
 
 
 /* =====================================================
@@ -716,15 +1667,21 @@ async function login(){
 
     const msg =
         document
-        .getElementById("loginMessage");
+        .getElementById(
+            "loginMessage"
+        );
 
 
-    if(!email || !password){
+    if(
+        !email ||
+        !password
+    ){
 
         msg.textContent =
             "Please enter email and password.";
 
         return;
+
     }
 
 
@@ -732,8 +1689,12 @@ async function login(){
         "Logging in...";
 
 
-    const { data, error } =
-        await supabaseClient.auth
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .auth
         .signInWithPassword({
 
             email:email,
@@ -750,16 +1711,15 @@ async function login(){
             error.message;
 
         return;
+
     }
 
 
     msg.textContent = "";
 
-
     showAdmin();
 
 }
-
 
 
 /* =====================================================
@@ -769,23 +1729,26 @@ async function login(){
 async function logout(){
 
     await supabaseClient
-        .auth
-        .signOut();
+    .auth
+    .signOut();
 
 
     document
-        .getElementById("adminPanel")
-        .classList
-        .add("hidden");
+    .getElementById(
+        "adminPanel"
+    )
+    .classList
+    .add("hidden");
 
 
     document
-        .getElementById("loginBox")
-        .classList
-        .remove("hidden");
+    .getElementById(
+        "loginBox"
+    )
+    .classList
+    .remove("hidden");
 
 }
-
 
 
 /* =====================================================
@@ -795,21 +1758,24 @@ async function logout(){
 function showAdmin(){
 
     document
-        .getElementById("loginBox")
-        .classList
-        .add("hidden");
+    .getElementById(
+        "loginBox"
+    )
+    .classList
+    .add("hidden");
 
 
     document
-        .getElementById("adminPanel")
-        .classList
-        .remove("hidden");
+    .getElementById(
+        "adminPanel"
+    )
+    .classList
+    .remove("hidden");
 
 
     loadBooks();
 
 }
-
 
 
 /* =====================================================
@@ -821,7 +1787,9 @@ function calculateDiscount(){
     const original =
         Number(
             document
-            .getElementById("originalPrice")
+            .getElementById(
+                "originalPrice"
+            )
             .value
         );
 
@@ -829,14 +1797,18 @@ function calculateDiscount(){
     const sale =
         Number(
             document
-            .getElementById("price")
+            .getElementById(
+                "price"
+            )
             .value
         );
 
 
     const preview =
         document
-        .getElementById("discountPreview");
+        .getElementById(
+            "discountPreview"
+        );
 
 
     if(
@@ -850,21 +1822,31 @@ function calculateDiscount(){
             "💰 Discount automatically दिखाई देगा।";
 
         return;
+
     }
 
 
-    if(sale > original){
+    if(
+        sale > original
+    ){
 
         preview.innerHTML =
             "⚠️ Sale Price Original Price से अधिक नहीं हो सकता।";
 
         return;
+
     }
 
 
     const discount =
         Math.round(
-            ((original - sale) / original) * 100
+            (
+                (
+                    original -
+                    sale
+                ) /
+                original
+            ) * 100
         );
 
 
@@ -872,6 +1854,7 @@ function calculateDiscount(){
         `
         💰 Original Price:
         <del>₹${original}</del>
+
         &nbsp;&nbsp;
 
         Sale Price:
@@ -886,7 +1869,9 @@ function calculateDiscount(){
 
 
 document
-.getElementById("originalPrice")
+.getElementById(
+    "originalPrice"
+)
 .addEventListener(
     "input",
     calculateDiscount
@@ -894,12 +1879,13 @@ document
 
 
 document
-.getElementById("price")
+.getElementById(
+    "price"
+)
 .addEventListener(
     "input",
     calculateDiscount
 );
-
 
 
 /* =====================================================
@@ -910,7 +1896,9 @@ async function addEbook(){
 
     const title =
         document
-        .getElementById("title")
+        .getElementById(
+            "title"
+        )
         .value
         .trim();
 
@@ -918,7 +1906,9 @@ async function addEbook(){
     const originalPrice =
         Number(
             document
-            .getElementById("originalPrice")
+            .getElementById(
+                "originalPrice"
+            )
             .value
         );
 
@@ -926,47 +1916,60 @@ async function addEbook(){
     const price =
         Number(
             document
-            .getElementById("price")
+            .getElementById(
+                "price"
+            )
             .value
         );
 
 
     const category =
         document
-        .getElementById("category")
+        .getElementById(
+            "category"
+        )
         .value
         .trim();
 
 
     const description =
         document
-        .getElementById("description")
+        .getElementById(
+            "description"
+        )
         .value
         .trim();
 
 
     const published =
         document
-        .getElementById("published")
+        .getElementById(
+            "published"
+        )
         .value === "true";
 
 
     const coverFile =
         document
-        .getElementById("coverFile")
+        .getElementById(
+            "coverFile"
+        )
         .files[0];
 
 
     const pdfFile =
         document
-        .getElementById("pdfFile")
+        .getElementById(
+            "pdfFile"
+        )
         .files[0];
 
 
     const msg =
         document
-        .getElementById("addMessage");
-
+        .getElementById(
+            "addMessage"
+        );
 
 
     /* VALIDATION */
@@ -1007,7 +2010,10 @@ async function addEbook(){
     }
 
 
-    if(price > originalPrice){
+    if(
+        price >
+        originalPrice
+    ){
 
         msg.textContent =
             "Sale Price cannot be greater than Original Price.";
@@ -1020,7 +2026,7 @@ async function addEbook(){
     if(!coverFile){
 
         msg.textContent =
-            "Please select a cover image.";
+            "Please select and crop a cover image.";
 
         return;
 
@@ -1037,10 +2043,8 @@ async function addEbook(){
     }
 
 
-
     msg.textContent =
         "Uploading files...";
-
 
 
     /* =================================================
@@ -1060,7 +2064,9 @@ async function addEbook(){
     } =
         await supabaseClient
         .storage
-        .from("ebook-covers")
+        .from(
+            "ebook-covers"
+        )
         .upload(
             coverPath,
             coverFile
@@ -1078,7 +2084,6 @@ async function addEbook(){
     }
 
 
-
     /* =================================================
        COVER PUBLIC URL
     ================================================= */
@@ -1088,7 +2093,9 @@ async function addEbook(){
     } =
         supabaseClient
         .storage
-        .from("ebook-covers")
+        .from(
+            "ebook-covers"
+        )
         .getPublicUrl(
             coverPath
         );
@@ -1096,7 +2103,6 @@ async function addEbook(){
 
     const coverUrl =
         coverData.publicUrl;
-
 
 
     /* =================================================
@@ -1116,7 +2122,9 @@ async function addEbook(){
     } =
         await supabaseClient
         .storage
-        .from("ebook-pdfs")
+        .from(
+            "ebook-pdfs"
+        )
         .upload(
             pdfPath,
             pdfFile
@@ -1134,7 +2142,6 @@ async function addEbook(){
     }
 
 
-
     /* =================================================
        DISCOUNT
     ================================================= */
@@ -1142,11 +2149,13 @@ async function addEbook(){
     const discount =
         Math.round(
             (
-                (originalPrice - price) /
+                (
+                    originalPrice -
+                    price
+                ) /
                 originalPrice
             ) * 100
         );
-
 
 
     /* =================================================
@@ -1160,7 +2169,8 @@ async function addEbook(){
         .from("Ebooks")
         .insert({
 
-            Title:title,
+            Title:
+                title,
 
             OriginalPrice:
                 originalPrice,
@@ -1197,69 +2207,97 @@ async function addEbook(){
     }
 
 
-
     msg.innerHTML =
         `
         ✅ Ebook added successfully!
         <br>
         Original Price:
         <del>₹${originalPrice}</del>
+
         &nbsp;
+
         Sale Price:
         <strong>₹${price}</strong>
+
         &nbsp;
+
         ${discount}% OFF
         `;
-
 
 
     /* CLEAR FORM */
 
     document
-        .getElementById("title")
-        .value = "";
+    .getElementById(
+        "title"
+    )
+    .value = "";
 
 
     document
-        .getElementById("originalPrice")
-        .value = "";
+    .getElementById(
+        "originalPrice"
+    )
+    .value = "";
 
 
     document
-        .getElementById("price")
-        .value = "";
+    .getElementById(
+        "price"
+    )
+    .value = "";
 
 
     document
-        .getElementById("category")
-        .value = "";
+    .getElementById(
+        "category"
+    )
+    .value = "";
 
 
     document
-        .getElementById("description")
-        .value = "";
+    .getElementById(
+        "description"
+    )
+    .value = "";
 
 
     document
-        .getElementById("coverFile")
-        .value = "";
+    .getElementById(
+        "coverFile"
+    )
+    .value = "";
 
 
     document
-        .getElementById("pdfFile")
-        .value = "";
+    .getElementById(
+        "pdfFile"
+    )
+    .value = "";
 
 
     document
-        .getElementById("discountPreview")
-        .innerHTML =
+    .getElementById(
+        "cropPreview"
+    )
+    .style
+    .display = "none";
+
+
+    document
+    .getElementById(
+        "discountPreview"
+    )
+    .innerHTML =
         "💰 Discount automatically दिखाई देगा।";
+
+
+    cropOriginalFile = null;
 
 
     loadBooks();
 
 }
-
 
 
 /* =====================================================
@@ -1270,7 +2308,9 @@ async function loadBooks(){
 
     const list =
         document
-        .getElementById("bookList");
+        .getElementById(
+            "bookList"
+        );
 
 
     list.innerHTML =
@@ -1319,169 +2359,192 @@ async function loadBooks(){
     list.innerHTML = "";
 
 
+    data.forEach(
+        book => {
 
-    data.forEach(book => {
-
-        const div =
-            document.createElement("div");
-
-
-        div.className =
-            "book";
-
-
-        const original =
-            Number(
-                book.OriginalPrice ||
-                book.Price ||
-                0
-            );
-
-
-        const sale =
-            Number(
-                book.Price ||
-                0
-            );
-
-
-        let discount = 0;
-
-
-        if(
-            original > 0 &&
-            sale > 0 &&
-            sale <= original
-        ){
-
-            discount =
-                Math.round(
-                    (
-                        (original - sale) /
-                        original
-                    ) * 100
+            const div =
+                document
+                .createElement(
+                    "div"
                 );
 
-        }
+
+            div.className =
+                "book";
 
 
+            const original =
+                Number(
+                    book.OriginalPrice ||
+                    book.Price ||
+                    0
+                );
 
-        div.innerHTML =
-        `
 
-        ${
-            book.cover_url
-            ?
+            const sale =
+                Number(
+                    book.Price ||
+                    0
+                );
+
+
+            let discount = 0;
+
+
+            if(
+                original > 0 &&
+                sale > 0 &&
+                sale <= original
+            ){
+
+                discount =
+                    Math.round(
+                        (
+                            (
+                                original -
+                                sale
+                            ) /
+                            original
+                        ) * 100
+                    );
+
+            }
+
+
+            div.innerHTML =
             `
-            <img
-                src="${escapeAttribute(book.cover_url)}"
-                alt="${escapeAttribute(book.Title || "Ebook")}"
-            >
-            `
-            :
-            `
-            <div
-                style="
-                    width:100px;
-                    height:135px;
-                    background:#eef2f7;
-                    display:flex;
-                    align-items:center;
-                    justify-content:center;
-                    border-radius:7px;
-                    font-size:30px;
-                "
-            >
-                📖
-            </div>
-            `
-        }
+
+            ${
+                book.cover_url
+                ?
+
+                `
+
+                <img
+                    src="${escapeAttribute(book.cover_url)}"
+                    alt="${escapeAttribute(book.Title || "Ebook")}"
+                >
+
+                `
+
+                :
+
+                `
+
+                <div
+                    style="
+                        width:100px;
+                        height:135px;
+                        background:#eef2f7;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        border-radius:7px;
+                        font-size:30px;
+                    "
+                >
+                    📖
+                </div>
+
+                `
+            }
 
 
-        <div class="book-content">
+            <div class="book-content">
 
-            <h3>
-                ${escapeHtml(
-                    book.Title ||
-                    "Untitled Ebook"
-                )}
-            </h3>
-
-
-            <span class="book-category">
-                ${escapeHtml(
-                    book.category ||
-                    "Ebook"
-                )}
-            </span>
+                <h3>
+                    ${escapeHtml(
+                        book.Title ||
+                        "Untitled Ebook"
+                    )}
+                </h3>
 
 
-            <div class="book-prices">
+                <span class="book-category">
 
-                <span class="original-price">
-                    ₹${original}
+                    ${escapeHtml(
+                        book.category ||
+                        "Ebook"
+                    )}
+
                 </span>
 
-                <span class="sale-price">
-                    ₹${sale}
-                </span>
 
-                ${
-                    discount > 0
-                    ?
-                    `
-                    <span class="discount">
-                        ${discount}% OFF
+                <div class="book-prices">
+
+                    <span class="original-price">
+                        ₹${original}
                     </span>
-                    `
-                    :
-                    ""
-                }
+
+
+                    <span class="sale-price">
+                        ₹${sale}
+                    </span>
+
+
+                    ${
+                        discount > 0
+                        ?
+
+                        `
+                        <span class="discount">
+                            ${discount}% OFF
+                        </span>
+                        `
+
+                        :
+
+                        ""
+                    }
+
+                </div>
+
+
+                <p class="book-description">
+
+                    ${escapeHtml(
+                        book.Description ||
+                        ""
+                    )}
+
+                </p>
+
+
+                <div class="status">
+
+                    Status:
+
+                    ${
+                        book.Published
+                        ?
+                        "🟢 Published"
+                        :
+                        "🔴 Hidden"
+                    }
+
+                </div>
+
+
+                <button
+                    class="danger"
+                    onclick="deleteBook('${escapeJs(String(book.id))}')"
+                >
+                    🗑️ Delete
+                </button>
 
             </div>
 
-
-            <p class="book-description">
-                ${escapeHtml(
-                    book.Description ||
-                    ""
-                )}
-            </p>
+            `;
 
 
-            <div class="status">
+            list.appendChild(
+                div
+            );
 
-                Status:
-
-                ${
-                    book.Published
-                    ?
-                    "🟢 Published"
-                    :
-                    "🔴 Hidden"
-                }
-
-            </div>
-
-
-            <button
-                class="danger"
-                onclick="deleteBook('${escapeJs(String(book.id))}')"
-            >
-                🗑️ Delete
-            </button>
-
-        </div>
-
-        `;
-
-
-        list.appendChild(div);
-
-    });
+        }
+    );
 
 }
-
 
 
 /* =====================================================
@@ -1535,7 +2598,6 @@ async function deleteBook(id){
 }
 
 
-
 /* =====================================================
    SANITIZE FILE NAME
 ===================================================== */
@@ -1551,7 +2613,6 @@ function sanitizeFileName(name){
 }
 
 
-
 /* =====================================================
    HTML ESCAPE
 ===================================================== */
@@ -1559,19 +2620,23 @@ function sanitizeFileName(name){
 function escapeHtml(text){
 
     const div =
-        document.createElement("div");
+        document
+        .createElement(
+            "div"
+        );
 
 
     div.textContent =
         text == null
-        ? ""
-        : String(text);
+        ?
+        ""
+        :
+        String(text);
 
 
     return div.innerHTML;
 
 }
-
 
 
 /* =====================================================
@@ -1603,7 +2668,6 @@ function escapeAttribute(value){
         );
 
 }
-
 
 
 /* =====================================================
@@ -1642,12 +2706,12 @@ function escapeJs(value){
 }
 
 
-
 /* =====================================================
    CHECK SESSION
 ===================================================== */
 
-supabaseClient.auth
+supabaseClient
+.auth
 .getSession()
 .then(
     ({data}) => {
