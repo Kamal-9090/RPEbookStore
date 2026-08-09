@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>RP Ebook Store - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -29,12 +30,10 @@ body{
 }
 
 .hidden{
-    display:none !important;
+    display:none!important;
 }
 
-/* =========================
-   LOGIN
-========================= */
+/* ================= LOGIN ================= */
 
 .login-box{
     max-width:430px;
@@ -51,16 +50,14 @@ body{
     font-size:25px;
 }
 
-.login-box > p{
+.login-box>p{
     text-align:center;
     color:#667085;
     margin-bottom:25px;
     font-size:14px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
     background:#061d3a;
@@ -98,9 +95,7 @@ body{
     background:#dc2626;
 }
 
-/* =========================
-   CARD
-========================= */
+/* ================= CARD ================= */
 
 .card{
     background:#fff;
@@ -115,9 +110,7 @@ body{
     margin-bottom:20px;
 }
 
-/* =========================
-   FORM
-========================= */
+/* ================= FORM ================= */
 
 label{
     display:block;
@@ -150,9 +143,7 @@ textarea{
     resize:vertical;
 }
 
-/* =========================
-   PRICE
-========================= */
+/* ================= PRICE ================= */
 
 .price-grid{
     display:grid;
@@ -173,9 +164,7 @@ textarea{
     color:#118943;
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* ================= BUTTON ================= */
 
 .primary{
     width:100%;
@@ -194,15 +183,30 @@ textarea{
     background:#e2a719;
 }
 
+.cancel-edit{
+    width:100%;
+    margin-top:10px;
+    background:#e8edf3;
+    color:#10233f;
+    border:0;
+    border-radius:8px;
+    padding:13px 20px;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.cancel-edit:hover{
+    background:#dce3eb;
+}
+
 .message{
     margin-top:12px;
     font-size:13px;
     font-weight:bold;
 }
 
-/* =========================
-   BOOK LIST
-========================= */
+/* ================= BOOK LIST ================= */
 
 .book{
     border:1px solid #e3e8ef;
@@ -246,9 +250,7 @@ textarea{
     margin:8px 0;
 }
 
-/* =========================
-   BOOK PRICE
-========================= */
+/* ================= PRICE LIST ================= */
 
 .book-prices{
     display:flex;
@@ -279,18 +281,35 @@ textarea{
     font-weight:bold;
 }
 
-/* =========================
-   STATUS
-========================= */
+/* ================= STATUS ================= */
 
 .status{
     font-size:12px;
     margin:8px 0;
 }
 
-/* =========================
-   DELETE
-========================= */
+/* ================= ACTION BUTTONS ================= */
+
+.action-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.edit-btn{
+    background:#2563eb;
+    color:#fff;
+    border:0;
+    border-radius:6px;
+    padding:9px 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.edit-btn:hover{
+    background:#1d4ed8;
+}
 
 .danger{
     background:#dc2626;
@@ -306,9 +325,21 @@ textarea{
     background:#b91c1c;
 }
 
-/* =================================================
-   CROPPER
-================================================= */
+/* ================= EDIT MODE ================= */
+
+.edit-note{
+    display:none;
+    background:#eff6ff;
+    color:#1d4ed8;
+    border:1px solid #bfdbfe;
+    padding:12px;
+    border-radius:9px;
+    margin-bottom:15px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* ================= CROPPER ================= */
 
 .cropper-wrap{
     display:none;
@@ -441,9 +472,7 @@ textarea{
     line-height:1.4;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:600px){
 
@@ -552,6 +581,16 @@ textarea{
         min-height:44px;
         font-size:13px;
     }
+
+    .action-buttons{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .action-buttons button{
+        width:100%;
+    }
+
 }
 
 @media(max-width:380px){
@@ -573,7 +612,9 @@ textarea{
     .discount{
         font-size:9px;
     }
+
 }
+
 </style>
 </head>
 
@@ -658,14 +699,22 @@ textarea{
 
 
 <!-- =====================================================
-     ADD EBOOK
+     ADD / EDIT EBOOK
 ===================================================== -->
 
 <div class="card">
 
-    <h2>
+    <h2 id="formHeading">
         ➕ Add New Ebook
     </h2>
+
+    <div
+        id="editNote"
+        class="edit-note"
+    >
+        ✏️ आप अभी Ebook Edit कर रहे हैं।
+        नीचे जानकारी बदलकर "Update Ebook" दबाएँ।
+    </div>
 
     <label>
         Ebook Title
@@ -749,6 +798,12 @@ textarea{
 
     <label>
         Cover Image
+        <span
+            id="coverOptionalText"
+            style="font-weight:normal;color:#667085;"
+        >
+            (New Ebook में जरूरी)
+        </span>
     </label>
 
     <input
@@ -766,9 +821,15 @@ textarea{
     >
 
         <div class="cropper-title">
+
             ✂️ Cover Crop करें
+
             <br>
-            नीचे के चारों कोनों को खींचकर आकार बदलें और बीच के हिस्से को पकड़कर crop box को ऊपर-नीचे-दाएँ-बाएँ करें।
+
+            चारों कोनों को खींचकर आकार बदलें
+            और बीच के हिस्से को पकड़कर crop box
+            को ऊपर-नीचे-दाएँ-बाएँ करें।
+
         </div>
 
 
@@ -818,7 +879,6 @@ textarea{
                 ✅ Crop Apply करें
             </button>
 
-
             <button
                 type="button"
                 class="crop-btn secondary-crop"
@@ -826,7 +886,6 @@ textarea{
             >
                 ↻ Reset
             </button>
-
 
             <button
                 type="button"
@@ -852,7 +911,7 @@ textarea{
             <span>
                 ✅ Cropped cover ready है।
                 <br>
-                अब नीचे Add Ebook दबाएँ।
+                अब नीचे button दबाएँ।
             </span>
 
         </div>
@@ -866,6 +925,14 @@ textarea{
 
     <label>
         PDF File
+
+        <span
+            id="pdfOptionalText"
+            style="font-weight:normal;color:#667085;"
+        >
+            (New Ebook में जरूरी)
+        </span>
+
     </label>
 
     <input
@@ -896,11 +963,28 @@ textarea{
     </select>
 
 
+    <input
+        type="hidden"
+        id="editId"
+        value=""
+    >
+
+
     <button
+        id="saveButton"
         class="primary"
-        onclick="addEbook()"
+        onclick="saveEbook()"
     >
         ➕ Add Ebook
+    </button>
+
+
+    <button
+        id="cancelEditButton"
+        class="cancel-edit hidden"
+        onclick="cancelEdit()"
+    >
+        ✕ Cancel Edit
     </button>
 
 
@@ -930,14 +1014,13 @@ textarea{
 
 
 </div>
-
 </div>
 
 
 <script>
 
 /* =====================================================
-   SUPABASE CONFIGURATION
+   SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -945,7 +1028,6 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
 "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
-
 
 const supabaseClient =
 supabase.createClient(
@@ -979,17 +1061,17 @@ async function login(){
     if(!email || !password){
 
         msg.textContent =
-            "Please enter email and password.";
+        "Please enter email and password.";
 
         return;
     }
 
 
     msg.textContent =
-        "Logging in...";
+    "Logging in...";
 
 
-    const {data,error} =
+    const {error} =
         await supabaseClient
         .auth
         .signInWithPassword({
@@ -1004,8 +1086,8 @@ async function login(){
     if(error){
 
         msg.textContent =
-            "Login failed: " +
-            error.message;
+        "Login failed: " +
+        error.message;
 
         return;
     }
@@ -1024,20 +1106,21 @@ async function login(){
 async function logout(){
 
     await supabaseClient
-        .auth
-        .signOut();
+    .auth
+    .signOut();
 
 
     document
-        .getElementById("adminPanel")
-        .classList
-        .add("hidden");
+    .getElementById("adminPanel")
+    .classList
+    .add("hidden");
 
 
     document
-        .getElementById("loginBox")
-        .classList
-        .remove("hidden");
+    .getElementById("loginBox")
+    .classList
+    .remove("hidden");
+
 }
 
 
@@ -1048,18 +1131,19 @@ async function logout(){
 function showAdmin(){
 
     document
-        .getElementById("loginBox")
-        .classList
-        .add("hidden");
+    .getElementById("loginBox")
+    .classList
+    .add("hidden");
 
 
     document
-        .getElementById("adminPanel")
-        .classList
-        .remove("hidden");
+    .getElementById("adminPanel")
+    .classList
+    .remove("hidden");
 
 
     loadBooks();
+
 }
 
 
@@ -1098,7 +1182,7 @@ function calculateDiscount(){
     ){
 
         preview.innerHTML =
-            "💰 Discount automatically दिखाई देगा।";
+        "💰 Discount automatically दिखाई देगा।";
 
         return;
     }
@@ -1107,7 +1191,7 @@ function calculateDiscount(){
     if(sale > original){
 
         preview.innerHTML =
-            "⚠️ Sale Price Original Price से अधिक नहीं हो सकता।";
+        "⚠️ Sale Price Original Price से अधिक नहीं हो सकता।";
 
         return;
     }
@@ -1123,6 +1207,7 @@ function calculateDiscount(){
 
 
     preview.innerHTML = `
+
         💰 Original Price:
         <del>₹${original}</del>
 
@@ -1134,6 +1219,7 @@ function calculateDiscount(){
         &nbsp;&nbsp;
 
         🔥 ${discount}% OFF
+
     `;
 }
 
@@ -1155,7 +1241,7 @@ document
 
 
 /* =====================================================
-   FINAL MOBILE WORKING CROPPER
+   CROPPER VARIABLES
 ===================================================== */
 
 let cropImage = null;
@@ -1165,17 +1251,20 @@ let cropImageUrl = null;
 let croppedCoverFile = null;
 
 let cropState = {
+
     x:0,
     y:0,
     w:0,
     h:0
+
 };
 
 let cropDrag = null;
 
 
 const coverInput =
-    document.getElementById("coverFile");
+    document
+    .getElementById("coverFile");
 
 
 coverInput.addEventListener(
@@ -1185,7 +1274,7 @@ coverInput.addEventListener(
 
 
 /* =====================================================
-   SELECT IMAGE
+   SELECT COVER
 ===================================================== */
 
 function handleCoverSelect(e){
@@ -1220,6 +1309,7 @@ function handleCoverSelect(e){
         URL.revokeObjectURL(
             cropImageUrl
         );
+
     }
 
 
@@ -1251,6 +1341,7 @@ function handleCoverSelect(e){
 
     cropImage.src =
         cropImageUrl;
+
 }
 
 
@@ -1278,12 +1369,6 @@ function setupCropper(){
     const ctx =
         canvas.getContext("2d");
 
-
-    /*
-      IMPORTANT:
-      Image को mobile screen के हिसाब से
-      सही display size में रखा जाता है।
-    */
 
     const maxWidth =
         Math.min(
@@ -1321,7 +1406,6 @@ function setupCropper(){
     canvas.style.width =
         "100%";
 
-
     canvas.style.height =
         "auto";
 
@@ -1343,10 +1427,6 @@ function setupCropper(){
     );
 
 
-    /*
-      Crop box हमेशा image के अंदर रहेगा।
-    */
-
     const displayWidth =
         canvas.getBoundingClientRect().width;
 
@@ -1354,10 +1434,6 @@ function setupCropper(){
     const displayHeight =
         canvas.getBoundingClientRect().height;
 
-
-    /*
-      लगभग 4:5 book-cover crop
-    */
 
     let w =
         displayWidth * 0.72;
@@ -1367,22 +1443,27 @@ function setupCropper(){
         w * 1.25;
 
 
-    if(h > displayHeight * 0.88){
+    if(
+        h >
+        displayHeight * 0.88
+    ){
 
         h =
             displayHeight * 0.88;
 
         w =
             h / 1.25;
+
     }
 
 
     cropState.w = w;
-
     cropState.h = h;
+
 
     cropState.x =
         (displayWidth - w) / 2;
+
 
     cropState.y =
         (displayHeight - h) / 2;
@@ -1401,46 +1482,11 @@ function setupCropper(){
         "none";
 
 
-    /*
-      Browser को repaint करने दें।
-    */
-
     setTimeout(
         positionCropBox,
         50
     );
-}
 
-
-/* =====================================================
-   DISPLAY SCALE
-===================================================== */
-
-function getDisplayScale(){
-
-    const canvas =
-        document
-        .getElementById("cropCanvas");
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    return {
-
-        width:rect.width,
-
-        height:rect.height,
-
-        scaleX:
-            canvas.width /
-            rect.width,
-
-        scaleY:
-            canvas.height /
-            rect.height
-    };
 }
 
 
@@ -1469,6 +1515,7 @@ function positionCropBox(){
 
     box.style.height =
         cropState.h + "px";
+
 }
 
 
@@ -1534,6 +1581,7 @@ function clampCrop(){
                 cropState.h
             )
         );
+
 }
 
 
@@ -1561,7 +1609,9 @@ function pointerPosition(e){
         y:
             e.clientY -
             rect.top
+
     };
+
 }
 
 
@@ -1594,6 +1644,7 @@ function startCropDrag(
         state:{
             ...cropState
         }
+
     };
 
 
@@ -1608,6 +1659,7 @@ function startCropDrag(
         endCropDrag,
         {once:true}
     );
+
 }
 
 
@@ -1643,10 +1695,6 @@ function moveCropDrag(e){
         cropDrag.state;
 
 
-    /*
-      MOVE
-    */
-
     if(
         cropDrag.type ===
         "move"
@@ -1655,20 +1703,19 @@ function moveCropDrag(e){
         cropState.x =
             s.x + dx;
 
+
         cropState.y =
             s.y + dy;
+
 
         clampCrop();
 
         positionCropBox();
 
         return;
+
     }
 
-
-    /*
-      RESIZE
-    */
 
     let x = s.x;
 
@@ -1743,21 +1790,20 @@ function moveCropDrag(e){
 
         h =
             s.h + dy;
+
     }
 
 
     cropState.x = x;
-
     cropState.y = y;
-
     cropState.w = w;
-
     cropState.h = h;
 
 
     clampCrop();
 
     positionCropBox();
+
 }
 
 
@@ -1769,15 +1815,17 @@ function endCropDrag(){
 
     cropDrag = null;
 
+
     window.removeEventListener(
         "pointermove",
         moveCropDrag
     );
+
 }
 
 
 /* =====================================================
-   HANDLE EVENTS
+   CROP HANDLES
 ===================================================== */
 
 document
@@ -1800,6 +1848,7 @@ document
                         type
                     )
             );
+
         }
 
     });
@@ -1829,6 +1878,7 @@ document
             e,
             "move"
         );
+
     }
 );
 
@@ -1857,11 +1907,6 @@ function applyCrop(){
     const rect =
         canvas.getBoundingClientRect();
 
-
-    /*
-      Display coordinates को
-      original image coordinates में बदलना।
-    */
 
     const scaleX =
         cropImage.naturalWidth /
@@ -1912,10 +1957,6 @@ function applyCrop(){
         );
 
 
-    /*
-      Good quality output
-    */
-
     const maxWidth =
         1400;
 
@@ -1961,12 +2002,10 @@ function applyCrop(){
 
     ctx.drawImage(
         cropImage,
-
         sx,
         sy,
         sw,
         sh,
-
         0,
         0,
         output.width,
@@ -2006,9 +2045,7 @@ function applyCrop(){
                     originalName +
                     "_cropped.jpg",
                     {
-                        type:
-                            "image/jpeg",
-
+                        type:"image/jpeg",
                         lastModified:
                             Date.now()
                     }
@@ -2045,12 +2082,13 @@ function applyCrop(){
                 "addMessage"
             )
             .textContent =
-                "✅ Cropped cover ready. अब Add Ebook दबाएँ।";
+                "✅ Cropped cover ready.";
 
         },
         "image/jpeg",
         0.93
     );
+
 }
 
 
@@ -2061,9 +2099,9 @@ function applyCrop(){
 function resetCrop(){
 
     if(cropImage){
-
         setupCropper();
     }
+
 }
 
 
@@ -2091,6 +2129,34 @@ function cancelCrop(){
     )
     .style.display =
         "none";
+
+}
+
+
+/* =====================================================
+   SAVE EBOOK
+   ADD + EDIT
+===================================================== */
+
+async function saveEbook(){
+
+    const editId =
+        document
+        .getElementById("editId")
+        .value
+        .trim();
+
+
+    if(editId){
+
+        await updateEbook(editId);
+
+    }else{
+
+        await addEbook();
+
+    }
+
 }
 
 
@@ -2110,9 +2176,7 @@ async function addEbook(){
     const originalPrice =
         Number(
             document
-            .getElementById(
-                "originalPrice"
-            )
+            .getElementById("originalPrice")
             .value
         );
 
@@ -2142,15 +2206,11 @@ async function addEbook(){
     const published =
         document
         .getElementById("published")
-        .value === "true";
+        .value ===
+        "true";
 
 
-    /*
-      अगर crop किया गया है तो
-      cropped file use होगी।
-    */
-
-    let coverFile =
+    const coverFile =
         croppedCoverFile ||
         document
         .getElementById("coverFile")
@@ -2168,12 +2228,10 @@ async function addEbook(){
         .getElementById("addMessage");
 
 
-    /* VALIDATION */
-
     if(!title){
 
         msg.textContent =
-            "Ebook title is required.";
+        "Ebook title is required.";
 
         return;
     }
@@ -2185,7 +2243,7 @@ async function addEbook(){
     ){
 
         msg.textContent =
-            "Please enter a valid Original Price.";
+        "Please enter a valid Original Price.";
 
         return;
     }
@@ -2197,7 +2255,7 @@ async function addEbook(){
     ){
 
         msg.textContent =
-            "Please enter a valid Sale Price.";
+        "Please enter a valid Sale Price.";
 
         return;
     }
@@ -2206,7 +2264,7 @@ async function addEbook(){
     if(price > originalPrice){
 
         msg.textContent =
-            "Sale Price cannot be greater than Original Price.";
+        "Sale Price cannot be greater than Original Price.";
 
         return;
     }
@@ -2215,7 +2273,7 @@ async function addEbook(){
     if(!coverFile){
 
         msg.textContent =
-            "Please select a cover image.";
+        "Please select a cover image.";
 
         return;
     }
@@ -2224,19 +2282,17 @@ async function addEbook(){
     if(!pdfFile){
 
         msg.textContent =
-            "Please select a PDF.";
+        "Please select a PDF.";
 
         return;
     }
 
 
     msg.textContent =
-        "Uploading files...";
+    "Uploading files...";
 
 
-    /* =================================================
-       COVER UPLOAD
-    ================================================= */
+    /* COVER */
 
     const coverPath =
         Date.now() +
@@ -2261,16 +2317,12 @@ async function addEbook(){
     if(coverError){
 
         msg.textContent =
-            "Cover upload failed: " +
-            coverError.message;
+        "Cover upload failed: " +
+        coverError.message;
 
         return;
     }
 
-
-    /* =================================================
-       COVER URL
-    ================================================= */
 
     const {
         data:coverData
@@ -2287,9 +2339,7 @@ async function addEbook(){
         coverData.publicUrl;
 
 
-    /* =================================================
-       PDF UPLOAD
-    ================================================= */
+    /* PDF */
 
     const pdfPath =
         Date.now() +
@@ -2314,30 +2364,25 @@ async function addEbook(){
     if(pdfError){
 
         msg.textContent =
-            "PDF upload failed: " +
-            pdfError.message;
+        "PDF upload failed: " +
+        pdfError.message;
 
         return;
     }
 
 
-    /* =================================================
-       DISCOUNT
-    ================================================= */
+    /* DISCOUNT */
 
     const discount =
         Math.round(
             (
-                (originalPrice -
-                price) /
+                (originalPrice - price) /
                 originalPrice
             ) * 100
         );
 
 
-    /* =================================================
-       DATABASE
-    ================================================= */
+    /* DATABASE */
 
     const {
         error:dbError
@@ -2368,14 +2413,15 @@ async function addEbook(){
 
             Published:
                 published
+
         });
 
 
     if(dbError){
 
         msg.textContent =
-            "Database error: " +
-            dbError.message;
+        "Database error: " +
+        dbError.message;
 
         return;
     }
@@ -2394,72 +2440,10 @@ async function addEbook(){
     `;
 
 
-    /* CLEAR FORM */
-
-    document
-    .getElementById("title")
-    .value = "";
-
-
-    document
-    .getElementById("originalPrice")
-    .value = "";
-
-
-    document
-    .getElementById("price")
-    .value = "";
-
-
-    document
-    .getElementById("category")
-    .value = "";
-
-
-    document
-    .getElementById("description")
-    .value = "";
-
-
-    document
-    .getElementById("coverFile")
-    .value = "";
-
-
-    document
-    .getElementById("pdfFile")
-    .value = "";
-
-
-    croppedCoverFile =
-        null;
-
-
-    document
-    .getElementById(
-        "cropperWrap"
-    )
-    .style.display =
-        "none";
-
-
-    document
-    .getElementById(
-        "cropPreview"
-    )
-    .style.display =
-        "none";
-
-
-    document
-    .getElementById(
-        "discountPreview"
-    )
-    .innerHTML =
-        "💰 Discount automatically दिखाई देगा।";
-
+    resetForm();
 
     loadBooks();
+
 }
 
 
@@ -2477,7 +2461,7 @@ async function loadBooks(){
 
 
     list.innerHTML =
-        "Loading...";
+    "Loading...";
 
 
     const {
@@ -2498,8 +2482,8 @@ async function loadBooks(){
     if(error){
 
         list.innerHTML =
-            "Error: " +
-            error.message;
+        "Error: " +
+        error.message;
 
         return;
     }
@@ -2511,7 +2495,7 @@ async function loadBooks(){
     ){
 
         list.innerHTML =
-            "No ebooks found.";
+        "No ebooks found.";
 
         return;
     }
@@ -2568,6 +2552,7 @@ async function loadBooks(){
                             original
                         ) * 100
                     );
+
             }
 
 
@@ -2575,7 +2560,6 @@ async function loadBooks(){
 
                 ${
                     book.cover_url
-
                     ?
 
                     `
@@ -2687,16 +2671,32 @@ async function loadBooks(){
                     </div>
 
 
-                    <button
-                        class="danger"
-                        onclick="deleteBook(
-                            '${escapeJs(
-                                String(book.id)
-                            )}'
-                        )"
-                    >
-                        🗑️ Delete
-                    </button>
+                    <div class="action-buttons">
+
+                        <button
+                            class="edit-btn"
+                            onclick="editBook(
+                                '${escapeJs(
+                                    String(book.id)
+                                )}'
+                            )"
+                        >
+                            ✏️ Edit
+                        </button>
+
+
+                        <button
+                            class="danger"
+                            onclick="deleteBook(
+                                '${escapeJs(
+                                    String(book.id)
+                                )}'
+                            )"
+                        >
+                            🗑️ Delete
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -2709,6 +2709,671 @@ async function loadBooks(){
 
         }
     );
+
+}
+
+
+/* =====================================================
+   EDIT BOOK
+===================================================== */
+
+async function editBook(id){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("Ebooks")
+        .select("*")
+        .eq(
+            "id",
+            id
+        )
+        .single();
+
+
+    if(error){
+
+        alert(
+            "Ebook details load नहीं हो सकीं: " +
+            error.message
+        );
+
+        return;
+    }
+
+
+    /* FILL FORM */
+
+    document
+    .getElementById("editId")
+    .value =
+        data.id;
+
+
+    document
+    .getElementById("title")
+    .value =
+        data.Title ||
+        "";
+
+
+    document
+    .getElementById("originalPrice")
+    .value =
+        data.OriginalPrice ||
+        data.Price ||
+        "";
+
+
+    document
+    .getElementById("price")
+    .value =
+        data.Price ||
+        "";
+
+
+    document
+    .getElementById("category")
+    .value =
+        data.category ||
+        "";
+
+
+    document
+    .getElementById("description")
+    .value =
+        data.Description ||
+        "";
+
+
+    document
+    .getElementById("published")
+    .value =
+        data.Published
+        ? "true"
+        : "false";
+
+
+    /* CLEAR FILE INPUTS */
+
+    document
+    .getElementById("coverFile")
+    .value =
+        "";
+
+
+    document
+    .getElementById("pdfFile")
+    .value =
+        "";
+
+
+    croppedCoverFile =
+        null;
+
+
+    cropImage =
+        null;
+
+
+    document
+    .getElementById(
+        "cropperWrap"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "cropPreview"
+    )
+    .style.display =
+        "none";
+
+
+    /* EDIT MODE */
+
+    document
+    .getElementById(
+        "formHeading"
+    )
+    .innerHTML =
+        "✏️ Edit Ebook";
+
+
+    document
+    .getElementById(
+        "editNote"
+    )
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById(
+        "saveButton"
+    )
+    .textContent =
+        "💾 Update Ebook";
+
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .classList
+    .remove("hidden");
+
+
+    document
+    .getElementById(
+        "coverOptionalText"
+    )
+    .textContent =
+        "(Optional - पुराना Cover रखना हो तो खाली छोड़ें)";
+
+
+    document
+    .getElementById(
+        "pdfOptionalText"
+    )
+    .textContent =
+        "(Optional - पुराना PDF रखना हो तो खाली छोड़ें)";
+
+
+    calculateDiscount();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   UPDATE BOOK
+===================================================== */
+
+async function updateEbook(id){
+
+    const title =
+        document
+        .getElementById("title")
+        .value
+        .trim();
+
+
+    const originalPrice =
+        Number(
+            document
+            .getElementById("originalPrice")
+            .value
+        );
+
+
+    const price =
+        Number(
+            document
+            .getElementById("price")
+            .value
+        );
+
+
+    const category =
+        document
+        .getElementById("category")
+        .value
+        .trim();
+
+
+    const description =
+        document
+        .getElementById("description")
+        .value
+        .trim();
+
+
+    const published =
+        document
+        .getElementById("published")
+        .value ===
+        "true";
+
+
+    const newCover =
+        croppedCoverFile ||
+        document
+        .getElementById("coverFile")
+        .files[0];
+
+
+    const newPdf =
+        document
+        .getElementById("pdfFile")
+        .files[0];
+
+
+    const msg =
+        document
+        .getElementById(
+            "addMessage"
+        );
+
+
+    if(!title){
+
+        msg.textContent =
+        "Ebook title is required.";
+
+        return;
+    }
+
+
+    if(
+        !originalPrice ||
+        originalPrice <= 0
+    ){
+
+        msg.textContent =
+        "Please enter a valid Original Price.";
+
+        return;
+    }
+
+
+    if(
+        !price ||
+        price <= 0
+    ){
+
+        msg.textContent =
+        "Please enter a valid Sale Price.";
+
+        return;
+    }
+
+
+    if(price > originalPrice){
+
+        msg.textContent =
+        "Sale Price cannot be greater than Original Price.";
+
+        return;
+    }
+
+
+    msg.textContent =
+    "Updating Ebook...";
+
+
+    /* GET OLD DATA */
+
+    const {
+        data:oldBook,
+        error:oldError
+    } =
+        await supabaseClient
+        .from("Ebooks")
+        .select("*")
+        .eq(
+            "id",
+            id
+        )
+        .single();
+
+
+    if(oldError){
+
+        msg.textContent =
+        "Could not load old Ebook: " +
+        oldError.message;
+
+        return;
+    }
+
+
+    let coverUrl =
+        oldBook.cover_url ||
+        null;
+
+
+    let pdfPath =
+        oldBook.pdf_url ||
+        null;
+
+
+    /* =================================================
+       NEW COVER
+    ================================================= */
+
+    if(newCover){
+
+        msg.textContent =
+        "Uploading new cover...";
+
+
+        const coverPath =
+            Date.now() +
+            "_edit_" +
+            sanitizeFileName(
+                newCover.name
+            );
+
+
+        const {
+            error:coverError
+        } =
+            await supabaseClient
+            .storage
+            .from("ebook-covers")
+            .upload(
+                coverPath,
+                newCover
+            );
+
+
+        if(coverError){
+
+            msg.textContent =
+            "New cover upload failed: " +
+            coverError.message;
+
+            return;
+        }
+
+
+        const {
+            data:coverData
+        } =
+            supabaseClient
+            .storage
+            .from("ebook-covers")
+            .getPublicUrl(
+                coverPath
+            );
+
+
+        coverUrl =
+            coverData.publicUrl;
+
+    }
+
+
+    /* =================================================
+       NEW PDF
+    ================================================= */
+
+    if(newPdf){
+
+        msg.textContent =
+        "Uploading new PDF...";
+
+
+        const newPdfPath =
+            Date.now() +
+            "_edit_" +
+            sanitizeFileName(
+                newPdf.name
+            );
+
+
+        const {
+            error:pdfError
+        } =
+            await supabaseClient
+            .storage
+            .from("ebook-pdfs")
+            .upload(
+                newPdfPath,
+                newPdf
+            );
+
+
+        if(pdfError){
+
+            msg.textContent =
+            "New PDF upload failed: " +
+            pdfError.message;
+
+            return;
+        }
+
+
+        pdfPath =
+            newPdfPath;
+
+    }
+
+
+    /* =================================================
+       UPDATE DATABASE
+    ================================================= */
+
+    const {
+        error:updateError
+    } =
+        await supabaseClient
+        .from("Ebooks")
+        .update({
+
+            Title:
+                title,
+
+            OriginalPrice:
+                originalPrice,
+
+            Price:
+                price,
+
+            category:
+                category,
+
+            Description:
+                description,
+
+            cover_url:
+                coverUrl,
+
+            pdf_url:
+                pdfPath,
+
+            Published:
+                published
+
+        })
+        .eq(
+            "id",
+            id
+        );
+
+
+    if(updateError){
+
+        msg.textContent =
+        "Update failed: " +
+        updateError.message;
+
+        return;
+    }
+
+
+    msg.innerHTML =
+        "✅ Ebook successfully updated.";
+
+
+    cancelEdit();
+
+
+    document
+    .getElementById(
+        "addMessage"
+    )
+    .innerHTML =
+        "✅ Ebook successfully updated.";
+
+
+    loadBooks();
+
+}
+
+
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
+
+function cancelEdit(){
+
+    document
+    .getElementById(
+        "editId"
+    )
+    .value =
+        "";
+
+
+    document
+    .getElementById(
+        "formHeading"
+    )
+    .innerHTML =
+        "➕ Add New Ebook";
+
+
+    document
+    .getElementById(
+        "editNote"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "saveButton"
+    )
+    .textContent =
+        "➕ Add Ebook";
+
+
+    document
+    .getElementById(
+        "cancelEditButton"
+    )
+    .classList
+    .add("hidden");
+
+
+    document
+    .getElementById(
+        "coverOptionalText"
+    )
+    .textContent =
+        "(New Ebook में जरूरी)";
+
+
+    document
+    .getElementById(
+        "pdfOptionalText"
+    )
+    .textContent =
+        "(New Ebook में जरूरी)";
+
+
+    resetForm();
+
+}
+
+
+/* =====================================================
+   RESET FORM
+===================================================== */
+
+function resetForm(){
+
+    document
+    .getElementById("title")
+    .value =
+        "";
+
+
+    document
+    .getElementById("originalPrice")
+    .value =
+        "";
+
+
+    document
+    .getElementById("price")
+    .value =
+        "";
+
+
+    document
+    .getElementById("category")
+    .value =
+        "";
+
+
+    document
+    .getElementById("description")
+    .value =
+        "";
+
+
+    document
+    .getElementById("coverFile")
+    .value =
+        "";
+
+
+    document
+    .getElementById("pdfFile")
+    .value =
+        "";
+
+
+    document
+    .getElementById("published")
+    .value =
+        "true";
+
+
+    croppedCoverFile =
+        null;
+
+
+    cropImage =
+        null;
+
+
+    document
+    .getElementById(
+        "cropperWrap"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "cropPreview"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "discountPreview"
+    )
+    .innerHTML =
+        "💰 Discount automatically दिखाई देगा।";
+
 }
 
 
@@ -2757,6 +3422,7 @@ async function deleteBook(id){
 
 
     loadBooks();
+
 }
 
 
@@ -2771,6 +3437,7 @@ function sanitizeFileName(name){
             /[^a-zA-Z0-9._-]/g,
             "_"
         );
+
 }
 
 
@@ -2794,6 +3461,7 @@ function escapeHtml(text){
 
 
     return div.innerHTML;
+
 }
 
 
@@ -2824,6 +3492,7 @@ function escapeAttribute(value){
             />/g,
             "&gt;"
         );
+
 }
 
 
@@ -2859,6 +3528,7 @@ function escapeJs(value){
             /\r/g,
             "\\r"
         );
+
 }
 
 
@@ -2878,6 +3548,7 @@ supabaseClient
         ){
 
             showAdmin();
+
         }
 
     }
