@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>RP Ebook Store - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -158,7 +151,7 @@ textarea{
 }
 
 /* =========================
-   PRICE BOX
+   PRICE
 ========================= */
 
 .price-grid{
@@ -205,151 +198,6 @@ textarea{
     margin-top:12px;
     font-size:13px;
     font-weight:bold;
-}
-
-/* =========================
-   COVER SELECT AREA
-========================= */
-
-.cover-select-box{
-    border:1px dashed #9fb3ca;
-    background:#f8fbff;
-    padding:15px;
-    border-radius:10px;
-}
-
-.crop-preview{
-    display:none;
-    margin-top:12px;
-    text-align:center;
-}
-
-.crop-preview img{
-    width:120px;
-    height:180px;
-    object-fit:cover;
-    border-radius:8px;
-    border:1px solid #d8e0ea;
-    box-shadow:0 5px 15px rgba(0,0,0,.10);
-}
-
-.crop-preview-name{
-    margin-top:7px;
-    color:#667085;
-    font-size:12px;
-}
-
-/* =========================
-   CROP MODAL
-========================= */
-
-.crop-modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.72);
-    z-index:99999;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:15px;
-}
-
-.crop-modal.active{
-    display:flex;
-}
-
-.crop-box{
-    width:100%;
-    max-width:650px;
-    background:#fff;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 20px 70px rgba(0,0,0,.35);
-}
-
-.crop-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.crop-header h3{
-    font-size:20px;
-    color:#10233f;
-}
-
-.crop-close{
-    border:0;
-    background:#ef4444;
-    color:#fff;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    cursor:pointer;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.crop-area{
-    width:100%;
-    height:420px;
-    background:#111;
-    border-radius:10px;
-    overflow:hidden;
-    position:relative;
-    touch-action:none;
-    user-select:none;
-}
-
-.crop-canvas{
-    width:100%;
-    height:100%;
-    display:block;
-    cursor:grab;
-}
-
-.crop-canvas:active{
-    cursor:grabbing;
-}
-
-.crop-controls{
-    margin-top:14px;
-}
-
-.crop-controls label{
-    margin:0 0 6px;
-}
-
-.crop-controls input[type="range"]{
-    padding:0;
-    border:0;
-    box-shadow:none;
-}
-
-.crop-actions{
-    display:flex;
-    gap:10px;
-    margin-top:15px;
-}
-
-.crop-actions button{
-    flex:1;
-    border:0;
-    border-radius:8px;
-    padding:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.crop-cancel{
-    background:#e5e7eb;
-    color:#111;
-}
-
-.crop-apply{
-    background:#118943;
-    color:#fff;
 }
 
 /* =========================
@@ -407,6 +255,7 @@ textarea{
     align-items:center;
     gap:10px;
     margin:8px 0;
+    flex-wrap:wrap;
 }
 
 .original-price{
@@ -457,6 +306,141 @@ textarea{
     background:#b91c1c;
 }
 
+/* =================================================
+   CROPPER
+================================================= */
+
+.cropper-wrap{
+    display:none;
+    margin-top:14px;
+    border:1px solid #d7dee8;
+    border-radius:12px;
+    background:#f8fafc;
+    padding:12px;
+}
+
+.cropper-title{
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+.cropper-area{
+    position:relative;
+    width:100%;
+    max-width:600px;
+    margin:auto;
+    background:#111;
+    overflow:hidden;
+    border-radius:10px;
+    touch-action:none;
+    user-select:none;
+}
+
+#cropCanvas{
+    display:block;
+    width:100%;
+    height:auto;
+    background:#111;
+    touch-action:none;
+}
+
+.cropper-overlay{
+    position:absolute;
+    border:2px solid #f4b522;
+    box-shadow:0 0 0 99999px rgba(0,0,0,.48);
+    cursor:move;
+    touch-action:none;
+    z-index:5;
+}
+
+.crop-handle{
+    position:absolute;
+    width:22px;
+    height:22px;
+    background:#fff;
+    border:3px solid #f4b522;
+    border-radius:50%;
+    z-index:10;
+    touch-action:none;
+}
+
+.crop-handle.nw{
+    left:-11px;
+    top:-11px;
+    cursor:nwse-resize;
+}
+
+.crop-handle.ne{
+    right:-11px;
+    top:-11px;
+    cursor:nesw-resize;
+}
+
+.crop-handle.sw{
+    left:-11px;
+    bottom:-11px;
+    cursor:nesw-resize;
+}
+
+.crop-handle.se{
+    right:-11px;
+    bottom:-11px;
+    cursor:nwse-resize;
+}
+
+.cropper-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+.crop-btn{
+    border:0;
+    border-radius:8px;
+    padding:11px 15px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.primary-crop{
+    background:#061d3a;
+    color:#fff;
+}
+
+.secondary-crop{
+    background:#e8edf3;
+    color:#10233f;
+}
+
+.crop-preview{
+    display:none;
+    margin-top:12px;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #e0e5eb;
+}
+
+.crop-preview img{
+    width:75px;
+    height:100px;
+    object-fit:cover;
+    border-radius:7px;
+    border:1px solid #ddd;
+}
+
+.crop-preview span{
+    font-size:12px;
+    color:#667085;
+    line-height:1.4;
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -502,13 +486,14 @@ textarea{
     }
 
     .book{
-        grid-template-columns:75px 1fr;
+        grid-template-columns:78px 1fr;
         gap:12px;
+        padding:12px;
     }
 
     .book img{
-        width:75px;
-        height:105px;
+        width:78px;
+        height:108px;
     }
 
     .book-content h3{
@@ -516,7 +501,6 @@ textarea{
     }
 
     .book-prices{
-        flex-wrap:wrap;
         gap:7px;
     }
 
@@ -530,47 +514,75 @@ textarea{
 
     .discount{
         font-size:10px;
+        padding:4px 7px;
     }
 
-    .crop-box{
-        padding:12px;
-        border-radius:12px;
+    .cropper-area{
+        width:100%;
+        max-width:100%;
     }
 
-    .crop-area{
-        height:350px;
+    .crop-handle{
+        width:24px;
+        height:24px;
     }
 
-    .crop-header h3{
+    .crop-handle.nw{
+        left:-12px;
+        top:-12px;
+    }
+
+    .crop-handle.ne{
+        right:-12px;
+        top:-12px;
+    }
+
+    .crop-handle.sw{
+        left:-12px;
+        bottom:-12px;
+    }
+
+    .crop-handle.se{
+        right:-12px;
+        bottom:-12px;
+    }
+
+    .crop-btn{
+        flex:1 1 auto;
+        min-height:44px;
+        font-size:13px;
+    }
+}
+
+@media(max-width:380px){
+
+    .book{
+        grid-template-columns:70px 1fr;
+        gap:9px;
+    }
+
+    .book img{
+        width:70px;
+        height:98px;
+    }
+
+    .sale-price{
         font-size:17px;
     }
 
-    .crop-actions button{
-        font-size:13px;
+    .discount{
+        font-size:9px;
     }
-
 }
-
-@media(max-width:430px){
-
-    .crop-area{
-        height:310px;
-    }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
 <div class="container">
 
-
 <!-- =====================================================
-     LOGIN BOX
+     LOGIN
 ===================================================== -->
 
 <div id="loginBox" class="login-box">
@@ -625,9 +637,6 @@ textarea{
     class="hidden"
 >
 
-
-<!-- HEADER -->
-
 <div class="header">
 
     <button
@@ -658,9 +667,6 @@ textarea{
         ➕ Add New Ebook
     </h2>
 
-
-    <!-- TITLE -->
-
     <label>
         Ebook Title
     </label>
@@ -671,8 +677,6 @@ textarea{
         placeholder="Example: Railway GK 2026"
     >
 
-
-    <!-- PRICES -->
 
     <div class="price-grid">
 
@@ -718,8 +722,6 @@ textarea{
     </div>
 
 
-    <!-- CATEGORY -->
-
     <label>
         Category
     </label>
@@ -731,8 +733,6 @@ textarea{
     >
 
 
-    <!-- DESCRIPTION -->
-
     <label>
         Description
     </label>
@@ -743,19 +743,101 @@ textarea{
     ></textarea>
 
 
-    <!-- COVER -->
+    <!-- =================================================
+         COVER
+    ================================================= -->
 
     <label>
         Cover Image
     </label>
 
-    <div class="cover-select-box">
+    <input
+        type="file"
+        id="coverFile"
+        accept="image/*"
+    >
 
-        <input
-            type="file"
-            id="coverFile"
-            accept="image/*"
+
+    <!-- CROPPER -->
+
+    <div
+        id="cropperWrap"
+        class="cropper-wrap"
+    >
+
+        <div class="cropper-title">
+            ✂️ Cover Crop करें
+            <br>
+            नीचे के चारों कोनों को खींचकर आकार बदलें और बीच के हिस्से को पकड़कर crop box को ऊपर-नीचे-दाएँ-बाएँ करें।
+        </div>
+
+
+        <div
+            id="cropperArea"
+            class="cropper-area"
         >
+
+            <canvas
+                id="cropCanvas"
+            ></canvas>
+
+
+            <div
+                id="cropBox"
+                class="cropper-overlay"
+            >
+
+                <span
+                    class="crop-handle nw"
+                ></span>
+
+                <span
+                    class="crop-handle ne"
+                ></span>
+
+                <span
+                    class="crop-handle sw"
+                ></span>
+
+                <span
+                    class="crop-handle se"
+                ></span>
+
+            </div>
+
+        </div>
+
+
+        <div class="cropper-actions">
+
+            <button
+                type="button"
+                class="crop-btn primary-crop"
+                onclick="applyCrop()"
+            >
+                ✅ Crop Apply करें
+            </button>
+
+
+            <button
+                type="button"
+                class="crop-btn secondary-crop"
+                onclick="resetCrop()"
+            >
+                ↻ Reset
+            </button>
+
+
+            <button
+                type="button"
+                class="crop-btn secondary-crop"
+                onclick="cancelCrop()"
+            >
+                ✕ Cancel
+            </button>
+
+        </div>
+
 
         <div
             id="cropPreview"
@@ -763,22 +845,24 @@ textarea{
         >
 
             <img
-                id="cropPreviewImage"
-                src=""
-                alt="Cover Preview"
+                id="cropPreviewImg"
+                alt="Cropped cover preview"
             >
 
-            <div
-                id="cropPreviewName"
-                class="crop-preview-name"
-            ></div>
+            <span>
+                ✅ Cropped cover ready है।
+                <br>
+                अब नीचे Add Ebook दबाएँ।
+            </span>
 
         </div>
 
     </div>
 
 
-    <!-- PDF -->
+    <!-- =================================================
+         PDF
+    ================================================= -->
 
     <label>
         PDF File
@@ -791,7 +875,9 @@ textarea{
     >
 
 
-    <!-- PUBLISHED -->
+    <!-- =================================================
+         PUBLISHED
+    ================================================= -->
 
     <label>
         Published
@@ -809,8 +895,6 @@ textarea{
 
     </select>
 
-
-    <!-- ADD BUTTON -->
 
     <button
         class="primary"
@@ -850,84 +934,6 @@ textarea{
 </div>
 
 
-<!-- =====================================================
-     CROP MODAL
-===================================================== -->
-
-<div
-    id="cropModal"
-    class="crop-modal"
->
-
-    <div class="crop-box">
-
-        <div class="crop-header">
-
-            <h3>
-                ✂️ Crop Ebook Cover
-            </h3>
-
-            <button
-                class="crop-close"
-                onclick="cancelCrop()"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="crop-area">
-
-            <canvas
-                id="cropCanvas"
-                class="crop-canvas"
-            ></canvas>
-
-        </div>
-
-
-        <div class="crop-controls">
-
-            <label>
-                🔍 Zoom
-            </label>
-
-            <input
-                type="range"
-                id="cropZoom"
-                min="1"
-                max="3"
-                step="0.01"
-                value="1"
-            >
-
-        </div>
-
-
-        <div class="crop-actions">
-
-            <button
-                class="crop-cancel"
-                onclick="cancelCrop()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="crop-apply"
-                onclick="applyCrop()"
-            >
-                ✅ Apply Crop
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
 <script>
 
 /* =====================================================
@@ -940,710 +946,12 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
 
+
 const supabaseClient =
 supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
-
-/* =====================================================
-   CROP VARIABLES
-===================================================== */
-
-let cropOriginalFile = null;
-
-let cropImage = new Image();
-
-let cropCanvas =
-    document.getElementById("cropCanvas");
-
-let cropCtx =
-    cropCanvas.getContext("2d");
-
-let cropScale = 1;
-
-let cropZoom = 1;
-
-let cropX = 0;
-
-let cropY = 0;
-
-let cropDragging = false;
-
-let cropStartX = 0;
-
-let cropStartY = 0;
-
-let cropStartImageX = 0;
-
-let cropStartImageY = 0;
-
-
-/* =====================================================
-   COVER FILE SELECT
-===================================================== */
-
-document
-.getElementById("coverFile")
-.addEventListener(
-    "change",
-    function(){
-
-        const file =
-            this.files[0];
-
-        if(!file){
-
-            return;
-
-        }
-
-        if(
-            !file.type.startsWith("image/")
-        ){
-
-            alert(
-                "Please select a valid image."
-            );
-
-            this.value = "";
-
-            return;
-
-        }
-
-        cropOriginalFile = file;
-
-        openCrop(file);
-
-    }
-);
-
-
-/* =====================================================
-   OPEN CROP
-===================================================== */
-
-function openCrop(file){
-
-    const reader =
-        new FileReader();
-
-    reader.onload =
-        function(event){
-
-            cropImage.onload =
-                function(){
-
-                    cropZoom = 1;
-
-                    document
-                    .getElementById("cropZoom")
-                    .value = "1";
-
-                    setupCrop();
-
-                    document
-                    .getElementById("cropModal")
-                    .classList
-                    .add("active");
-
-                };
-
-            cropImage.src =
-                event.target.result;
-
-        };
-
-    reader.readAsDataURL(file);
-
-}
-
-
-/* =====================================================
-   SETUP CROP
-===================================================== */
-
-function setupCrop(){
-
-    const area =
-        document
-        .querySelector(".crop-area");
-
-    const width =
-        area.clientWidth;
-
-    const height =
-        area.clientHeight;
-
-    cropCanvas.width =
-        width * 2;
-
-    cropCanvas.height =
-        height * 2;
-
-    cropCanvas.style.width =
-        width + "px";
-
-    cropCanvas.style.height =
-        height + "px";
-
-    cropCtx.setTransform(
-        1,
-        0,
-        0,
-        1,
-        0,
-        0
-    );
-
-    const canvasRatio =
-        cropCanvas.width /
-        cropCanvas.height;
-
-    const imageRatio =
-        cropImage.width /
-        cropImage.height;
-
-    if(imageRatio > canvasRatio){
-
-        cropScale =
-            cropCanvas.height /
-            cropImage.height;
-
-    }else{
-
-        cropScale =
-            cropCanvas.width /
-            cropImage.width;
-
-    }
-
-    cropX =
-        (cropCanvas.width -
-        cropImage.width *
-        cropScale) / 2;
-
-    cropY =
-        (cropCanvas.height -
-        cropImage.height *
-        cropScale) / 2;
-
-    drawCrop();
-
-}
-
-
-/* =====================================================
-   DRAW CROP
-===================================================== */
-
-function drawCrop(){
-
-    if(!cropImage.width){
-
-        return;
-
-    }
-
-    const w =
-        cropCanvas.width;
-
-    const h =
-        cropCanvas.height;
-
-    cropCtx.clearRect(
-        0,
-        0,
-        w,
-        h
-    );
-
-    cropCtx.fillStyle =
-        "#111";
-
-    cropCtx.fillRect(
-        0,
-        0,
-        w,
-        h
-    );
-
-
-    const scaledWidth =
-        cropImage.width *
-        cropScale *
-        cropZoom;
-
-    const scaledHeight =
-        cropImage.height *
-        cropScale *
-        cropZoom;
-
-
-    cropCtx.drawImage(
-        cropImage,
-        cropX -
-        (
-            scaledWidth -
-            cropImage.width *
-            cropScale
-        ) / 2,
-
-        cropY -
-        (
-            scaledHeight -
-            cropImage.height *
-            cropScale
-        ) / 2,
-
-        scaledWidth,
-        scaledHeight
-    );
-
-}
-
-
-/* =====================================================
-   ZOOM
-===================================================== */
-
-document
-.getElementById("cropZoom")
-.addEventListener(
-    "input",
-    function(){
-
-        cropZoom =
-            Number(this.value);
-
-        drawCrop();
-
-    }
-);
-
-
-/* =====================================================
-   MOUSE DRAG
-===================================================== */
-
-cropCanvas.addEventListener(
-    "mousedown",
-    function(event){
-
-        cropDragging = true;
-
-        cropStartX =
-            event.clientX;
-
-        cropStartY =
-            event.clientY;
-
-        cropStartImageX =
-            cropX;
-
-        cropStartImageY =
-            cropY;
-
-    }
-);
-
-
-window.addEventListener(
-    "mousemove",
-    function(event){
-
-        if(!cropDragging){
-
-            return;
-
-        }
-
-        const rect =
-            cropCanvas
-            .getBoundingClientRect();
-
-        const scaleX =
-            cropCanvas.width /
-            rect.width;
-
-        const scaleY =
-            cropCanvas.height /
-            rect.height;
-
-        cropX =
-            cropStartImageX +
-            (
-                event.clientX -
-                cropStartX
-            ) *
-            scaleX;
-
-        cropY =
-            cropStartImageY +
-            (
-                event.clientY -
-                cropStartY
-            ) *
-            scaleY;
-
-        drawCrop();
-
-    }
-);
-
-
-window.addEventListener(
-    "mouseup",
-    function(){
-
-        cropDragging = false;
-
-    }
-);
-
-
-/* =====================================================
-   TOUCH DRAG
-===================================================== */
-
-cropCanvas.addEventListener(
-    "touchstart",
-    function(event){
-
-        if(!event.touches[0]){
-
-            return;
-
-        }
-
-        const touch =
-            event.touches[0];
-
-        cropDragging = true;
-
-        cropStartX =
-            touch.clientX;
-
-        cropStartY =
-            touch.clientY;
-
-        cropStartImageX =
-            cropX;
-
-        cropStartImageY =
-            cropY;
-
-        event.preventDefault();
-
-    },
-    {
-        passive:false
-    }
-);
-
-
-cropCanvas.addEventListener(
-    "touchmove",
-    function(event){
-
-        if(
-            !cropDragging ||
-            !event.touches[0]
-        ){
-
-            return;
-
-        }
-
-        const touch =
-            event.touches[0];
-
-        const rect =
-            cropCanvas
-            .getBoundingClientRect();
-
-        const scaleX =
-            cropCanvas.width /
-            rect.width;
-
-        const scaleY =
-            cropCanvas.height /
-            rect.height;
-
-        cropX =
-            cropStartImageX +
-            (
-                touch.clientX -
-                cropStartX
-            ) *
-            scaleX;
-
-        cropY =
-            cropStartImageY +
-            (
-                touch.clientY -
-                cropStartY
-            ) *
-            scaleY;
-
-        drawCrop();
-
-        event.preventDefault();
-
-    },
-    {
-        passive:false
-    }
-);
-
-
-cropCanvas.addEventListener(
-    "touchend",
-    function(){
-
-        cropDragging = false;
-
-    }
-);
-
-
-/* =====================================================
-   CANCEL CROP
-===================================================== */
-
-function cancelCrop(){
-
-    document
-    .getElementById("cropModal")
-    .classList
-    .remove("active");
-
-    cropOriginalFile = null;
-
-    document
-    .getElementById("coverFile")
-    .value = "";
-
-    document
-    .getElementById("cropPreview")
-    .style
-    .display = "none";
-
-}
-
-
-/* =====================================================
-   APPLY CROP
-===================================================== */
-
-function applyCrop(){
-
-    if(!cropOriginalFile){
-
-        return;
-
-    }
-
-
-    /*
-       Ebook cover output
-       2 : 3 ratio
-    */
-
-    const outputWidth =
-        1000;
-
-    const outputHeight =
-        1500;
-
-
-    const outputCanvas =
-        document.createElement(
-            "canvas"
-        );
-
-    outputCanvas.width =
-        outputWidth;
-
-    outputCanvas.height =
-        outputHeight;
-
-    const outputCtx =
-        outputCanvas.getContext(
-            "2d"
-        );
-
-
-    const canvasRatio =
-        cropCanvas.width /
-        cropCanvas.height;
-
-
-    /*
-       Crop visible center area
-       into 2:3 ebook ratio.
-    */
-
-    let sourceWidth;
-    let sourceHeight;
-    let sourceX;
-    let sourceY;
-
-
-    if(canvasRatio > (2/3)){
-
-        sourceHeight =
-            cropCanvas.height;
-
-        sourceWidth =
-            sourceHeight *
-            (2/3);
-
-        sourceX =
-            (
-                cropCanvas.width -
-                sourceWidth
-            ) / 2;
-
-        sourceY = 0;
-
-    }else{
-
-        sourceWidth =
-            cropCanvas.width;
-
-        sourceHeight =
-            sourceWidth *
-            (3/2);
-
-        sourceX = 0;
-
-        sourceY =
-            (
-                cropCanvas.height -
-                sourceHeight
-            ) / 2;
-
-    }
-
-
-    /*
-       Draw from displayed crop.
-    */
-
-    outputCtx.drawImage(
-        cropCanvas,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        0,
-        0,
-        outputWidth,
-        outputHeight
-    );
-
-
-    outputCanvas.toBlob(
-        function(blob){
-
-            if(!blob){
-
-                alert(
-                    "Crop failed. Please try again."
-                );
-
-                return;
-
-            }
-
-
-            const croppedFile =
-                new File(
-                    [
-                        blob
-                    ],
-                    "ebook-cover-" +
-                    Date.now() +
-                    ".jpg",
-                    {
-                        type:
-                            "image/jpeg"
-                    }
-                );
-
-
-            /*
-               Put cropped file back
-               into file input.
-            */
-
-            const dataTransfer =
-                new DataTransfer();
-
-            dataTransfer.items.add(
-                croppedFile
-            );
-
-            document
-            .getElementById("coverFile")
-            .files =
-                dataTransfer.files;
-
-
-            cropOriginalFile =
-                croppedFile;
-
-
-            /*
-               Preview
-            */
-
-            const previewUrl =
-                URL.createObjectURL(
-                    croppedFile
-                );
-
-            document
-            .getElementById(
-                "cropPreviewImage"
-            )
-            .src =
-                previewUrl;
-
-            document
-            .getElementById(
-                "cropPreviewName"
-            )
-            .textContent =
-                "✅ Cropped cover ready";
-
-
-            document
-            .getElementById(
-                "cropPreview"
-            )
-            .style
-            .display =
-                "block";
-
-
-            document
-            .getElementById(
-                "cropModal"
-            )
-            .classList
-            .remove("active");
-
-
-        },
-        "image/jpeg",
-        0.92
-    );
-
-}
 
 
 /* =====================================================
@@ -1658,30 +966,22 @@ async function login(){
         .value
         .trim();
 
-
     const password =
         document
         .getElementById("password")
         .value;
 
-
     const msg =
         document
-        .getElementById(
-            "loginMessage"
-        );
+        .getElementById("loginMessage");
 
 
-    if(
-        !email ||
-        !password
-    ){
+    if(!email || !password){
 
         msg.textContent =
             "Please enter email and password.";
 
         return;
-
     }
 
 
@@ -1689,10 +989,7 @@ async function login(){
         "Logging in...";
 
 
-    const {
-        data,
-        error
-    } =
+    const {data,error} =
         await supabaseClient
         .auth
         .signInWithPassword({
@@ -1711,14 +1008,12 @@ async function login(){
             error.message;
 
         return;
-
     }
 
 
     msg.textContent = "";
 
     showAdmin();
-
 }
 
 
@@ -1729,25 +1024,20 @@ async function login(){
 async function logout(){
 
     await supabaseClient
-    .auth
-    .signOut();
+        .auth
+        .signOut();
 
 
     document
-    .getElementById(
-        "adminPanel"
-    )
-    .classList
-    .add("hidden");
+        .getElementById("adminPanel")
+        .classList
+        .add("hidden");
 
 
     document
-    .getElementById(
-        "loginBox"
-    )
-    .classList
-    .remove("hidden");
-
+        .getElementById("loginBox")
+        .classList
+        .remove("hidden");
 }
 
 
@@ -1758,28 +1048,23 @@ async function logout(){
 function showAdmin(){
 
     document
-    .getElementById(
-        "loginBox"
-    )
-    .classList
-    .add("hidden");
+        .getElementById("loginBox")
+        .classList
+        .add("hidden");
 
 
     document
-    .getElementById(
-        "adminPanel"
-    )
-    .classList
-    .remove("hidden");
+        .getElementById("adminPanel")
+        .classList
+        .remove("hidden");
 
 
     loadBooks();
-
 }
 
 
 /* =====================================================
-   DISCOUNT CALCULATOR
+   DISCOUNT
 ===================================================== */
 
 function calculateDiscount(){
@@ -1787,9 +1072,7 @@ function calculateDiscount(){
     const original =
         Number(
             document
-            .getElementById(
-                "originalPrice"
-            )
+            .getElementById("originalPrice")
             .value
         );
 
@@ -1797,18 +1080,14 @@ function calculateDiscount(){
     const sale =
         Number(
             document
-            .getElementById(
-                "price"
-            )
+            .getElementById("price")
             .value
         );
 
 
     const preview =
         document
-        .getElementById(
-            "discountPreview"
-        );
+        .getElementById("discountPreview");
 
 
     if(
@@ -1822,36 +1101,28 @@ function calculateDiscount(){
             "💰 Discount automatically दिखाई देगा।";
 
         return;
-
     }
 
 
-    if(
-        sale > original
-    ){
+    if(sale > original){
 
         preview.innerHTML =
             "⚠️ Sale Price Original Price से अधिक नहीं हो सकता।";
 
         return;
-
     }
 
 
     const discount =
         Math.round(
             (
-                (
-                    original -
-                    sale
-                ) /
+                (original - sale) /
                 original
             ) * 100
         );
 
 
-    preview.innerHTML =
-        `
+    preview.innerHTML = `
         💰 Original Price:
         <del>₹${original}</del>
 
@@ -1863,15 +1134,12 @@ function calculateDiscount(){
         &nbsp;&nbsp;
 
         🔥 ${discount}% OFF
-        `;
-
+    `;
 }
 
 
 document
-.getElementById(
-    "originalPrice"
-)
+.getElementById("originalPrice")
 .addEventListener(
     "input",
     calculateDiscount
@@ -1879,13 +1147,951 @@ document
 
 
 document
-.getElementById(
-    "price"
-)
+.getElementById("price")
 .addEventListener(
     "input",
     calculateDiscount
 );
+
+
+/* =====================================================
+   FINAL MOBILE WORKING CROPPER
+===================================================== */
+
+let cropImage = null;
+
+let cropImageUrl = null;
+
+let croppedCoverFile = null;
+
+let cropState = {
+    x:0,
+    y:0,
+    w:0,
+    h:0
+};
+
+let cropDrag = null;
+
+
+const coverInput =
+    document.getElementById("coverFile");
+
+
+coverInput.addEventListener(
+    "change",
+    handleCoverSelect
+);
+
+
+/* =====================================================
+   SELECT IMAGE
+===================================================== */
+
+function handleCoverSelect(e){
+
+    const file =
+        e.target.files &&
+        e.target.files[0];
+
+
+    if(!file){
+        return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+        alert(
+            "Please select an image file."
+        );
+
+        e.target.value = "";
+
+        return;
+    }
+
+
+    croppedCoverFile = null;
+
+
+    if(cropImageUrl){
+
+        URL.revokeObjectURL(
+            cropImageUrl
+        );
+    }
+
+
+    cropImageUrl =
+        URL.createObjectURL(file);
+
+
+    cropImage =
+        new Image();
+
+
+    cropImage.onload =
+        function(){
+
+            setupCropper();
+
+        };
+
+
+    cropImage.onerror =
+        function(){
+
+            alert(
+                "Cover image load नहीं हो पाई।"
+            );
+
+        };
+
+
+    cropImage.src =
+        cropImageUrl;
+}
+
+
+/* =====================================================
+   SETUP CROPPER
+===================================================== */
+
+function setupCropper(){
+
+    const wrap =
+        document
+        .getElementById("cropperWrap");
+
+
+    const area =
+        document
+        .getElementById("cropperArea");
+
+
+    const canvas =
+        document
+        .getElementById("cropCanvas");
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    /*
+      IMPORTANT:
+      Image को mobile screen के हिसाब से
+      सही display size में रखा जाता है।
+    */
+
+    const maxWidth =
+        Math.min(
+            600,
+            area.clientWidth ||
+            Math.min(
+                window.innerWidth - 40,
+                600
+            )
+        );
+
+
+    const scale =
+        Math.min(
+            1,
+            maxWidth /
+            cropImage.naturalWidth
+        );
+
+
+    canvas.width =
+        Math.round(
+            cropImage.naturalWidth *
+            scale
+        );
+
+
+    canvas.height =
+        Math.round(
+            cropImage.naturalHeight *
+            scale
+        );
+
+
+    canvas.style.width =
+        "100%";
+
+
+    canvas.style.height =
+        "auto";
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    ctx.drawImage(
+        cropImage,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+      Crop box हमेशा image के अंदर रहेगा।
+    */
+
+    const displayWidth =
+        canvas.getBoundingClientRect().width;
+
+
+    const displayHeight =
+        canvas.getBoundingClientRect().height;
+
+
+    /*
+      लगभग 4:5 book-cover crop
+    */
+
+    let w =
+        displayWidth * 0.72;
+
+
+    let h =
+        w * 1.25;
+
+
+    if(h > displayHeight * 0.88){
+
+        h =
+            displayHeight * 0.88;
+
+        w =
+            h / 1.25;
+    }
+
+
+    cropState.w = w;
+
+    cropState.h = h;
+
+    cropState.x =
+        (displayWidth - w) / 2;
+
+    cropState.y =
+        (displayHeight - h) / 2;
+
+
+    positionCropBox();
+
+
+    wrap.style.display =
+        "block";
+
+
+    document
+    .getElementById("cropPreview")
+    .style.display =
+        "none";
+
+
+    /*
+      Browser को repaint करने दें।
+    */
+
+    setTimeout(
+        positionCropBox,
+        50
+    );
+}
+
+
+/* =====================================================
+   DISPLAY SCALE
+===================================================== */
+
+function getDisplayScale(){
+
+    const canvas =
+        document
+        .getElementById("cropCanvas");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    return {
+
+        width:rect.width,
+
+        height:rect.height,
+
+        scaleX:
+            canvas.width /
+            rect.width,
+
+        scaleY:
+            canvas.height /
+            rect.height
+    };
+}
+
+
+/* =====================================================
+   POSITION CROP BOX
+===================================================== */
+
+function positionCropBox(){
+
+    const box =
+        document
+        .getElementById("cropBox");
+
+
+    box.style.left =
+        cropState.x + "px";
+
+
+    box.style.top =
+        cropState.y + "px";
+
+
+    box.style.width =
+        cropState.w + "px";
+
+
+    box.style.height =
+        cropState.h + "px";
+}
+
+
+/* =====================================================
+   CLAMP
+===================================================== */
+
+function clampCrop(){
+
+    const canvas =
+        document
+        .getElementById("cropCanvas");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const minSize =
+        Math.min(
+            40,
+            rect.width * 0.15
+        );
+
+
+    cropState.w =
+        Math.max(
+            minSize,
+            Math.min(
+                cropState.w,
+                rect.width
+            )
+        );
+
+
+    cropState.h =
+        Math.max(
+            minSize,
+            Math.min(
+                cropState.h,
+                rect.height
+            )
+        );
+
+
+    cropState.x =
+        Math.max(
+            0,
+            Math.min(
+                cropState.x,
+                rect.width -
+                cropState.w
+            )
+        );
+
+
+    cropState.y =
+        Math.max(
+            0,
+            Math.min(
+                cropState.y,
+                rect.height -
+                cropState.h
+            )
+        );
+}
+
+
+/* =====================================================
+   POINTER POSITION
+===================================================== */
+
+function pointerPosition(e){
+
+    const canvas =
+        document
+        .getElementById("cropCanvas");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            e.clientX -
+            rect.left,
+
+        y:
+            e.clientY -
+            rect.top
+    };
+}
+
+
+/* =====================================================
+   START DRAG
+===================================================== */
+
+function startCropDrag(
+    e,
+    type
+){
+
+    e.preventDefault();
+
+    e.stopPropagation();
+
+
+    const p =
+        pointerPosition(e);
+
+
+    cropDrag = {
+
+        type:type,
+
+        startX:p.x,
+
+        startY:p.y,
+
+        state:{
+            ...cropState
+        }
+    };
+
+
+    window.addEventListener(
+        "pointermove",
+        moveCropDrag
+    );
+
+
+    window.addEventListener(
+        "pointerup",
+        endCropDrag,
+        {once:true}
+    );
+}
+
+
+/* =====================================================
+   MOVE DRAG
+===================================================== */
+
+function moveCropDrag(e){
+
+    if(!cropDrag){
+        return;
+    }
+
+
+    e.preventDefault();
+
+
+    const p =
+        pointerPosition(e);
+
+
+    const dx =
+        p.x -
+        cropDrag.startX;
+
+
+    const dy =
+        p.y -
+        cropDrag.startY;
+
+
+    const s =
+        cropDrag.state;
+
+
+    /*
+      MOVE
+    */
+
+    if(
+        cropDrag.type ===
+        "move"
+    ){
+
+        cropState.x =
+            s.x + dx;
+
+        cropState.y =
+            s.y + dy;
+
+        clampCrop();
+
+        positionCropBox();
+
+        return;
+    }
+
+
+    /*
+      RESIZE
+    */
+
+    let x = s.x;
+
+    let y = s.y;
+
+    let w = s.w;
+
+    let h = s.h;
+
+
+    if(
+        cropDrag.type ===
+        "nw"
+    ){
+
+        x =
+            s.x + dx;
+
+        y =
+            s.y + dy;
+
+        w =
+            s.w - dx;
+
+        h =
+            s.h - dy;
+
+    }
+
+
+    else if(
+        cropDrag.type ===
+        "ne"
+    ){
+
+        y =
+            s.y + dy;
+
+        w =
+            s.w + dx;
+
+        h =
+            s.h - dy;
+
+    }
+
+
+    else if(
+        cropDrag.type ===
+        "sw"
+    ){
+
+        x =
+            s.x + dx;
+
+        w =
+            s.w - dx;
+
+        h =
+            s.h + dy;
+
+    }
+
+
+    else if(
+        cropDrag.type ===
+        "se"
+    ){
+
+        w =
+            s.w + dx;
+
+        h =
+            s.h + dy;
+    }
+
+
+    cropState.x = x;
+
+    cropState.y = y;
+
+    cropState.w = w;
+
+    cropState.h = h;
+
+
+    clampCrop();
+
+    positionCropBox();
+}
+
+
+/* =====================================================
+   END DRAG
+===================================================== */
+
+function endCropDrag(){
+
+    cropDrag = null;
+
+    window.removeEventListener(
+        "pointermove",
+        moveCropDrag
+    );
+}
+
+
+/* =====================================================
+   HANDLE EVENTS
+===================================================== */
+
+document
+.querySelectorAll(".crop-handle")
+.forEach(handle => {
+
+    ["nw","ne","sw","se"]
+    .forEach(type => {
+
+        if(
+            handle.classList
+            .contains(type)
+        ){
+
+            handle.addEventListener(
+                "pointerdown",
+                e =>
+                    startCropDrag(
+                        e,
+                        type
+                    )
+            );
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   MOVE CROP BOX
+===================================================== */
+
+document
+.getElementById("cropBox")
+.addEventListener(
+    "pointerdown",
+    function(e){
+
+        if(
+            e.target.classList
+            .contains("crop-handle")
+        ){
+            return;
+        }
+
+
+        startCropDrag(
+            e,
+            "move"
+        );
+    }
+);
+
+
+/* =====================================================
+   APPLY CROP
+===================================================== */
+
+function applyCrop(){
+
+    if(!cropImage){
+
+        alert(
+            "Please select a cover image first."
+        );
+
+        return;
+    }
+
+
+    const canvas =
+        document
+        .getElementById("cropCanvas");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    /*
+      Display coordinates को
+      original image coordinates में बदलना।
+    */
+
+    const scaleX =
+        cropImage.naturalWidth /
+        rect.width;
+
+
+    const scaleY =
+        cropImage.naturalHeight /
+        rect.height;
+
+
+    const sx =
+        cropState.x *
+        scaleX;
+
+
+    const sy =
+        cropState.y *
+        scaleY;
+
+
+    const sw =
+        cropState.w *
+        scaleX;
+
+
+    const sh =
+        cropState.h *
+        scaleY;
+
+
+    if(
+        sw <= 0 ||
+        sh <= 0
+    ){
+
+        alert(
+            "Crop area सही नहीं है।"
+        );
+
+        return;
+    }
+
+
+    const output =
+        document.createElement(
+            "canvas"
+        );
+
+
+    /*
+      Good quality output
+    */
+
+    const maxWidth =
+        1400;
+
+
+    const outputScale =
+        Math.min(
+            1,
+            maxWidth / sw
+        );
+
+
+    output.width =
+        Math.max(
+            1,
+            Math.round(
+                sw *
+                outputScale
+            )
+        );
+
+
+    output.height =
+        Math.max(
+            1,
+            Math.round(
+                sh *
+                outputScale
+            )
+        );
+
+
+    const ctx =
+        output.getContext("2d");
+
+
+    ctx.imageSmoothingEnabled =
+        true;
+
+
+    ctx.imageSmoothingQuality =
+        "high";
+
+
+    ctx.drawImage(
+        cropImage,
+
+        sx,
+        sy,
+        sw,
+        sh,
+
+        0,
+        0,
+        output.width,
+        output.height
+    );
+
+
+    output.toBlob(
+        function(blob){
+
+            if(!blob){
+
+                alert(
+                    "Crop failed. Please try again."
+                );
+
+                return;
+            }
+
+
+            const originalName =
+                (
+                    coverInput
+                    .files[0]
+                    ?.name ||
+                    "cover"
+                )
+                .replace(
+                    /\.[^.]+$/,
+                    ""
+                );
+
+
+            croppedCoverFile =
+                new File(
+                    [blob],
+                    originalName +
+                    "_cropped.jpg",
+                    {
+                        type:
+                            "image/jpeg",
+
+                        lastModified:
+                            Date.now()
+                    }
+                );
+
+
+            const previewUrl =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const preview =
+                document
+                .getElementById(
+                    "cropPreviewImg"
+                );
+
+
+            preview.src =
+                previewUrl;
+
+
+            document
+            .getElementById(
+                "cropPreview"
+            )
+            .style.display =
+                "flex";
+
+
+            document
+            .getElementById(
+                "addMessage"
+            )
+            .textContent =
+                "✅ Cropped cover ready. अब Add Ebook दबाएँ।";
+
+        },
+        "image/jpeg",
+        0.93
+    );
+}
+
+
+/* =====================================================
+   RESET CROP
+===================================================== */
+
+function resetCrop(){
+
+    if(cropImage){
+
+        setupCropper();
+    }
+}
+
+
+/* =====================================================
+   CANCEL CROP
+===================================================== */
+
+function cancelCrop(){
+
+    croppedCoverFile =
+        null;
+
+
+    document
+    .getElementById(
+        "cropperWrap"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "cropPreview"
+    )
+    .style.display =
+        "none";
+}
 
 
 /* =====================================================
@@ -1896,9 +2102,7 @@ async function addEbook(){
 
     const title =
         document
-        .getElementById(
-            "title"
-        )
+        .getElementById("title")
         .value
         .trim();
 
@@ -1916,60 +2120,52 @@ async function addEbook(){
     const price =
         Number(
             document
-            .getElementById(
-                "price"
-            )
+            .getElementById("price")
             .value
         );
 
 
     const category =
         document
-        .getElementById(
-            "category"
-        )
+        .getElementById("category")
         .value
         .trim();
 
 
     const description =
         document
-        .getElementById(
-            "description"
-        )
+        .getElementById("description")
         .value
         .trim();
 
 
     const published =
         document
-        .getElementById(
-            "published"
-        )
+        .getElementById("published")
         .value === "true";
 
 
-    const coverFile =
+    /*
+      अगर crop किया गया है तो
+      cropped file use होगी।
+    */
+
+    let coverFile =
+        croppedCoverFile ||
         document
-        .getElementById(
-            "coverFile"
-        )
+        .getElementById("coverFile")
         .files[0];
 
 
     const pdfFile =
         document
-        .getElementById(
-            "pdfFile"
-        )
+        .getElementById("pdfFile")
         .files[0];
 
 
     const msg =
         document
-        .getElementById(
-            "addMessage"
-        );
+        .getElementById("addMessage");
 
 
     /* VALIDATION */
@@ -1980,7 +2176,6 @@ async function addEbook(){
             "Ebook title is required.";
 
         return;
-
     }
 
 
@@ -1993,7 +2188,6 @@ async function addEbook(){
             "Please enter a valid Original Price.";
 
         return;
-
     }
 
 
@@ -2006,30 +2200,24 @@ async function addEbook(){
             "Please enter a valid Sale Price.";
 
         return;
-
     }
 
 
-    if(
-        price >
-        originalPrice
-    ){
+    if(price > originalPrice){
 
         msg.textContent =
             "Sale Price cannot be greater than Original Price.";
 
         return;
-
     }
 
 
     if(!coverFile){
 
         msg.textContent =
-            "Please select and crop a cover image.";
+            "Please select a cover image.";
 
         return;
-
     }
 
 
@@ -2039,7 +2227,6 @@ async function addEbook(){
             "Please select a PDF.";
 
         return;
-
     }
 
 
@@ -2064,9 +2251,7 @@ async function addEbook(){
     } =
         await supabaseClient
         .storage
-        .from(
-            "ebook-covers"
-        )
+        .from("ebook-covers")
         .upload(
             coverPath,
             coverFile
@@ -2080,12 +2265,11 @@ async function addEbook(){
             coverError.message;
 
         return;
-
     }
 
 
     /* =================================================
-       COVER PUBLIC URL
+       COVER URL
     ================================================= */
 
     const {
@@ -2093,9 +2277,7 @@ async function addEbook(){
     } =
         supabaseClient
         .storage
-        .from(
-            "ebook-covers"
-        )
+        .from("ebook-covers")
         .getPublicUrl(
             coverPath
         );
@@ -2122,9 +2304,7 @@ async function addEbook(){
     } =
         await supabaseClient
         .storage
-        .from(
-            "ebook-pdfs"
-        )
+        .from("ebook-pdfs")
         .upload(
             pdfPath,
             pdfFile
@@ -2138,7 +2318,6 @@ async function addEbook(){
             pdfError.message;
 
         return;
-
     }
 
 
@@ -2149,17 +2328,15 @@ async function addEbook(){
     const discount =
         Math.round(
             (
-                (
-                    originalPrice -
-                    price
-                ) /
+                (originalPrice -
+                price) /
                 originalPrice
             ) * 100
         );
 
 
     /* =================================================
-       DATABASE INSERT
+       DATABASE
     ================================================= */
 
     const {
@@ -2169,8 +2346,7 @@ async function addEbook(){
         .from("Ebooks")
         .insert({
 
-            Title:
-                title,
+            Title:title,
 
             OriginalPrice:
                 originalPrice,
@@ -2192,7 +2368,6 @@ async function addEbook(){
 
             Published:
                 published
-
         });
 
 
@@ -2203,85 +2378,77 @@ async function addEbook(){
             dbError.message;
 
         return;
-
     }
 
 
-    msg.innerHTML =
-        `
+    msg.innerHTML = `
         ✅ Ebook added successfully!
         <br>
         Original Price:
         <del>₹${originalPrice}</del>
-
         &nbsp;
-
         Sale Price:
         <strong>₹${price}</strong>
-
         &nbsp;
-
         ${discount}% OFF
-        `;
+    `;
 
 
     /* CLEAR FORM */
 
     document
-    .getElementById(
-        "title"
-    )
+    .getElementById("title")
     .value = "";
 
 
     document
-    .getElementById(
-        "originalPrice"
-    )
+    .getElementById("originalPrice")
     .value = "";
 
 
     document
-    .getElementById(
-        "price"
-    )
+    .getElementById("price")
     .value = "";
 
 
     document
-    .getElementById(
-        "category"
-    )
+    .getElementById("category")
     .value = "";
 
 
     document
-    .getElementById(
-        "description"
-    )
+    .getElementById("description")
     .value = "";
 
 
     document
-    .getElementById(
-        "coverFile"
-    )
+    .getElementById("coverFile")
     .value = "";
 
 
     document
-    .getElementById(
-        "pdfFile"
-    )
+    .getElementById("pdfFile")
     .value = "";
+
+
+    croppedCoverFile =
+        null;
+
+
+    document
+    .getElementById(
+        "cropperWrap"
+    )
+    .style.display =
+        "none";
 
 
     document
     .getElementById(
         "cropPreview"
     )
-    .style
-    .display = "none";
+    .style.display =
+        "none";
 
 
     document
@@ -2292,11 +2459,7 @@ async function addEbook(){
         "💰 Discount automatically दिखाई देगा।";
 
 
-    cropOriginalFile = null;
-
-
     loadBooks();
-
 }
 
 
@@ -2339,7 +2502,6 @@ async function loadBooks(){
             error.message;
 
         return;
-
     }
 
 
@@ -2352,7 +2514,6 @@ async function loadBooks(){
             "No ebooks found.";
 
         return;
-
     }
 
 
@@ -2407,132 +2568,137 @@ async function loadBooks(){
                             original
                         ) * 100
                     );
-
             }
 
 
-            div.innerHTML =
-            `
+            div.innerHTML = `
 
-            ${
-                book.cover_url
-                ?
+                ${
+                    book.cover_url
 
-                `
+                    ?
 
-                <img
-                    src="${escapeAttribute(book.cover_url)}"
-                    alt="${escapeAttribute(book.Title || "Ebook")}"
-                >
+                    `
+                    <img
+                        src="${escapeAttribute(
+                            book.cover_url
+                        )}"
+                        alt="${escapeAttribute(
+                            book.Title ||
+                            "Ebook"
+                        )}"
+                    >
+                    `
 
-                `
+                    :
 
-                :
-
-                `
-
-                <div
-                    style="
-                        width:100px;
-                        height:135px;
-                        background:#eef2f7;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        border-radius:7px;
-                        font-size:30px;
-                    "
-                >
-                    📖
-                </div>
-
-                `
-            }
-
-
-            <div class="book-content">
-
-                <h3>
-                    ${escapeHtml(
-                        book.Title ||
-                        "Untitled Ebook"
-                    )}
-                </h3>
+                    `
+                    <div
+                        style="
+                            width:100px;
+                            height:135px;
+                            background:#eef2f7;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            border-radius:7px;
+                            font-size:30px;
+                        "
+                    >
+                        📖
+                    </div>
+                    `
+                }
 
 
-                <span class="book-category">
+                <div class="book-content">
 
-                    ${escapeHtml(
-                        book.category ||
-                        "Ebook"
-                    )}
+                    <h3>
+                        ${escapeHtml(
+                            book.Title ||
+                            "Untitled Ebook"
+                        )}
+                    </h3>
 
-                </span>
 
-
-                <div class="book-prices">
-
-                    <span class="original-price">
-                        ₹${original}
+                    <span class="book-category">
+                        ${escapeHtml(
+                            book.category ||
+                            "Ebook"
+                        )}
                     </span>
 
 
-                    <span class="sale-price">
-                        ₹${sale}
-                    </span>
+                    <div class="book-prices">
 
-
-                    ${
-                        discount > 0
-                        ?
-
-                        `
-                        <span class="discount">
-                            ${discount}% OFF
+                        <span class="original-price">
+                            ₹${original}
                         </span>
-                        `
 
-                        :
 
-                        ""
-                    }
+                        <span class="sale-price">
+                            ₹${sale}
+                        </span>
+
+
+                        ${
+                            discount > 0
+
+                            ?
+
+                            `
+                            <span class="discount">
+                                ${discount}% OFF
+                            </span>
+                            `
+
+                            :
+
+                            ""
+                        }
+
+                    </div>
+
+
+                    <p class="book-description">
+                        ${escapeHtml(
+                            book.Description ||
+                            ""
+                        )}
+                    </p>
+
+
+                    <div class="status">
+
+                        Status:
+
+                        ${
+                            book.Published
+
+                            ?
+
+                            "🟢 Published"
+
+                            :
+
+                            "🔴 Hidden"
+                        }
+
+                    </div>
+
+
+                    <button
+                        class="danger"
+                        onclick="deleteBook(
+                            '${escapeJs(
+                                String(book.id)
+                            )}'
+                        )"
+                    >
+                        🗑️ Delete
+                    </button>
 
                 </div>
-
-
-                <p class="book-description">
-
-                    ${escapeHtml(
-                        book.Description ||
-                        ""
-                    )}
-
-                </p>
-
-
-                <div class="status">
-
-                    Status:
-
-                    ${
-                        book.Published
-                        ?
-                        "🟢 Published"
-                        :
-                        "🔴 Hidden"
-                    }
-
-                </div>
-
-
-                <button
-                    class="danger"
-                    onclick="deleteBook('${escapeJs(String(book.id))}')"
-                >
-                    🗑️ Delete
-                </button>
-
-            </div>
 
             `;
 
@@ -2543,7 +2709,6 @@ async function loadBooks(){
 
         }
     );
-
 }
 
 
@@ -2560,7 +2725,6 @@ async function deleteBook(id){
     ){
 
         return;
-
     }
 
 
@@ -2584,7 +2748,6 @@ async function deleteBook(id){
         );
 
         return;
-
     }
 
 
@@ -2594,7 +2757,6 @@ async function deleteBook(id){
 
 
     loadBooks();
-
 }
 
 
@@ -2609,7 +2771,6 @@ function sanitizeFileName(name){
             /[^a-zA-Z0-9._-]/g,
             "_"
         );
-
 }
 
 
@@ -2628,14 +2789,11 @@ function escapeHtml(text){
 
     div.textContent =
         text == null
-        ?
-        ""
-        :
-        String(text);
+        ? ""
+        : String(text);
 
 
     return div.innerHTML;
-
 }
 
 
@@ -2666,7 +2824,6 @@ function escapeAttribute(value){
             />/g,
             "&gt;"
         );
-
 }
 
 
@@ -2702,7 +2859,6 @@ function escapeJs(value){
             /\r/g,
             "\\r"
         );
-
 }
 
 
@@ -2722,7 +2878,6 @@ supabaseClient
         ){
 
             showAdmin();
-
         }
 
     }
@@ -2731,5 +2886,4 @@ supabaseClient
 </script>
 
 </body>
-
 </html>
