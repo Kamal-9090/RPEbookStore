@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,15 +11,12 @@
 <title>RP Ebook Store | Premium eBooks</title>
 
 <meta name="description"
-content="RP Ebook Store - Premium ebooks for students, job aspirants and competitive exam preparation.">
+      content="RP Ebook Store - Premium ebooks for students, job aspirants and competitive exam preparation.">
 
-<meta name="theme-color" content="#061d3a">
-
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- CASHFREE -->
 <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+
 
 <style>
 
@@ -37,19 +35,19 @@ html{
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:#f7f9fc;
     color:#10233f;
-    background:#fff;
     line-height:1.5;
 }
 
 button,
-input{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
+a{
+    -webkit-tap-highlight-color:transparent;
 }
 
 a{
@@ -63,7 +61,7 @@ img{
 
 
 /* =====================================================
-   COMMON
+   CONTAINER
 ===================================================== */
 
 .container{
@@ -78,31 +76,49 @@ img{
 ===================================================== */
 
 header{
-    background:#061d3a;
-    color:#fff;
+
     min-height:70px;
+
+    background:#061d3a;
+
+    color:#fff;
+
     position:sticky;
     top:0;
-    z-index:1000;
-    box-shadow:0 3px 15px rgba(0,0,0,.12);
+
+    z-index:9999;
+
+    box-shadow:
+        0 3px 15px rgba(0,0,0,.12);
 }
 
 .nav{
-    min-height:70px;
+
     width:92%;
     max-width:1280px;
+
+    min-height:70px;
+
     margin:auto;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:20px;
 }
 
 .logo{
+
     display:flex;
+
     align-items:center;
-    gap:9px;
+
+    gap:10px;
+
+    flex-shrink:0;
 }
 
 .logo-icon{
@@ -111,161 +127,282 @@ header{
 
 .logo h2{
     font-size:20px;
-    line-height:1.1;
+    line-height:1.2;
 }
 
 .logo small{
-    color:#cbd5e1;
+    display:block;
+
+    color:#d4dbe5;
+
     font-size:10px;
+
+    margin-top:2px;
 }
 
+
+/* DESKTOP MENU */
+
 .menu{
+
     display:flex;
+
     align-items:center;
-    gap:25px;
+
+    gap:20px;
 }
 
 .menu a{
+
     color:#fff;
-    font-size:13px;
+
+    font-size:14px;
+
     font-weight:600;
+
+    white-space:nowrap;
+
+    transition:.2s;
 }
 
 .menu a:hover{
     color:#f4b522;
 }
 
-.menu .library{
+.menu .active{
+    color:#f4b522;
+}
+
+.library{
+
     background:#f4b522;
-    color:#111;
-    padding:10px 15px;
+
+    color:#111 !important;
+
+    padding:
+        10px
+        15px;
+
     border-radius:7px;
 }
 
 
-/* =====================================================
-   MOBILE MENU BUTTON
-===================================================== */
+/* MOBILE BUTTON */
 
 .mobile-menu-btn{
+
     display:none;
 
     border:0;
-    background:#f4b522;
-    color:#111;
 
-    width:40px;
-    height:40px;
-    border-radius:7px;
+    background:transparent;
 
-    font-size:21px;
+    color:#fff;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    padding:4px;
 }
+
+
+/* MOBILE MENU */
 
 .mobile-menu{
-    display:none;
-    background:#061d3a;
-    padding:10px 5%;
-}
 
-.mobile-menu.open{
-    display:block;
+    display:none;
+
+    background:#061d3a;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.12);
+
+    position:relative;
+
+    z-index:9998;
 }
 
 .mobile-menu a{
+
     display:block;
+
     color:#fff;
-    padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,.1);
-    font-size:14px;
+
+    padding:
+        14px 6%;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    font-size:15px;
+
+    font-weight:600;
+}
+
+.mobile-menu a:hover{
+    color:#f4b522;
+    background:#102e52;
 }
 
 
 /* =====================================================
-   HERO
+   HERO / BANNER
 ===================================================== */
 
 .hero{
+
     background:
-    linear-gradient(
-        110deg,
-        #ffffff 55%,
-        #eef6ff
-    );
+        linear-gradient(
+            115deg,
+            #ffffff 0%,
+            #f8fbff 55%,
+            #eaf3ff 100%
+        );
 
     overflow:hidden;
-}
 
-.hero-inner{
-    min-height:320px;
+    min-height:360px;
 
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
+
     align-items:center;
 }
 
+.hero-inner{
+
+    min-height:360px;
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(0,1fr);
+
+    align-items:center;
+
+    gap:30px;
+}
+
 .hero-content{
-    padding:35px 0 35px 25px;
+
+    padding:
+        35px 0;
 }
 
 .badge{
+
     display:inline-block;
 
-    color:#b47a00;
+    color:#b67b00;
+
     background:#fff7e3;
-    border:1px solid #f1d58b;
 
-    border-radius:20px;
+    border:
+        1px solid
+        #f0d18b;
 
-    padding:5px 12px;
+    border-radius:30px;
 
-    font-size:10px;
-    font-weight:bold;
+    padding:
+        7px 13px;
 
-    margin-bottom:10px;
+    font-size:11px;
+
+    font-weight:700;
+
+    margin-bottom:13px;
 }
 
 .hero h1{
-    font-size:40px;
+
+    font-size:44px;
+
     line-height:1.12;
-    margin-bottom:12px;
+
+    margin-bottom:13px;
+
+    overflow-wrap:anywhere;
 }
 
 .hero h1 span{
-    color:#e3a51a;
+    color:#e2a219;
 }
 
 .hero p{
-    color:#4b5563;
-    font-size:14px;
-    max-width:520px;
-    margin-bottom:20px;
+
+    color:#4b586a;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+    max-width:560px;
+
+    margin-bottom:22px;
+
+    overflow-wrap:anywhere;
 }
 
 .hero-buttons{
+
     display:flex;
+
     flex-wrap:wrap;
-    gap:10px;
+
+    gap:12px;
 }
 
 .btn{
-    display:inline-block;
 
-    padding:11px 18px;
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:46px;
+
+    padding:
+        12px 20px;
 
     border-radius:7px;
 
-    font-size:12px;
-    font-weight:bold;
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.2s;
+
+    cursor:pointer;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
 }
 
 .btn-gold{
+
     background:#f4b522;
+
     color:#111;
+
+    box-shadow:
+        0 5px 15px
+        rgba(244,181,34,.25);
 }
 
 .btn-white{
+
     background:#fff;
-    border:1px solid #b8c0ca;
+
+    border:
+        1px solid
+        #cdd5df;
+
+    color:#24364d;
 }
 
 
@@ -274,49 +411,76 @@ header{
 ===================================================== */
 
 .hero-art{
-    min-height:320px;
+
+    min-height:330px;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
+
+    justify-content:center;
+
+    overflow:visible;
 }
 
 .books{
+
     position:relative;
+
     width:430px;
-    height:260px;
+
+    height:285px;
+
+    max-width:100%;
+
+    transform:scale(.9);
 }
 
 .big-book{
+
     position:absolute;
 
-    width:290px;
-    height:65px;
+    width:300px;
+
+    height:70px;
 
     left:65px;
 
-    border-radius:8px;
+    border-radius:9px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    color:#fff;
+    text-align:center;
 
-    font-size:13px;
-    font-weight:bold;
+    padding:10px;
 
-    box-shadow:0 7px 18px rgba(0,0,0,.16);
+    box-shadow:
+        0 10px 22px
+        rgba(0,0,0,.18);
+
+    font-size:15px;
+
+    font-weight:800;
+
+    overflow-wrap:anywhere;
 }
 
 .book-top{
-    top:30px;
-    height:90px;
+
+    top:20px;
+
+    height:92px;
 
     background:#fff;
+
     color:#243852;
 
-    border:1px solid #ddd;
+    border:
+        1px solid #ddd;
 
     transform:rotate(-2deg);
 
@@ -324,26 +488,46 @@ header{
 }
 
 .book-blue{
-    top:95px;
+
+    top:91px;
+
     background:#17477e;
+
+    color:#fff;
+
     z-index:4;
 }
 
 .book-gold{
-    top:143px;
+
+    top:139px;
+
     background:#df9e16;
+
+    color:#fff;
+
     z-index:3;
 }
 
 .book-green{
-    top:191px;
+
+    top:187px;
+
     background:#315a43;
+
+    color:#fff;
+
     z-index:2;
 }
 
 .book-purple{
-    top:239px;
+
+    top:235px;
+
     background:#55417e;
+
+    color:#fff;
+
     z-index:1;
 }
 
@@ -353,30 +537,42 @@ header{
 ===================================================== */
 
 .benefits{
-    margin-top:15px;
+
+    margin-top:18px;
 
     background:#fff;
 
-    border:1px solid #eee;
+    border:
+        1px solid #e8edf3;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    border-radius:14px;
 
-    border-radius:12px;
-
-    padding:13px 15px;
+    padding:15px 20px;
 
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.06);
 }
 
 .benefit{
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    gap:9px;
+    gap:10px;
 
-    border-right:1px solid #eee;
+    padding:7px;
+
+    border-right:
+        1px solid #e7ebf0;
 }
 
 .benefit:last-child{
@@ -384,95 +580,75 @@ header{
 }
 
 .benefit-icon{
-    font-size:25px;
+    font-size:26px;
 }
 
 .benefit strong{
     display:block;
-    font-size:12px;
-}
-
-.benefit span{
-    color:#777;
-    font-size:10px;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.ebooks{
-    padding:38px 0 25px;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.section-title small{
-    color:#d89c12;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:1.5px;
-}
-
-.section-title h2{
-    font-size:29px;
-    margin:5px 0 7px;
-}
-
-.section-line{
-    width:50px;
-    height:3px;
-    background:#e9ad24;
-    margin:auto;
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-box{
-    max-width:650px;
-    margin:0 auto 25px;
-
-    display:flex;
-    gap:8px;
-}
-
-.search-box input{
-    flex:1;
-
-    height:45px;
-
-    border:1px solid #d5dce5;
-    border-radius:8px;
-
-    padding:0 15px;
-
-    outline:none;
-
     font-size:13px;
 }
 
-.search-box input:focus{
-    border-color:#e5aa1b;
+.benefit span{
+    display:block;
+    color:#777;
+    font-size:11px;
 }
 
-.search-box button{
-    border:0;
 
-    background:#061d3a;
-    color:#fff;
+/* =====================================================
+   SECTIONS
+===================================================== */
 
-    border-radius:8px;
+section{
+    scroll-margin-top:85px;
+}
 
-    padding:0 18px;
+.ebooks,
+.how,
+.about,
+.contact{
 
-    font-weight:bold;
+    padding:
+        55px 0 25px;
+}
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:28px;
+}
+
+.section-title small{
+
+    color:#d99a0c;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1.3px;
+}
+
+.section-title h2{
+
+    font-size:31px;
+
+    margin:
+        6px 0 8px;
+}
+
+.section-line{
+
+    width:48px;
+
+    height:3px;
+
+    background:#e9ad24;
+
+    margin:auto;
+
+    border-radius:10px;
 }
 
 
@@ -481,21 +657,35 @@ header{
 ===================================================== */
 
 .ebook-grid{
+
     display:grid;
 
     grid-template-columns:
-    repeat(6,1fr);
+        repeat(5,minmax(0,1fr));
 
-    gap:20px;
+    gap:18px;
 }
 
 
 /* =====================================================
-   CARD
+   EBOOK CARD
 ===================================================== */
 
 .card{
+
     background:#fff;
+
+    border:
+        1px solid #e7ebf0;
+
+    border-radius:13px;
+
+    padding:10px;
+
+    box-shadow:
+        0 5px 17px
+        rgba(0,0,0,.06);
+
     overflow:hidden;
 
     transition:.2s;
@@ -504,93 +694,141 @@ header{
 }
 
 .card:hover{
-    transform:translateY(-5px);
-}
 
-.cover-link{
-    display:block;
-}
+    transform:translateY(-4px);
 
-.cover{
-    width:100%;
-    height:255px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    background:
-    linear-gradient(
-        145deg,
-        #132e4c,
-        #356b9c
-    );
-
-    overflow:hidden;
-
-    position:relative;
-}
-
-.cover img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-}
-
-.cover-fallback{
-    padding:20px;
-    color:#fff;
-    font-weight:bold;
-    font-size:18px;
+    box-shadow:
+        0 12px 28px
+        rgba(0,0,0,.11);
 }
 
 
 /* =====================================================
-   CARD CONTENT
+   COVER
 ===================================================== */
 
-.card-content{
-    padding:10px 3px 0;
+.cover{
+
+    width:100%;
+
+    aspect-ratio:
+        3 / 4;
+
+    border-radius:9px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #132e4c,
+            #356b9c
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    color:#fff;
+
+    font-weight:900;
+
+    font-size:18px;
+
+    line-height:1.15;
+
+    padding:10px;
 }
+
+.cover img{
+
+    display:block;
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:9px;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
 
 .card h3{
-    font-size:14px;
+
+    font-size:15px;
+
     line-height:1.35;
 
-    min-height:38px;
+    min-height:41px;
+
+    margin:
+        12px 2px 5px;
 
     color:#10233f;
+
+    overflow-wrap:anywhere;
 }
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
 
 .category{
+
     display:inline-block;
 
-    margin:7px 0;
-
     background:#eaf2ff;
+
     color:#2768b5;
 
-    padding:4px 9px;
+    padding:
+        5px 9px;
 
-    border-radius:15px;
+    border-radius:20px;
 
     font-size:10px;
-    font-weight:bold;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+
+    max-width:100%;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
 }
 
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
 .card p{
+
     color:#626b76;
 
-    font-size:9px;
+    font-size:11px;
 
-    line-height:1.4;
+    line-height:1.45;
 
-    min-height:38px;
+    min-height:48px;
+
+    margin-bottom:8px;
+
+    overflow-wrap:anywhere;
 }
 
 
@@ -599,84 +837,472 @@ header{
 ===================================================== */
 
 .price-row{
+
     display:flex;
 
-    justify-content:space-between;
     align-items:center;
 
-    gap:7px;
+    justify-content:space-between;
 
-    margin-top:10px;
+    gap:8px;
+
+    margin-top:8px;
+
+    flex-wrap:wrap;
+}
+
+.price-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    flex-wrap:wrap;
+
+    min-width:0;
+}
+
+.old-price{
+
+    color:#8b929b;
+
+    font-size:12px;
+
+    text-decoration:line-through;
 }
 
 .price{
+
     color:#118943;
-    font-size:17px;
-    font-weight:bold;
+
+    font-size:19px;
+
+    font-weight:800;
 }
 
+.discount{
+
+    color:#fff;
+
+    background:#df342c;
+
+    border-radius:5px;
+
+    padding:
+        4px 6px;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   BUY BUTTON
+===================================================== */
+
 .buy{
+
     border:0;
 
-    background:#f5b521;
+    background:#f4b522;
 
     color:#111;
 
     border-radius:7px;
 
-    padding:10px 13px;
+    padding:
+        11px 15px;
 
-    min-height:39px;
+    min-height:43px;
 
-    font-size:11px;
-    font-weight:bold;
+    min-width:108px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    cursor:pointer;
 
     white-space:nowrap;
+
+    transition:.2s;
 }
 
 .buy:hover{
-    background:#e3a719;
+
+    background:#e4a718;
+
+    transform:translateY(-1px);
+}
+
+.buy:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
 }
 
 
 /* =====================================================
-   CARD ACTIONS
+   EBOOK DETAIL
 ===================================================== */
 
-.card-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+.detail-section{
 
-    gap:6px;
+    display:none;
 
-    margin-top:7px;
+    padding:
+        35px 0 50px;
 }
 
-.view-btn,
-.share-btn{
-    border:1px solid #d8dee7;
+.detail-section.show{
+    display:block;
+}
+
+.detail-card{
 
     background:#fff;
 
+    border:
+        1px solid #e5eaf0;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    box-shadow:
+        0 7px 25px
+        rgba(0,0,0,.07);
+}
+
+.detail-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        300px minmax(0,1fr);
+
+    gap:30px;
+
+    align-items:start;
+}
+
+.detail-cover{
+
+    width:100%;
+
+    aspect-ratio:3 / 4;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    background:#17395f;
+}
+
+.detail-cover img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+.detail-content h1{
+
+    font-size:32px;
+
+    line-height:1.2;
+
+    margin-bottom:10px;
+
+    overflow-wrap:anywhere;
+}
+
+.detail-description{
+
+    color:#5f6b7b;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    margin:
+        16px 0;
+}
+
+.detail-price{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin:
+        20px 0;
+}
+
+.detail-old{
+
+    color:#8b929b;
+
+    text-decoration:line-through;
+
+    font-size:16px;
+}
+
+.detail-current{
+
+    color:#118943;
+
+    font-size:28px;
+
+    font-weight:800;
+}
+
+.detail-off{
+
+    color:#fff;
+
+    background:#df342c;
+
+    padding:
+        5px 8px;
+
     border-radius:6px;
 
-    padding:8px 5px;
+    font-size:12px;
 
-    font-size:9px;
-    font-weight:bold;
+    font-weight:800;
 }
 
-.view-btn{
-    color:#17477e;
+.detail-buy{
+
+    border:0;
+
+    background:#f4b522;
+
+    color:#111;
+
+    padding:
+        14px 28px;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    min-height:50px;
 }
 
-.share-btn{
-    color:#555;
+.back-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:#eef3f8;
+
+    color:#18314f;
+
+    padding:
+        9px 13px;
+
+    border-radius:7px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
 }
 
-.view-btn:hover,
-.share-btn:hover{
-    background:#f4f7fb;
+
+/* =====================================================
+   LIBRARY MODAL
+===================================================== */
+
+.library-modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(0,0,0,.55);
+
+    z-index:10000;
+
+    padding:20px;
+
+    overflow-y:auto;
+}
+
+.library-modal.show{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.library-box{
+
+    width:100%;
+
+    max-width:600px;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.25);
+
+    position:relative;
+}
+
+.library-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.library-head h2{
+    font-size:24px;
+}
+
+.library-close{
+
+    width:36px;
+
+    height:36px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:#eef2f6;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.library-empty{
+
+    text-align:center;
+
+    padding:35px 15px;
+
+    color:#687385;
+}
+
+.library-book{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:
+        10px;
+
+    border:
+        1px solid #e7ebf0;
+
+    border-radius:10px;
+
+    margin-bottom:10px;
+}
+
+.library-book img{
+
+    width:55px;
+
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:6px;
+}
+
+.library-book-info{
+
+    flex:1;
+
+    min-width:0;
+}
+
+.library-book-info strong{
+
+    display:block;
+
+    font-size:14px;
+
+    margin-bottom:5px;
+
+    overflow-wrap:anywhere;
+}
+
+.library-book-info span{
+
+    color:#697586;
+
+    font-size:11px;
+}
+
+.library-open{
+
+    border:0;
+
+    background:#f4b522;
+
+    color:#111;
+
+    padding:
+        8px 11px;
+
+    border-radius:6px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
 }
 
 
@@ -687,21 +1313,319 @@ header{
 .loading,
 .no-books,
 .error-box{
+
     grid-column:1/-1;
 
     text-align:center;
 
-    padding:40px 15px;
+    padding:45px 15px;
 
-    color:#666;
+    color:#667085;
 }
 
 .error-box{
-    color:#b42318;
 
     background:#fff4f2;
 
+    color:#b42318;
+
     border-radius:10px;
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+===================================================== */
+
+.steps{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
+}
+
+.step{
+
+    position:relative;
+
+    background:#fff;
+
+    border:
+        1px solid #e5eaf0;
+
+    border-radius:13px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.05);
+}
+
+.step-number{
+
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    width:28px;
+    height:28px;
+
+    border-radius:50%;
+
+    background:#061d3a;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:12px;
+
+    font-weight:800;
+}
+
+.step-icon{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+}
+
+.step h3{
+
+    font-size:16px;
+
+    margin-bottom:7px;
+}
+
+.step p{
+
+    color:#667085;
+
+    font-size:12px;
+
+    line-height:1.55;
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-box{
+
+    display:grid;
+
+    grid-template-columns:
+        1.3fr 1fr;
+
+    gap:25px;
+
+    background:#f8fbff;
+
+    border:
+        1px solid #e4ebf4;
+
+    border-radius:15px;
+
+    padding:28px;
+}
+
+.about-content h2{
+
+    font-size:25px;
+
+    margin-bottom:12px;
+}
+
+.about-content p{
+
+    color:#596579;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:10px;
+}
+
+.about-points{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+}
+
+.about-point{
+
+    background:#fff;
+
+    border:
+        1px solid #e6ebf1;
+
+    border-radius:9px;
+
+    padding:14px;
+
+    color:#697386;
+
+    font-size:11px;
+}
+
+.about-point strong{
+
+    display:block;
+
+    color:#172b4d;
+
+    font-size:13px;
+
+    margin-bottom:4px;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.contact-card{
+
+    background:#fff;
+
+    border:
+        1px solid #e5eaf0;
+
+    border-radius:13px;
+
+    padding:24px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.05);
+}
+
+.contact-card h3{
+
+    font-size:20px;
+
+    margin-bottom:8px;
+}
+
+.contact-card > p{
+
+    color:#687385;
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    margin-bottom:15px;
+}
+
+.contact-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 0;
+
+    border-top:
+        1px solid #edf0f4;
+}
+
+.contact-item-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:9px;
+
+    background:#eef5ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:19px;
+
+    flex-shrink:0;
+}
+
+.contact-item strong{
+
+    display:block;
+
+    font-size:13px;
+}
+
+.contact-item span{
+
+    display:block;
+
+    color:#687385;
+
+    font-size:11px;
+
+    word-break:break-word;
+}
+
+.contact-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+    flex-wrap:wrap;
+}
+
+.contact-btn{
+
+    display:inline-block;
+
+    padding:
+        10px 15px;
+
+    border-radius:7px;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+.email-btn{
+
+    background:#061d3a;
+
+    color:#fff;
 }
 
 
@@ -710,30 +1634,41 @@ header{
 ===================================================== */
 
 .trust{
-    margin-top:15px;
+
+    margin-top:25px;
 
     background:#f9fbfe;
 
-    border:1px solid #e8edf4;
+    border:
+        1px solid #e8edf4;
 
-    border-radius:10px;
+    border-radius:11px;
 
-    padding:12px 18px;
+    padding:
+        14px 18px;
 
     display:grid;
 
     grid-template-columns:
-    1.7fr 1fr 1fr 1fr;
+        1.7fr 1fr 1fr 1fr;
+
+    align-items:center;
 }
 
 .trust-item{
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    gap:8px;
+    gap:9px;
 
-    border-right:1px solid #e4e7eb;
+    padding:5px;
+
+    border-right:
+        1px solid #e4e7eb;
 }
 
 .trust-item:last-child{
@@ -745,270 +1680,17 @@ header{
 }
 
 .trust strong{
+
     display:block;
+
     font-size:11px;
 }
 
 .trust span{
+
     color:#777;
+
     font-size:9px;
-}
-
-
-/* =====================================================
-   DETAIL PAGE
-===================================================== */
-
-.detail-page{
-    display:none;
-
-    padding:35px 0 45px;
-
-    background:#f7f9fc;
-
-    min-height:600px;
-}
-
-.detail-box{
-    background:#fff;
-
-    border-radius:15px;
-
-    padding:25px;
-
-    box-shadow:0 7px 30px rgba(0,0,0,.07);
-}
-
-.back-btn{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    border:0;
-
-    background:#eef3f8;
-
-    color:#173b63;
-
-    padding:9px 13px;
-
-    border-radius:7px;
-
-    font-size:12px;
-    font-weight:bold;
-
-    margin-bottom:25px;
-}
-
-.detail-grid{
-    display:grid;
-
-    grid-template-columns:
-    minmax(250px,380px)
-    1fr;
-
-    gap:35px;
-
-    align-items:start;
-}
-
-.detail-cover{
-    width:100%;
-
-    max-height:520px;
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    background:#153657;
-
-    box-shadow:0 8px 25px rgba(0,0,0,.12);
-}
-
-.detail-cover img{
-    width:100%;
-    height:100%;
-
-    max-height:520px;
-
-    object-fit:cover;
-
-    display:block;
-}
-
-.detail-info h1{
-    font-size:32px;
-
-    line-height:1.2;
-
-    margin-bottom:12px;
-}
-
-.detail-category{
-    display:inline-block;
-
-    background:#eaf2ff;
-    color:#2768b5;
-
-    padding:6px 11px;
-
-    border-radius:20px;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    margin-bottom:15px;
-}
-
-.detail-description{
-    color:#596575;
-
-    font-size:14px;
-
-    line-height:1.7;
-
-    margin-bottom:20px;
-}
-
-.detail-price{
-    color:#118943;
-
-    font-size:30px;
-
-    font-weight:bold;
-
-    margin-bottom:17px;
-}
-
-.detail-buy{
-    border:0;
-
-    background:#f5b521;
-
-    color:#111;
-
-    border-radius:8px;
-
-    padding:13px 22px;
-
-    font-size:14px;
-
-    font-weight:bold;
-}
-
-.detail-buy:hover{
-    background:#e3a719;
-}
-
-.share-row{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin-top:12px;
-}
-
-.share-main,
-.copy-main,
-.whatsapp-main{
-    border:0;
-
-    border-radius:7px;
-
-    padding:10px 13px;
-
-    font-size:11px;
-
-    font-weight:bold;
-}
-
-.share-main{
-    background:#17477e;
-    color:#fff;
-}
-
-.copy-main{
-    background:#eef2f6;
-    color:#173b63;
-}
-
-.whatsapp-main{
-    background:#25d366;
-    color:#fff;
-}
-
-
-/* =====================================================
-   RELATED
-===================================================== */
-
-.related{
-    margin-top:40px;
-}
-
-.related h2{
-    font-size:22px;
-    margin-bottom:17px;
-}
-
-.related-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(5,1fr);
-
-    gap:15px;
-}
-
-
-/* =====================================================
-   HOW IT WORKS
-===================================================== */
-
-.how{
-    padding:45px 0;
-}
-
-.how-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:18px;
-}
-
-.how-card{
-    text-align:center;
-
-    background:#fff;
-
-    border:1px solid #e8edf4;
-
-    border-radius:12px;
-
-    padding:25px 15px;
-}
-
-.how-icon{
-    font-size:35px;
-    margin-bottom:10px;
-}
-
-.how-card h3{
-    font-size:15px;
-    margin-bottom:7px;
-}
-
-.how-card p{
-    font-size:11px;
-    color:#697586;
 }
 
 
@@ -1017,32 +1699,37 @@ header{
 ===================================================== */
 
 footer{
-    margin-top:20px;
+
+    margin-top:35px;
 
     background:#061d3a;
 
     color:#fff;
 
-    padding:30px 0 12px;
+    padding:
+        32px 0 12px;
 }
 
 .footer-grid{
+
     display:grid;
 
     grid-template-columns:
-    2fr 1fr 1fr 1fr;
+        2fr 1fr 1fr 1fr;
 
     gap:30px;
 }
 
 footer h3{
-    font-size:14px;
+
+    font-size:15px;
 
     margin-bottom:9px;
 }
 
 footer p,
 footer a{
+
     color:#cbd5e1;
 
     font-size:11px;
@@ -1051,13 +1738,23 @@ footer a{
 }
 
 footer a{
+
     display:block;
+
+    transition:.2s;
+}
+
+footer a:hover{
+    color:#f4b522;
 }
 
 .footer-bottom{
-    border-top:1px solid rgba(255,255,255,.15);
 
-    margin-top:20px;
+    border-top:
+        1px solid
+        rgba(255,255,255,.15);
+
+    margin-top:22px;
 
     padding-top:12px;
 
@@ -1070,126 +1767,7 @@ footer a{
 
 
 /* =====================================================
-   MODAL
-===================================================== */
-
-.modal{
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.6);
-
-    z-index:5000;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:420px;
-
-    background:#fff;
-
-    border-radius:13px;
-
-    padding:25px;
-
-    text-align:center;
-
-    box-shadow:0 15px 50px rgba(0,0,0,.25);
-}
-
-.modal-box h3{
-    margin-bottom:10px;
-}
-
-.modal-box p{
-    font-size:13px;
-    color:#667085;
-    margin-bottom:20px;
-}
-
-.modal-buttons{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:8px;
-}
-
-.modal-buttons button{
-    border:0;
-
-    padding:11px;
-
-    border-radius:7px;
-
-    font-weight:bold;
-}
-
-.modal-close{
-    background:#eef2f6;
-}
-
-.modal-whatsapp{
-    background:#25d366;
-    color:#fff;
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    transform:
-    translate(-50%,20px);
-
-    background:#061d3a;
-
-    color:#fff;
-
-    padding:11px 17px;
-
-    border-radius:8px;
-
-    font-size:12px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.25s;
-
-    z-index:9000;
-}
-
-.toast.show{
-    opacity:1;
-
-    transform:
-    translate(-50%,0);
-}
-
-
-/* =====================================================
-   TABLET
+   RESPONSIVE TABLET
 ===================================================== */
 
 @media(max-width:1100px){
@@ -1198,24 +1776,38 @@ footer a{
         gap:13px;
     }
 
+    .menu a{
+        font-size:12px;
+    }
+
     .ebook-grid{
         grid-template-columns:
-        repeat(4,1fr);
+            repeat(4,minmax(0,1fr));
     }
 
-    .related-grid{
-        grid-template-columns:
-        repeat(4,1fr);
+    .hero h1{
+        font-size:38px;
     }
-
 }
 
 
 /* =====================================================
-   TABLET / MOBILE
+   MOBILE
 ===================================================== */
 
-@media(max-width:800px){
+@media(max-width:700px){
+
+    .container{
+        width:94%;
+    }
+
+    header{
+        min-height:64px;
+    }
+
+    .nav{
+        min-height:64px;
+    }
 
     .menu{
         display:none;
@@ -1225,93 +1817,8 @@ footer a{
         display:block;
     }
 
-    .hero-inner{
-        grid-template-columns:1fr;
-    }
-
-    .hero-content{
-        text-align:center;
-        padding:35px 0 10px;
-    }
-
-    .hero p{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .hero-buttons{
-        justify-content:center;
-    }
-
-    .hero-art{
-        min-height:250px;
-    }
-
-    .benefits{
-        grid-template-columns:
-        1fr 1fr;
-
-        gap:10px;
-    }
-
-    .benefit{
-        border-right:0;
-        padding:8px;
-    }
-
-    .ebook-grid{
-        grid-template-columns:
-        1fr 1fr;
-
-        gap:18px 12px;
-    }
-
-    .detail-grid{
-        grid-template-columns:1fr;
-    }
-
-    .detail-cover{
-        max-width:380px;
-        margin:auto;
-    }
-
-    .related-grid{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-
-    .how-grid{
-        grid-template-columns:1fr;
-    }
-
-    .trust{
-        grid-template-columns:
-        1fr 1fr;
-
-        gap:8px;
-    }
-
-    .trust-item{
-        border-right:0;
-        padding:8px;
-    }
-
-    .footer-grid{
-        grid-template-columns:
-        1fr 1fr;
-    }
-
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media(max-width:450px){
-
-    .container{
-        width:94%;
+    .logo-icon{
+        font-size:27px;
     }
 
     .logo h2{
@@ -1319,36 +1826,546 @@ footer a{
     }
 
     .logo small{
-        font-size:8px;
+        font-size:9px;
     }
 
-    .logo-icon{
-        font-size:27px;
+
+    /* HERO */
+
+    .hero{
+        min-height:auto;
+
+        padding:
+            10px 0 20px;
+    }
+
+    .hero-inner{
+
+        grid-template-columns:1fr;
+
+        min-height:auto;
+
+        gap:4px;
+    }
+
+    .hero-content{
+
+        text-align:center;
+
+        padding:
+            22px 5px 5px;
+    }
+
+    .badge{
+
+        font-size:10px;
+
+        padding:
+            6px 10px;
+
+        max-width:100%;
     }
 
     .hero h1{
-        font-size:31px;
+
+        font-size:
+            clamp(
+                27px,
+                8vw,
+                36px
+            );
+
+        line-height:1.16;
+
+        margin-bottom:12px;
+
+        overflow-wrap:anywhere;
+    }
+
+    .hero p{
+
+        font-size:13px;
+
+        max-width:100%;
+
+        line-height:1.55;
+
+        padding:
+            0 4px;
+    }
+
+    .hero-buttons{
+
+        justify-content:center;
+    }
+
+    .btn{
+
+        min-height:44px;
+
+        padding:
+            11px 15px;
+
+        font-size:13px;
+    }
+
+
+    /* HERO ART */
+
+    .hero-art{
+
+        min-height:205px;
+
+        height:205px;
+
+        overflow:hidden;
     }
 
     .books{
-        transform:scale(.72);
+
+        width:390px;
+
+        height:220px;
+
+        transform:
+            scale(.68);
+
+        transform-origin:
+            center center;
     }
 
+
+    /* BENEFITS */
+
+    .benefits{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:6px;
+
+        padding:10px;
+    }
+
+    .benefit{
+
+        border-right:0;
+
+        padding:9px 4px;
+
+        justify-content:flex-start;
+    }
+
+    .benefit-icon{
+        font-size:21px;
+    }
+
+    .benefit strong{
+        font-size:10px;
+    }
+
+    .benefit span{
+        font-size:8px;
+    }
+
+
+    /* EBOOK SECTION */
+
+    .ebooks{
+
+        padding:
+            35px 0 18px;
+    }
+
+    .section-title{
+
+        margin-bottom:20px;
+    }
+
+    .section-title h2{
+
+        font-size:24px;
+    }
+
+    .section-title small{
+        font-size:9px;
+    }
+
+
+    /* 2 COLUMNS */
+
     .ebook-grid{
-        gap:15px 9px;
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:13px 10px;
+    }
+
+
+    /* CARD */
+
+    .card{
+
+        padding:7px;
+
+        border-radius:10px;
     }
 
     .cover{
-        height:225px;
+
+        aspect-ratio:
+            3 / 4;
+
+        border-radius:7px;
+    }
+
+    .card h3{
+
+        font-size:13px;
+
+        min-height:36px;
+
+        margin-top:9px;
+    }
+
+    .category{
+
+        font-size:9px;
+
+        padding:
+            4px 7px;
+
+        margin-bottom:5px;
+    }
+
+    .card p{
+
+        font-size:9px;
+
+        min-height:42px;
+
+        line-height:1.4;
+    }
+
+    .price-row{
+
+        align-items:stretch;
+
+        flex-direction:column;
+
+        gap:7px;
+    }
+
+    .price-box{
+
+        width:100%;
+    }
+
+    .old-price{
+        font-size:10px;
+    }
+
+    .price{
+        font-size:17px;
+    }
+
+    .discount{
+        font-size:9px;
+    }
+
+    .buy{
+
+        width:100%;
+
+        min-height:45px;
+
+        font-size:13px;
+
+        padding:
+            10px 8px;
+    }
+
+
+    /* DETAIL */
+
+    .detail-section{
+
+        padding:
+            25px 0 35px;
+    }
+
+    .detail-card{
+
+        padding:14px;
+    }
+
+    .detail-grid{
+
+        grid-template-columns:1fr;
+
+        gap:18px;
+    }
+
+    .detail-cover{
+
+        width:
+            min(75vw,280px);
+
+        margin:auto;
+    }
+
+    .detail-content h1{
+
+        font-size:25px;
+
+        text-align:center;
+    }
+
+    .detail-description{
+
+        font-size:13px;
+
+        line-height:1.6;
+    }
+
+    .detail-price{
+
+        justify-content:center;
+    }
+
+    .detail-current{
+        font-size:25px;
+    }
+
+    .detail-buy{
+
+        width:100%;
+
+        font-size:16px;
+    }
+
+
+    /* LIBRARY */
+
+    .library-modal{
+
+        padding:10px;
+    }
+
+    .library-box{
+
+        max-height:
+            90vh;
+
+        padding:16px;
+
+        border-radius:13px;
+    }
+
+    .library-head h2{
+        font-size:21px;
+    }
+
+    .library-book{
+
+        align-items:center;
+
+        padding:8px;
+    }
+
+    .library-book img{
+
+        width:48px;
+        height:62px;
+    }
+
+    .library-open{
+
+        padding:
+            8px 9px;
+
+        font-size:10px;
+    }
+
+
+    /* HOW */
+
+    .how{
+
+        padding:
+            35px 0 18px;
+    }
+
+    .steps{
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+    }
+
+    .step{
+
+        padding:
+            17px 13px;
+    }
+
+    .step-icon{
+        font-size:28px;
+    }
+
+    .step h3{
+        font-size:14px;
+    }
+
+    .step p{
+        font-size:10px;
+    }
+
+
+    /* ABOUT */
+
+    .about-box{
+
+        grid-template-columns:1fr;
+
+        padding:16px;
+    }
+
+    .about-content h2{
+        font-size:21px;
+    }
+
+    .about-content p{
+        font-size:11px;
+    }
+
+    .about-points{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:7px;
+    }
+
+    .about-point{
+
+        padding:9px;
+
+        font-size:9px;
+    }
+
+    .about-point strong{
+        font-size:11px;
+    }
+
+
+    /* CONTACT */
+
+    .contact{
+
+        padding:
+            35px 0 18px;
+    }
+
+    .contact-grid{
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+    }
+
+    .contact-card{
+        padding:16px;
+    }
+
+
+    /* TRUST */
+
+    .trust{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:6px;
+
+        padding:10px;
+    }
+
+    .trust-item{
+
+        border-right:0;
+
+        padding:8px 3px;
+
+        justify-content:flex-start;
+    }
+
+    .trust-icon{
+        font-size:18px;
+    }
+
+    .trust strong{
+        font-size:9px;
+    }
+
+    .trust span{
+        font-size:8px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:20px;
+    }
+
+    footer p,
+    footer a{
+        font-size:10px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width:390px){
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .hero p{
+        font-size:12px;
+    }
+
+    .hero-art{
+        height:180px;
+        min-height:180px;
+    }
+
+    .books{
+        transform:
+            scale(.58);
+    }
+
+    .ebook-grid{
+        gap:10px 7px;
+    }
+
+    .card{
+        padding:6px;
     }
 
     .card h3{
         font-size:12px;
-    }
-
-    .category{
-        font-size:9px;
-        padding:4px 7px;
     }
 
     .card p{
@@ -1356,35 +2373,23 @@ footer a{
     }
 
     .price{
-        font-size:15px;
+        font-size:16px;
     }
 
     .buy{
-        padding:9px 8px;
-        font-size:9px;
+        min-height:43px;
+        font-size:12px;
     }
 
-    .detail-box{
-        padding:16px;
-    }
-
-    .detail-info h1{
-        font-size:25px;
-    }
-
-    .detail-price{
-        font-size:26px;
-    }
-
-    .footer-grid{
+    .about-points{
         grid-template-columns:1fr;
     }
-
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -1397,7 +2402,7 @@ footer a{
 
 <div class="nav">
 
-    <a href="./" class="logo">
+    <a href="#" class="logo">
 
         <div class="logo-icon">
             📖
@@ -1405,7 +2410,9 @@ footer a{
 
         <div>
 
-            <h2>RP Ebook Store</h2>
+            <h2>
+                RP Ebook Store
+            </h2>
 
             <small>
                 Learn More, Achieve More
@@ -1418,24 +2425,31 @@ footer a{
 
     <nav class="menu">
 
-        <a href="./">
+        <a href="#"
+           class="active">
             Home
         </a>
 
-        <a href="./#ebooks">
+        <a href="#ebooks">
             eBooks
         </a>
 
-        <a href="./#how">
+        <a href="#how">
             How It Works
         </a>
 
-        <a href="./#ebooks">
-            Popular
+        <a href="#about">
+            About Us
         </a>
 
-        <a href="./#contact">
+        <a href="#contact">
             Contact
+        </a>
+
+        <a href="#"
+           class="library"
+           onclick="openLibrary();return false;">
+            👤 My Library
         </a>
 
     </nav>
@@ -1443,7 +2457,8 @@ footer a{
 
     <button
         class="mobile-menu-btn"
-        onclick="toggleMobileMenu()">
+        onclick="toggleMobileMenu()"
+        aria-label="Open Menu">
 
         ☰
 
@@ -1451,116 +2466,158 @@ footer a{
 
 </div>
 
+</header>
+
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
 
 <div
-    id="mobileMenu"
-    class="mobile-menu">
+    class="mobile-menu"
+    id="mobileMenu">
 
-    <a href="./">
-        🏠 Home
+    <a href="#"
+       onclick="closeMobileMenu()">
+        Home
     </a>
 
-    <a href="./#ebooks">
-        📚 eBooks
+    <a href="#ebooks"
+       onclick="closeMobileMenu()">
+        eBooks
     </a>
 
-    <a href="./#how">
-        ⚙️ How It Works
+    <a href="#how"
+       onclick="closeMobileMenu()">
+        How It Works
     </a>
 
-    <a href="./#contact">
-        📞 Contact
+    <a href="#about"
+       onclick="closeMobileMenu()">
+        About Us
+    </a>
+
+    <a href="#contact"
+       onclick="closeMobileMenu()">
+        Contact
+    </a>
+
+    <a href="#"
+       onclick="closeMobileMenu();openLibrary();return false;">
+        👤 My Library
     </a>
 
 </div>
 
-</header>
-
-
 
 <!-- =====================================================
-     HOME PAGE
+     HERO
 ===================================================== -->
-
-<main id="homePage">
-
-
-<!-- HERO -->
 
 <section class="hero">
 
 <div class="container hero-inner">
 
 
-<div class="hero-content">
+    <div class="hero-content">
 
-    <span class="badge">
-        PREMIUM EBOOKS
-    </span>
-
-    <h1>
-        Quality eBooks<br>
-        for Your <span>Success</span>
-    </h1>
-
-    <p>
-        Premium study materials for students,
-        job aspirants and competitive exam
-        preparation.
-    </p>
+        <span class="badge">
+            PREMIUM EBOOKS
+        </span>
 
 
-    <div class="hero-buttons">
+        <h1>
 
-        <a
-            href="#ebooks"
-            class="btn btn-gold">
+            Quality eBooks
+            <br>
 
-            📖 Browse eBooks
+            for Your
+            <span>
+                Success
+            </span>
 
-        </a>
+        </h1>
 
 
-        <a
-            href="#how"
-            class="btn btn-white">
+        <p>
 
-            ▶ How It Works
+            Premium study materials for
+            students, job aspirants and
+            competitive exam preparation.
 
-        </a>
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#ebooks"
+                class="btn btn-gold">
+
+                📖 Browse eBooks
+
+            </a>
+
+
+            <a
+                href="#how"
+                class="btn btn-white">
+
+                ▶ How It Works
+
+            </a>
+
+        </div>
 
     </div>
 
-</div>
 
 
-<div class="hero-art">
+    <div class="hero-art">
 
-<div class="books">
+        <div class="books">
 
-    <div class="big-book book-top">
-        📖 KNOWLEDGE IS POWER
+
+            <div class="big-book book-top">
+
+                📖
+                <br>
+                KNOWLEDGE IS POWER
+
+            </div>
+
+
+            <div class="big-book book-blue">
+
+                Better Knowledge
+
+            </div>
+
+
+            <div class="big-book book-gold">
+
+                Brighter Tomorrow
+
+            </div>
+
+
+            <div class="big-book book-green">
+
+                Stronger Preparation
+
+            </div>
+
+
+            <div class="big-book book-purple">
+
+                Greater Success
+
+            </div>
+
+
+        </div>
+
     </div>
-
-    <div class="big-book book-blue">
-        Better Knowledge
-    </div>
-
-    <div class="big-book book-gold">
-        Brighter Tomorrow
-    </div>
-
-    <div class="big-book book-green">
-        Stronger Preparation
-    </div>
-
-    <div class="big-book book-purple">
-        Greater Success
-    </div>
-
-</div>
-
-</div>
 
 
 </div>
@@ -1568,12 +2625,14 @@ footer a{
 </section>
 
 
-
-<!-- BENEFITS -->
+<!-- =====================================================
+     BENEFITS
+===================================================== -->
 
 <div class="container">
 
 <div class="benefits">
+
 
     <div class="benefit">
 
@@ -1582,11 +2641,19 @@ footer a{
         </div>
 
         <div>
-            <strong>100% Safe</strong>
-            <span>Secure & Trusted</span>
+
+            <strong>
+                100% Safe
+            </strong>
+
+            <span>
+                Secure & Trusted
+            </span>
+
         </div>
 
     </div>
+
 
 
     <div class="benefit">
@@ -1596,11 +2663,19 @@ footer a{
         </div>
 
         <div>
-            <strong>Instant Access</strong>
-            <span>Get Instantly</span>
+
+            <strong>
+                Instant Access
+            </strong>
+
+            <span>
+                Get Instantly
+            </span>
+
         </div>
 
     </div>
+
 
 
     <div class="benefit">
@@ -1610,11 +2685,19 @@ footer a{
         </div>
 
         <div>
-            <strong>Easy Download</strong>
-            <span>PDF Format</span>
+
+            <strong>
+                Ebook Download
+            </strong>
+
+            <span>
+                Easy & Fast
+            </span>
+
         </div>
 
     </div>
+
 
 
     <div class="benefit">
@@ -1624,19 +2707,28 @@ footer a{
         </div>
 
         <div>
-            <strong>24/7 Support</strong>
-            <span>We Are Always Here</span>
+
+            <strong>
+                24/7 Support
+            </strong>
+
+            <span>
+                We Are Always Here
+            </span>
+
         </div>
 
     </div>
 
-</div>
 
 </div>
 
+</div>
 
 
-<!-- EBOOK SECTION -->
+<!-- =====================================================
+     EBOOKS
+===================================================== -->
 
 <section
     class="ebooks"
@@ -1645,54 +2737,32 @@ footer a{
 <div class="container">
 
 
-<div class="section-title">
+    <div class="section-title">
 
-    <small>
-        PREMIUM COLLECTION
-    </small>
+        <small>
+            POPULAR EBOOKS
+        </small>
 
-    <h2>
-        Our Popular eBooks
-    </h2>
+        <h2>
+            Our Popular eBooks
+        </h2>
 
-    <div class="section-line"></div>
+        <div class="section-line"></div>
 
-</div>
-
-
-
-<!-- SEARCH -->
-
-<div class="search-box">
-
-    <input
-        id="searchInput"
-        type="search"
-        placeholder="Search ebook by title or category..."
-        oninput="filterBooks()">
-
-    <button
-        onclick="filterBooks()">
-
-        🔎 Search
-
-    </button>
-
-</div>
-
-
-
-<!-- GRID -->
-
-<div
-    class="ebook-grid"
-    id="ebookGrid">
-
-    <div class="loading">
-        📚 Loading Ebooks...
     </div>
 
-</div>
+
+    <div
+        class="ebook-grid"
+        id="ebookGrid">
+
+        <div class="loading">
+
+            📚 Loading Ebooks...
+
+        </div>
+
+    </div>
 
 
 </div>
@@ -1700,8 +2770,44 @@ footer a{
 </section>
 
 
+<!-- =====================================================
+     SINGLE EBOOK DETAIL
+===================================================== -->
 
-<!-- HOW IT WORKS -->
+<section
+    class="detail-section"
+    id="ebookDetail">
+
+<div class="container">
+
+    <div class="detail-card">
+
+        <a
+            href="#ebooks"
+            class="back-btn"
+            onclick="showAllBooks()">
+
+            ← Back to eBooks
+
+        </a>
+
+
+        <div
+            class="detail-grid"
+            id="detailContent">
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
 
 <section
     class="how"
@@ -1709,237 +2815,610 @@ footer a{
 
 <div class="container">
 
-<div class="section-title">
 
-    <small>
-        SIMPLE PROCESS
-    </small>
+    <div class="section-title">
 
-    <h2>
-        How It Works
-    </h2>
+        <small>
+            SIMPLE PROCESS
+        </small>
 
-    <div class="section-line"></div>
+        <h2>
+            How It Works
+        </h2>
 
-</div>
+        <div class="section-line"></div>
 
-
-<div class="how-grid">
-
-
-<div class="how-card">
-
-    <div class="how-icon">
-        📚
     </div>
 
-    <h3>
-        1. Choose eBook
-    </h3>
 
-    <p>
-        Browse our collection and
-        select the eBook you need.
-    </p>
-
-</div>
+    <div class="steps">
 
 
-<div class="how-card">
+        <div class="step">
 
-    <div class="how-icon">
-        💳
+            <div class="step-number">
+                1
+            </div>
+
+            <div class="step-icon">
+                📚
+            </div>
+
+            <h3>
+                Choose Your eBook
+            </h3>
+
+            <p>
+                Browse our collection and
+                select the eBook you want.
+            </p>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div class="step-icon">
+                🛒
+            </div>
+
+            <h3>
+                Click Buy Now
+            </h3>
+
+            <p>
+                Click Buy Now and continue
+                to the secure payment page.
+            </p>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <div class="step-icon">
+                💳
+            </div>
+
+            <h3>
+                Make Payment
+            </h3>
+
+            <p>
+                Complete your payment using
+                available secure options.
+            </p>
+
+        </div>
+
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <div class="step-icon">
+                ⬇️
+            </div>
+
+            <h3>
+                Download Ebook
+            </h3>
+
+            <p>
+                After successful verification,
+                download your purchased PDF.
+            </p>
+
+        </div>
+
+
     </div>
-
-    <h3>
-        2. Make Payment
-    </h3>
-
-    <p>
-        Click Buy Now and complete
-        the secure payment.
-    </p>
-
-</div>
-
-
-<div class="how-card">
-
-    <div class="how-icon">
-        ⬇️
-    </div>
-
-    <h3>
-        3. Get Your eBook
-    </h3>
-
-    <p>
-        After successful payment,
-        access your purchased PDF.
-    </p>
-
-</div>
-
-
-</div>
 
 </div>
 
 </section>
-
-
-</main>
-
 
 
 <!-- =====================================================
-     DETAIL PAGE
+     ABOUT
 ===================================================== -->
 
 <section
-    id="detailPage"
-    class="detail-page">
+    class="about"
+    id="about">
 
 <div class="container">
 
-<div class="detail-box">
 
-    <button
-        class="back-btn"
-        onclick="goHome()">
+    <div class="section-title">
 
-        ← Back to eBooks
-
-    </button>
-
-
-    <div
-        id="detailContent">
-
-        <div class="loading">
-            📖 Loading eBook...
-        </div>
-
-    </div>
-
-
-    <div
-        id="relatedSection"
-        class="related"
-        style="display:none;">
+        <small>
+            WHO WE ARE
+        </small>
 
         <h2>
-            📚 You May Also Like
+            About Us
         </h2>
 
-        <div
-            id="relatedGrid"
-            class="related-grid">
-        </div>
+        <div class="section-line"></div>
 
     </div>
 
-</div>
+
+    <div class="about-box">
+
+
+        <div class="about-content">
+
+            <h2>
+                📖 About RP Ebook Store
+            </h2>
+
+            <p>
+                RP Ebook Store is an online platform
+                created to provide useful and affordable
+                digital learning materials to students,
+                job aspirants and competitive exam
+                preparation learners.
+            </p>
+
+            <p>
+                Our goal is to make quality study material
+                simple to access, easy to download and
+                convenient to use.
+            </p>
+
+            <p>
+                We focus on providing useful digital
+                materials in a simple and convenient
+                format.
+            </p>
+
+        </div>
+
+
+        <div class="about-points">
+
+
+            <div class="about-point">
+
+                <strong>
+                    📚 Quality Content
+                </strong>
+
+                Carefully selected digital
+                learning materials.
+
+            </div>
+
+
+            <div class="about-point">
+
+                <strong>
+                    ⚡ Easy Access
+                </strong>
+
+                Simple purchasing and
+                digital access.
+
+            </div>
+
+
+            <div class="about-point">
+
+                <strong>
+                    🎯 Exam Focused
+                </strong>
+
+                Materials useful for
+                students and aspirants.
+
+            </div>
+
+
+            <div class="about-point">
+
+                <strong>
+                    🔐 Secure
+                </strong>
+
+                Secure payment and
+                verified PDF access.
+
+            </div>
+
+
+        </div>
+
+    </div>
 
 </div>
 
 </section>
 
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="contact"
+    id="contact">
+
+<div class="container">
+
+
+    <div class="section-title">
+
+        <small>
+            GET IN TOUCH
+        </small>
+
+        <h2>
+            Contact Us
+        </h2>
+
+        <div class="section-line"></div>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <div class="contact-card">
+
+            <h3>
+                Need Help?
+            </h3>
+
+            <p>
+                If you have any question about
+                an eBook, payment or download,
+                please contact us.
+            </p>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    📧
+                </div>
+
+                <div>
+
+                    <strong>
+                        Email Support
+                    </strong>
+
+                    <span>
+                        krishnakamal991@gmail.com
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    💬
+                </div>
+
+                <div>
+
+                    <strong>
+                        Support
+                    </strong>
+
+                    <span>
+                        +91 8081140784
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-actions">
+
+                <a
+                    class="contact-btn email-btn"
+                    href="mailto:krishnakamal991@gmail.com">
+
+                    📧 Email Us
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="contact-card">
+
+            <h3>
+                Before Contacting Us
+            </h3>
+
+            <p>
+                Please keep your order information
+                available if your query is related
+                to payment or eBook download.
+            </p>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    🧾
+                </div>
+
+                <div>
+
+                    <strong>
+                        Payment Issue
+                    </strong>
+
+                    <span>
+                        Keep your payment/order
+                        details ready.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-item">
+
+                <div class="contact-item-icon">
+                    📖
+                </div>
+
+                <div>
+
+                    <strong>
+                        Ebook Issue
+                    </strong>
+
+                    <span>
+                        Mention the eBook title
+                        you purchased.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     TRUST
+===================================================== -->
+
+<div class="container">
+
+<div class="trust">
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            👨‍🎓
+        </div>
+
+        <div>
+
+            <strong>
+                Quality Learning Materials
+            </strong>
+
+            <span>
+                For Students & Aspirants
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <strong>
+                Secure Payment
+            </strong>
+
+            <span>
+                Protected
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            ⚡
+        </div>
+
+        <div>
+
+            <strong>
+                Instant Access
+            </strong>
+
+            <span>
+                After Payment
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="trust-item">
+
+        <div class="trust-icon">
+            ⬇️
+        </div>
+
+        <div>
+
+            <strong>
+                Easy Download
+            </strong>
+
+            <span>
+                PDF Format
+            </span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</div>
 
 
 <!-- =====================================================
      FOOTER
 ===================================================== -->
 
-<footer id="contact">
+<footer>
 
 <div class="container footer-grid">
 
 
-<div>
+    <div>
 
-    <h3>
-        📖 RP Ebook Store
-    </h3>
+        <h3>
+            📖 RP Ebook Store
+        </h3>
 
-    <p>
-        Your trusted destination for
-        quality ebooks that help you
-        achieve your goals.
-    </p>
+        <p>
+            Your trusted destination for
+            quality ebooks that help you
+            achieve your goals.
+        </p>
 
-</div>
+        <p>
+            📧 krishnakamal991@gmail.com
+        </p>
 
-
-<div>
-
-    <h3>
-        Quick Links
-    </h3>
-
-    <a href="./">
-        Home
-    </a>
-
-    <a href="./#ebooks">
-        eBooks
-    </a>
-
-    <a href="./#how">
-        How It Works
-    </a>
-
-</div>
+    </div>
 
 
-<div>
+    <div>
 
-    <h3>
-        Categories
-    </h3>
+        <h3>
+            Quick Links
+        </h3>
 
-    <a href="./#ebooks">
-        Railway Exams
-    </a>
+        <a href="#">
+            Home
+        </a>
 
-    <a href="./#ebooks">
-        UP Police
-    </a>
+        <a href="#ebooks">
+            eBooks
+        </a>
 
-    <a href="./#ebooks">
-        SSC Exams
-    </a>
+        <a href="#how">
+            How It Works
+        </a>
 
-    <a href="./#ebooks">
-        CCC / Computer
-    </a>
+        <a href="#about">
+            About Us
+        </a>
 
-</div>
+        <a href="#contact">
+            Contact Us
+        </a>
+
+    </div>
 
 
-<div>
+    <div>
 
-    <h3>
-        Important
-    </h3>
+        <h3>
+            Categories
+        </h3>
 
-    <a href="#">
-        Privacy Policy
-    </a>
+        <a href="#ebooks">
+            Railway Exams
+        </a>
 
-    <a href="#">
-        Terms & Conditions
-    </a>
+        <a href="#ebooks">
+            UP Police
+        </a>
 
-    <a href="#">
-        Refund Policy
-    </a>
+        <a href="#ebooks">
+            SSC Exams
+        </a>
 
-    <a href="#">
-        Disclaimer
-    </a>
+        <a href="#ebooks">
+            CCC / Computer
+        </a>
 
-</div>
+    </div>
+
+
+    <div>
+
+        <h3>
+            Important
+        </h3>
+
+        <a href="#privacy">
+            Privacy Policy
+        </a>
+
+        <a href="#terms">
+            Terms & Conditions
+        </a>
+
+        <a href="#refund">
+            Refund Policy
+        </a>
+
+        <a href="#disclaimer">
+            Disclaimer
+        </a>
+
+    </div>
 
 
 </div>
@@ -1955,59 +3434,47 @@ footer a{
 </footer>
 
 
-
 <!-- =====================================================
-     SHARE MODAL
+     MY LIBRARY MODAL
 ===================================================== -->
 
 <div
-    id="shareModal"
-    class="modal">
+    class="library-modal"
+    id="libraryModal"
+    onclick="libraryOutsideClick(event)">
 
-<div class="modal-box">
+    <div class="library-box">
 
-    <h3>
-        📤 Share eBook
-    </h3>
+        <div class="library-head">
 
-    <p>
-        इस eBook का link अपने friends
-        के साथ share करें।
-    </p>
+            <h2>
+                📚 My Library
+            </h2>
 
-    <div class="modal-buttons">
+            <button
+                class="library-close"
+                onclick="closeLibrary()">
 
-        <button
-            class="modal-whatsapp"
-            onclick="shareWhatsApp()">
+                ×
 
-            WhatsApp
+            </button>
 
-        </button>
+        </div>
 
-        <button
-            class="modal-close"
-            onclick="closeShareModal()">
 
-            Close
+        <div id="libraryContent">
 
-        </button>
+            <div class="library-empty">
+
+                📚 Your purchased eBooks
+                will appear here.
+
+            </div>
+
+        </div>
 
     </div>
 
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     TOAST
-===================================================== -->
-
-<div
-    id="toast"
-    class="toast">
 </div>
 
 
@@ -2019,70 +3486,212 @@ footer a{
 ===================================================== */
 
 const SUPABASE_URL =
-"https://whtiyeyqcvbajschqbli.supabase.co";
-
+    "https://whtiyeyqcvbajschqbli.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
+    "sb_publishable_c8F6pYJre6Yj8KX3aKDdmA_PAyQeSXy";
 
 
 const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* =====================================================
-   CASHFREE MODE
-=====================================================
-
-   अभी आपके पुराने code में sandbox था,
-   इसलिए यहाँ भी sandbox रखा गया है.
-
-   जब Cashfree LIVE करना हो तो:
-   mode: "production"
-
+   MOBILE MENU
 ===================================================== */
 
-const CASHFREE_MODE =
-"sandbox";
+function toggleMobileMenu(){
+
+    const menu =
+        document.getElementById(
+            "mobileMenu"
+        );
+
+    if(
+        menu.style.display ===
+        "block"
+    ){
+
+        menu.style.display =
+            "none";
+
+    }else{
+
+        menu.style.display =
+            "block";
+
+    }
+
+}
+
+
+function closeMobileMenu(){
+
+    document.getElementById(
+        "mobileMenu"
+    ).style.display =
+        "none";
+
+}
 
 
 /* =====================================================
-   GLOBAL DATA
+   ESCAPE HTML
 ===================================================== */
 
-let allBooks = [];
+function escapeHtml(value){
 
-let currentBook = null;
+    const div =
+        document.createElement(
+            "div"
+        );
 
-let currentShareUrl = "";
+    div.textContent =
+        value == null
+            ? ""
+            : String(value);
+
+    return div.innerHTML;
+
+}
 
 
 /* =====================================================
-   DOM READY
+   ESCAPE ATTRIBUTE
 ===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function(){
+function escapeAttribute(value){
 
-        await loadEbooks();
+    return String(
+        value == null
+            ? ""
+            : value
+    )
 
-        handleRoute();
+    .replace(
+        /&/g,
+        "&amp;"
+    )
 
-        window.addEventListener(
-            "popstate",
-            handleRoute
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE JS
+===================================================== */
+
+function escapeJs(value){
+
+    return String(
+        value == null
+            ? ""
+            : value
+    )
+
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+
+    .replace(
+        /'/g,
+        "\\'"
+    )
+
+    .replace(
+        /"/g,
+        '\\"'
+    )
+
+    .replace(
+        /\n/g,
+        "\\n"
+    )
+
+    .replace(
+        /\r/g,
+        "\\r"
+    );
+
+}
+
+
+/* =====================================================
+   CALCULATE DISCOUNT
+===================================================== */
+
+function getDiscount(
+    originalPrice,
+    salePrice
+){
+
+    originalPrice =
+        Number(originalPrice || 0);
+
+    salePrice =
+        Number(salePrice || 0);
+
+
+    if(
+        originalPrice >
+        salePrice &&
+        originalPrice > 0
+    ){
+
+        return Math.round(
+            (
+                (
+                    originalPrice -
+                    salePrice
+                )
+                /
+                originalPrice
+            ) * 100
         );
 
     }
-);
+
+    return 0;
+
+}
 
 
 /* =====================================================
-   LOAD EBOOKS
+   CREATE EBOOK URL
+===================================================== */
+
+function getEbookUrl(id){
+
+    return (
+        window.location.origin +
+        window.location.pathname +
+        "?ebook=" +
+        encodeURIComponent(id)
+    );
+
+}
+
+
+/* =====================================================
+   LOAD ALL EBOOKS
 ===================================================== */
 
 async function loadEbooks(){
@@ -2094,67 +3703,181 @@ async function loadEbooks(){
 
 
     grid.innerHTML = `
+
         <div class="loading">
+
             📚 Loading Ebooks...
+
         </div>
+
     `;
 
 
-    const { data, error } =
+    try{
+
+        const {
+            data,
+            error
+        } =
         await supabaseClient
-        .from("Ebooks")
-        .select(
-            "id, Title, Price, category, Description, cover_url, Published, created_at"
-        )
-        .eq(
-            "Published",
-            true
-        )
-        .order(
-            "created_at",
-            {
-                ascending:false
+
+            .from("Ebooks")
+
+            .select(
+                `
+                id,
+                Title,
+                Price,
+                OriginalPrice,
+                category,
+                Description,
+                cover_url,
+                Published,
+                created_at
+                `
+            )
+
+            .eq(
+                "Published",
+                true
+            )
+
+            .order(
+                "created_at",
+                {
+                    ascending:false
+                }
+            );
+
+
+        if(error){
+
+            console.error(
+                "Supabase Ebook Error:",
+                error
+            );
+
+
+            grid.innerHTML = `
+
+                <div class="error-box">
+
+                    Ebooks load नहीं हो सकीं।
+
+                    <br>
+
+                    कृपया थोड़ी देर बाद
+                    फिर कोशिश करें।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            grid.innerHTML = `
+
+                <div class="no-books">
+
+                    📚 अभी कोई Ebook
+                    प्रकाशित नहीं है।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        grid.innerHTML = "";
+
+
+        data.forEach(
+            book => {
+
+                createBookCard(
+                    book
+                );
+
             }
         );
 
 
-    if(error){
+        /*
+         * अगर URL में ebook ID है
+         * तो वही ebook खोलें
+         */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const ebookId =
+            params.get(
+                "ebook"
+            );
+
+
+        if(ebookId){
+
+            const selected =
+                data.find(
+                    item =>
+                        String(item.id) ===
+                        String(ebookId)
+                );
+
+
+            if(selected){
+
+                showEbookDetail(
+                    selected
+                );
+
+            }
+
+        }
+
+    }
+    catch(error){
 
         console.error(
-            "Supabase error:",
             error
         );
 
+
         grid.innerHTML = `
+
             <div class="error-box">
-                Ebooks load नहीं हो सकीं।<br>
-                कृपया थोड़ी देर बाद फिर कोशिश करें।
+
+                Website से Ebook data
+                प्राप्त नहीं हो सका।
+
             </div>
+
         `;
 
-        return;
-
     }
-
-
-    allBooks =
-        Array.isArray(data)
-        ? data
-        : [];
-
-
-    renderBooks(
-        allBooks
-    );
 
 }
 
 
 /* =====================================================
-   RENDER BOOKS
+   CREATE BOOK CARD
 ===================================================== */
 
-function renderBooks(books){
+function createBookCard(book){
 
     const grid =
         document.getElementById(
@@ -2162,547 +3885,107 @@ function renderBooks(books){
         );
 
 
-    if(!books.length){
-
-        grid.innerHTML = `
-            <div class="no-books">
-                📚 कोई eBook नहीं मिली।
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML = "";
-
-
-    books.forEach(
-        function(book){
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "card";
-
-
-            const title =
-                escapeHtml(
-                    book.Title ||
-                    "Untitled Ebook"
-                );
-
-
-            const category =
-                escapeHtml(
-                    book.category ||
-                    "Ebook"
-                );
-
-
-            const description =
-                escapeHtml(
-                    book.Description ||
-                    "Premium study material."
-                );
-
-
-            const price =
-                Number(
-                    book.Price || 0
-                );
-
-
-            const detailUrl =
-                getBookUrl(
-                    book
-                );
-
-
-            let coverHTML;
-
-
-            if(book.cover_url){
-
-                coverHTML = `
-                    <a
-                        class="cover-link"
-                        href="${detailUrl}">
-
-                        <div class="cover">
-
-                            <img
-                                src="${escapeAttribute(book.cover_url)}"
-                                alt="${escapeAttribute(book.Title || "Ebook")}"
-                                loading="lazy">
-
-                        </div>
-
-                    </a>
-                `;
-
-            }else{
-
-                coverHTML = `
-                    <a
-                        class="cover-link"
-                        href="${detailUrl}">
-
-                        <div class="cover">
-
-                            <div class="cover-fallback">
-
-                                📖<br><br>
-
-                                ${title}
-
-                            </div>
-
-                        </div>
-
-                    </a>
-                `;
-
-            }
-
-
-            card.innerHTML = `
-
-                ${coverHTML}
-
-                <div class="card-content">
-
-                    <a href="${detailUrl}">
-
-                        <h3>
-                            ${title}
-                        </h3>
-
-                    </a>
-
-
-                    <span class="category">
-                        ${category}
-                    </span>
-
-
-                    <p>
-                        ${description}
-                    </p>
-
-
-                    <div class="price-row">
-
-                        <span class="price">
-                            ₹${price}
-                        </span>
-
-
-                        <button
-                            class="buy"
-                            onclick="buyBook('${escapeJs(book.id)}')">
-
-                            🛒 Buy Now
-
-                        </button>
-
-                    </div>
-
-
-                    <div class="card-actions">
-
-                        <a
-                            class="view-btn"
-                            href="${detailUrl}">
-
-                            👁 View
-
-                        </a>
-
-
-                        <button
-                            class="share-btn"
-                            onclick="openShare('${escapeJs(book.id)}')">
-
-                            📤 Share
-
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
-
-            grid.appendChild(
-                card
-            );
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function filterBooks(){
-
-    const input =
-        document.getElementById(
-            "searchInput"
+    const card =
+        document.createElement(
+            "article"
         );
 
 
-    const query =
-        String(
-            input.value || ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    if(!query){
-
-        renderBooks(
-            allBooks
-        );
-
-        return;
-
-    }
-
-
-    const filtered =
-        allBooks.filter(
-            function(book){
-
-                const title =
-                    String(
-                        book.Title || ""
-                    )
-                    .toLowerCase();
-
-
-                const category =
-                    String(
-                        book.category || ""
-                    )
-                    .toLowerCase();
-
-
-                const description =
-                    String(
-                        book.Description || ""
-                    )
-                    .toLowerCase();
-
-
-                return (
-                    title.includes(query) ||
-                    category.includes(query) ||
-                    description.includes(query)
-                );
-
-            }
-        );
-
-
-    renderBooks(
-        filtered
-    );
-
-}
-
-
-/* =====================================================
-   CREATE EBOOK URL
-===================================================== */
-
-function getBookUrl(book){
-
-    const url =
-        new URL(
-            window.location.href
-        );
-
-
-    /*
-       Existing query हटाकर
-       सिर्फ ebook parameter रखते हैं.
-    */
-
-    url.search = "";
-
-    url.hash = "";
-
-    url.searchParams.set(
-        "ebook",
-        String(book.id)
-    );
-
-
-    return url.href;
-
-}
-
-
-/* =====================================================
-   ROUTING
-===================================================== */
-
-function handleRoute(){
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    const ebookId =
-        params.get(
-            "ebook"
-        );
-
-
-    if(ebookId){
-
-        showDetailPage(
-            ebookId
-        );
-
-    }else{
-
-        showHomePage();
-
-    }
-
-}
-
-
-/* =====================================================
-   SHOW HOME
-===================================================== */
-
-function showHomePage(){
-
-    document.getElementById(
-        "homePage"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "detailPage"
-    ).style.display =
-        "none";
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-}
-
-
-/* =====================================================
-   SHOW DETAIL
-===================================================== */
-
-async function showDetailPage(
-    ebookId
-){
-
-    document.getElementById(
-        "homePage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "detailPage"
-    ).style.display =
-        "block";
-
-
-    const detail =
-        document.getElementById(
-            "detailContent"
-        );
-
-
-    detail.innerHTML = `
-        <div class="loading">
-            📖 Loading eBook...
-        </div>
-    `;
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
-
-    let book =
-        allBooks.find(
-            function(item){
-
-                return String(
-                    item.id
-                ) === String(
-                    ebookId
-                );
-
-            }
-        );
-
-
-    /*
-       अगर page direct URL से खोला गया है
-       और allBooks में book नहीं मिली,
-       तो Supabase से सिर्फ वही book लेंगे.
-    */
-
-    if(!book){
-
-        const result =
-            await supabaseClient
-            .from("Ebooks")
-            .select(
-                "id, Title, Price, category, Description, cover_url, Published, created_at"
-            )
-            .eq(
-                "id",
-                ebookId
-            )
-            .eq(
-                "Published",
-                true
-            )
-            .maybeSingle();
-
-
-        if(result.error){
-
-            console.error(
-                result.error
-            );
-
-        }
-
-
-        book =
-            result.data;
-
-    }
-
-
-    if(!book){
-
-        detail.innerHTML = `
-
-            <div class="error-box">
-
-                ❌ eBook नहीं मिली।
-
-                <br><br>
-
-                <button
-                    class="back-btn"
-                    onclick="goHome()">
-
-                    ← वापस eBooks पर जाएँ
-
-                </button>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    currentBook =
-        book;
-
-
-    currentShareUrl =
-        getBookUrl(
-            book
-        );
+    card.className =
+        "card";
 
 
     const title =
-        escapeHtml(
-            book.Title ||
-            "Untitled Ebook"
-        );
+        book.Title ||
+        "Untitled Ebook";
 
 
     const category =
-        escapeHtml(
-            book.category ||
-            "Ebook"
-        );
+        book.category ||
+        "Ebook";
 
 
     const description =
-        escapeHtml(
-            book.Description ||
-            "Premium study material."
-        );
+        book.Description ||
+        "Premium study material.";
 
 
-    const price =
+    const salePrice =
         Number(
             book.Price || 0
         );
 
 
-    let cover;
+    let originalPrice =
+        Number(
+            book.OriginalPrice ||
+            salePrice
+        );
 
 
-    if(book.cover_url){
+    if(
+        originalPrice <
+        salePrice
+    ){
 
-        cover = `
+        originalPrice =
+            salePrice;
 
-            <div class="detail-cover">
+    }
 
-                <img
-                    src="${escapeAttribute(book.cover_url)}"
-                    alt="${escapeAttribute(book.Title || "Ebook")}">
+
+    const discount =
+        getDiscount(
+            originalPrice,
+            salePrice
+        );
+
+
+    let priceHTML = "";
+
+
+    if(
+        discount > 0
+    ){
+
+        priceHTML = `
+
+            <div class="price-box">
+
+                <span class="old-price">
+
+                    ₹${originalPrice}
+
+                </span>
+
+                <span class="price">
+
+                    ₹${salePrice}
+
+                </span>
+
+                <span class="discount">
+
+                    ${discount}% OFF
+
+                </span>
 
             </div>
 
         `;
 
-    }else{
+    }
+    else{
 
-        cover = `
+        priceHTML = `
 
-            <div class="detail-cover">
+            <div class="price-box">
 
-                <div class="cover-fallback"
-                     style="min-height:420px;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;">
+                <span class="price">
 
-                    📖<br>
-                    ${title}
+                    ₹${salePrice}
 
-                </div>
+                </span>
 
             </div>
 
@@ -2711,306 +3994,484 @@ async function showDetailPage(
     }
 
 
-    detail.innerHTML = `
-
-        <div class="detail-grid">
-
-            ${cover}
+    let coverHTML = "";
 
 
-            <div class="detail-info">
+    if(
+        book.cover_url
+    ){
 
-                <span class="detail-category">
-                    ${category}
-                </span>
+        coverHTML = `
 
+            <a
+                href="${escapeAttribute(
+                    getEbookUrl(book.id)
+                )}"
+                aria-label="${escapeAttribute(
+                    title
+                )}">
 
-                <h1>
-                    ${title}
-                </h1>
+                <div class="cover">
 
-
-                <p class="detail-description">
-                    ${description}
-                </p>
-
-
-                <div class="detail-price">
-                    ₹${price}
-                </div>
-
-
-                <button
-                    class="detail-buy"
-                    onclick="buyBook('${escapeJs(book.id)}')">
-
-                    🛒 Buy This eBook
-
-                </button>
-
-
-                <div class="share-row">
-
-                    <button
-                        class="share-main"
-                        onclick="shareCurrentBook()">
-
-                        📤 Share
-
-                    </button>
-
-
-                    <button
-                        class="copy-main"
-                        onclick="copyCurrentBookLink()">
-
-                        🔗 Copy Link
-
-                    </button>
-
-
-                    <button
-                        class="whatsapp-main"
-                        onclick="shareWhatsApp()">
-
-                        💬 WhatsApp
-
-                    </button>
+                    <img
+                        src="${escapeAttribute(
+                            book.cover_url
+                        )}"
+                        alt="${escapeAttribute(
+                            title
+                        )}"
+                        loading="lazy">
 
                 </div>
 
+            </a>
 
-                <div
-                    style="
-                    margin-top:22px;
-                    background:#f7f9fc;
-                    border-radius:9px;
-                    padding:15px;
-                    font-size:11px;
-                    color:#667085;">
+        `;
 
-                    🛡️ Secure Payment<br>
-                    ⚡ Instant Access After Payment<br>
-                    ⬇️ PDF eBook Download
+    }
+    else{
+
+        coverHTML = `
+
+            <a
+                href="${escapeAttribute(
+                    getEbookUrl(book.id)
+                )}">
+
+                <div class="cover">
+
+                    📖
+
+                    <br>
+
+                    ${escapeHtml(title)}
 
                 </div>
 
-            </div>
+            </a>
+
+        `;
+
+    }
+
+
+    card.innerHTML = `
+
+        ${coverHTML}
+
+
+        <a
+            href="${escapeAttribute(
+                getEbookUrl(book.id)
+            )}">
+
+            <h3>
+
+                ${escapeHtml(title)}
+
+            </h3>
+
+        </a>
+
+
+        <span class="category">
+
+            ${escapeHtml(category)}
+
+        </span>
+
+
+        <p>
+
+            ${escapeHtml(
+                description
+            )}
+
+        </p>
+
+
+        <div class="price-row">
+
+            ${priceHTML}
+
+
+            <button
+                class="buy"
+                onclick="buyBook(
+                    '${escapeJs(title)}',
+                    ${salePrice},
+                    '${escapeJs(book.id)}'
+                )">
+
+                BUY NOW
+
+            </button>
 
         </div>
 
     `;
 
 
-    renderRelatedBooks(
-        book
+    grid.appendChild(
+        card
     );
 
 }
 
 
 /* =====================================================
-   RELATED BOOKS
+   LOAD SINGLE EBOOK
 ===================================================== */
 
-function renderRelatedBooks(
-    current
+async function loadSingleEbook(
+    id
 ){
 
-    const section =
-        document.getElementById(
-            "relatedSection"
-        );
+    try{
 
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
 
-    const grid =
-        document.getElementById(
-            "relatedGrid"
-        );
+            .from("Ebooks")
 
-
-    const related =
-        allBooks
-        .filter(
-            function(book){
-
-                return String(
-                    book.id
-                ) !== String(
-                    current.id
-                );
-
-            }
-        )
-        .filter(
-            function(book){
-
-                return (
-                    book.category &&
-                    current.category &&
-                    String(
-                        book.category
-                    ).toLowerCase()
-                    ===
-                    String(
-                        current.category
-                    ).toLowerCase()
-                );
-
-            }
-        )
-        .slice(0,5);
-
-
-    /*
-       अगर same category में book नहीं मिली,
-       तो दूसरी published books दिखाएँ.
-    */
-
-    let finalBooks =
-        related;
-
-
-    if(!finalBooks.length){
-
-        finalBooks =
-            allBooks
-            .filter(
-                function(book){
-
-                    return String(
-                        book.id
-                    ) !== String(
-                        current.id
-                    );
-
-                }
+            .select(
+                `
+                id,
+                Title,
+                Price,
+                OriginalPrice,
+                category,
+                Description,
+                cover_url,
+                Published
+                `
             )
-            .slice(0,5);
 
-    }
+            .eq(
+                "id",
+                id
+            )
 
+            .eq(
+                "Published",
+                true
+            )
 
-    if(!finalBooks.length){
-
-        section.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    section.style.display =
-        "block";
+            .maybeSingle();
 
 
-    grid.innerHTML = "";
+        if(error){
+
+            console.error(
+                error
+            );
+
+            return;
+
+        }
 
 
-    finalBooks.forEach(
-        function(book){
+        if(data){
 
-            const title =
-                escapeHtml(
-                    book.Title ||
-                    "Ebook"
-                );
-
-
-            const url =
-                getBookUrl(
-                    book
-                );
-
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "card";
-
-
-            card.innerHTML = `
-
-                <a href="${url}">
-
-                    <div class="cover"
-                         style="height:230px;">
-
-                        ${
-                            book.cover_url
-                            ?
-
-                            `<img
-                                src="${escapeAttribute(book.cover_url)}"
-                                alt="${escapeAttribute(title)}">`
-
-                            :
-
-                            `<div class="cover-fallback">
-                                📖<br>${title}
-                             </div>`
-                        }
-
-                    </div>
-
-                    <div
-                        class="card-content">
-
-                        <h3>
-                            ${title}
-                        </h3>
-
-                        <span
-                            class="category">
-
-                            ${escapeHtml(
-                                book.category ||
-                                "Ebook"
-                            )}
-
-                        </span>
-
-                    </div>
-
-                </a>
-
-            `;
-
-
-            grid.appendChild(
-                card
+            showEbookDetail(
+                data
             );
 
         }
-    );
+
+    }
+    catch(error){
+
+        console.error(
+            error
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-   GO HOME
+   SHOW EBOOK DETAIL
 ===================================================== */
 
-function goHome(){
+function showEbookDetail(
+    book
+){
 
-    const cleanUrl =
-        window.location.origin +
-        window.location.pathname;
+    const detail =
+        document.getElementById(
+            "ebookDetail"
+        );
 
 
-    window.history.pushState(
-        {},
-        "",
-        cleanUrl
+    const content =
+        document.getElementById(
+            "detailContent"
+        );
+
+
+    const title =
+        book.Title ||
+        "Untitled Ebook";
+
+
+    const description =
+        book.Description ||
+        "Premium study material.";
+
+
+    const salePrice =
+        Number(
+            book.Price || 0
+        );
+
+
+    let originalPrice =
+        Number(
+            book.OriginalPrice ||
+            salePrice
+        );
+
+
+    if(
+        originalPrice <
+        salePrice
+    ){
+
+        originalPrice =
+            salePrice;
+
+    }
+
+
+    const discount =
+        getDiscount(
+            originalPrice,
+            salePrice
+        );
+
+
+    let priceHTML = "";
+
+
+    if(
+        discount > 0
+    ){
+
+        priceHTML = `
+
+            <span class="detail-old">
+
+                ₹${originalPrice}
+
+            </span>
+
+            <span class="detail-current">
+
+                ₹${salePrice}
+
+            </span>
+
+            <span class="detail-off">
+
+                ${discount}% OFF
+
+            </span>
+
+        `;
+
+    }
+    else{
+
+        priceHTML = `
+
+            <span class="detail-current">
+
+                ₹${salePrice}
+
+            </span>
+
+        `;
+
+    }
+
+
+    let coverHTML = "";
+
+
+    if(
+        book.cover_url
+    ){
+
+        coverHTML = `
+
+            <img
+                src="${escapeAttribute(
+                    book.cover_url
+                )}"
+                alt="${escapeAttribute(
+                    title
+                )}">
+
+        `;
+
+    }
+    else{
+
+        coverHTML = `
+
+            <div
+                style="
+                height:100%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#fff;
+                font-size:25px;
+                font-weight:800;
+                text-align:center;
+                padding:20px;
+                ">
+
+                📖
+
+                <br>
+
+                ${escapeHtml(
+                    title
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+
+    content.innerHTML = `
+
+        <div class="detail-cover">
+
+            ${coverHTML}
+
+        </div>
+
+
+        <div class="detail-content">
+
+            <span class="category">
+
+                ${escapeHtml(
+                    book.category ||
+                    "Ebook"
+                )}
+
+            </span>
+
+
+            <h1>
+
+                ${escapeHtml(
+                    title
+                )}
+
+            </h1>
+
+
+            <p class="detail-description">
+
+                ${escapeHtml(
+                    description
+                )}
+
+            </p>
+
+
+            <div class="detail-price">
+
+                ${priceHTML}
+
+            </div>
+
+
+            <button
+                class="detail-buy"
+                onclick="buyBook(
+                    '${escapeJs(title)}',
+                    ${salePrice},
+                    '${escapeJs(book.id)}'
+                )">
+
+                BUY NOW
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    detail.classList.add(
+        "show"
     );
 
 
-    showHomePage();
+    document
+        .getElementById(
+            "ebooks"
+        )
+        .style.display =
+        "none";
+
+
+    window.scrollTo({
+        top:
+            detail.offsetTop -
+            75,
+
+        behavior:
+            "smooth"
+    });
+
+}
+
+
+/* =====================================================
+   SHOW ALL BOOKS
+===================================================== */
+
+function showAllBooks(){
+
+    document
+        .getElementById(
+            "ebookDetail"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "ebooks"
+        )
+        .style.display =
+        "";
+
+
+    const url =
+        window.location.pathname;
+
+
+    window.history.replaceState(
+        {},
+        "",
+        url + "#ebooks"
+    );
 
 }
 
@@ -3020,26 +4481,41 @@ function goHome(){
 ===================================================== */
 
 async function buyBook(
-    ebookId
+    name,
+    price,
+    id
 ){
 
-    const buttonText =
-        "Payment शुरू हो रहा है...";
-
-
     try{
+
+        const buttons =
+            document.querySelectorAll(
+                ".buy, .detail-buy"
+            );
+
+
+        buttons.forEach(
+            button => {
+
+                button.disabled =
+                    true;
+
+            }
+        );
+
 
         const response =
             await fetch(
 
-                SUPABASE_URL +
-                "/functions/v1/create-payment",
+                "https://whtiyeyqcvbajschqbli.supabase.co/functions/v1/create-payment",
 
                 {
 
-                    method:"POST",
+                    method:
+                        "POST",
 
                     headers:{
+
                         "Content-Type":
                             "application/json",
 
@@ -3049,51 +4525,56 @@ async function buyBook(
                         "Authorization":
                             "Bearer " +
                             SUPABASE_KEY
+
                     },
 
-                    body:JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        ebook_id:
-                            ebookId
+                            ebook_id:
+                                id
 
-                    })
+                        })
 
                 }
 
             );
 
 
-        let data;
+        const data =
+            await response.json();
 
 
-        try{
-
-            data =
-                await response.json();
-
-        }catch(e){
-
-            data = {};
-
-        }
-
-
-        if(!response.ok){
+        if(
+            !response.ok
+        ){
 
             console.error(
-                "Payment error:",
+                "Payment Error:",
                 data
             );
 
 
             alert(
+
                 "Payment शुरू नहीं हो सका.\n\n" +
+
                 (
                     data.error ||
                     "Please try again."
                 )
+
             );
 
+
+            buttons.forEach(
+                button => {
+
+                    button.disabled =
+                        false;
+
+                }
+            );
 
             return;
 
@@ -3104,26 +4585,37 @@ async function buyBook(
             !data.payment_session_id
         ){
 
-            console.error(
-                data
-            );
-
-
             alert(
                 "Payment session नहीं मिला."
             );
 
+
+            buttons.forEach(
+                button => {
+
+                    button.disabled =
+                        false;
+
+                }
+            );
 
             return;
 
         }
 
 
+        /*
+         * अभी Sandbox mode
+         *
+         * Live activation के बाद
+         * mode को production किया जाएगा.
+         */
+
         const cashfree =
             Cashfree({
 
                 mode:
-                    CASHFREE_MODE
+                    "sandbox"
 
             });
 
@@ -3138,8 +4630,8 @@ async function buyBook(
 
         });
 
-
-    }catch(error){
+    }
+    catch(error){
 
         console.error(
             error
@@ -3147,8 +4639,142 @@ async function buyBook(
 
 
         alert(
+
             "Payment connection error.\n" +
             "Please try again."
+
+        );
+
+
+        document
+            .querySelectorAll(
+                ".buy, .detail-buy"
+            )
+            .forEach(
+                button => {
+
+                    button.disabled =
+                        false;
+
+                }
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   MY LIBRARY
+===================================================== */
+
+function openLibrary(){
+
+    closeMobileMenu();
+
+
+    const modal =
+        document.getElementById(
+            "libraryModal"
+        );
+
+
+    modal.classList.add(
+        "show"
+    );
+
+
+    loadLibrary();
+
+}
+
+
+function closeLibrary(){
+
+    document
+        .getElementById(
+            "libraryModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+function libraryOutsideClick(
+    event
+){
+
+    if(
+        event.target.id ===
+        "libraryModal"
+    ){
+
+        closeLibrary();
+
+    }
+
+}
+
+
+/* =====================================================
+   LIBRARY DATA
+===================================================== */
+
+/*
+ * यह local browser library है.
+ *
+ * जब किसी ebook को library में
+ * रखा जाएगा तो उसका ID यहाँ save होगा.
+ */
+
+function getLibraryIds(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                "rp_ebook_library"
+            ) || "[]"
+        );
+
+    }
+    catch(error){
+
+        return [];
+
+    }
+
+}
+
+
+function saveToLibrary(
+    book
+){
+
+    const ids =
+        getLibraryIds();
+
+
+    if(
+        !ids.includes(
+            String(book.id)
+        )
+    ){
+
+        ids.push(
+            String(book.id)
+        );
+
+        localStorage.setItem(
+
+            "rp_ebook_library",
+
+            JSON.stringify(
+                ids
+            )
+
         );
 
     }
@@ -3157,300 +4783,236 @@ async function buyBook(
 
 
 /* =====================================================
-   SHARE BOOK
+   LOAD LIBRARY
 ===================================================== */
 
-function openShare(
-    ebookId
-){
+async function loadLibrary(){
 
-    const book =
-        allBooks.find(
-            function(item){
+    const box =
+        document.getElementById(
+            "libraryContent"
+        );
 
-                return String(
-                    item.id
-                ) === String(
-                    ebookId
+
+    const ids =
+        getLibraryIds();
+
+
+    if(
+        ids.length === 0
+    ){
+
+        box.innerHTML = `
+
+            <div class="library-empty">
+
+                📚 अभी आपकी library में
+                कोई eBook नहीं है।
+
+                <br><br>
+
+                Payment के बाद purchased
+                eBook को यहाँ दिखाने के लिए
+                backend verification जोड़ना होगा।
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = `
+
+        <div class="library-empty">
+
+            📚 Loading your library...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+            .from("Ebooks")
+
+            .select(
+                "id, Title, Price, category, cover_url"
+            )
+
+            .in(
+                "id",
+                ids
+            );
+
+
+        if(error){
+
+            console.error(
+                error
+            );
+
+            box.innerHTML = `
+
+                <div class="library-empty">
+
+                    Library load नहीं हो सकी।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            box.innerHTML = `
+
+                <div class="library-empty">
+
+                    📚 Library खाली है।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        box.innerHTML = "";
+
+
+        data.forEach(
+            book => {
+
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                item.className =
+                    "library-book";
+
+
+                item.innerHTML = `
+
+                    ${
+                        book.cover_url
+
+                        ?
+
+                        `
+                        <img
+                            src="${escapeAttribute(
+                                book.cover_url
+                            )}"
+                            alt="${escapeAttribute(
+                                book.Title
+                            )}">
+                        `
+
+                        :
+
+                        `
+                        <div
+                            style="
+                            width:48px;
+                            height:62px;
+                            border-radius:6px;
+                            background:#17395f;
+                            color:#fff;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:20px;
+                            ">
+
+                            📖
+
+                        </div>
+                        `
+                    }
+
+
+                    <div
+                        class="library-book-info">
+
+                        <strong>
+
+                            ${escapeHtml(
+                                book.Title
+                            )}
+
+                        </strong>
+
+                        <span>
+
+                            ${
+                                escapeHtml(
+                                    book.category ||
+                                    "Ebook"
+                                )
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="library-open"
+                        onclick="openLibraryBook(
+                            '${escapeJs(book.id)}'
+                        )">
+
+                        OPEN
+
+                    </button>
+
+                `;
+
+
+                box.appendChild(
+                    item
                 );
 
             }
         );
 
-
-    if(!book){
-
-        showToast(
-            "eBook नहीं मिली"
-        );
-
-        return;
-
     }
-
-
-    currentBook =
-        book;
-
-
-    currentShareUrl =
-        getBookUrl(
-            book
-        );
-
-
-    document
-    .getElementById(
-        "shareModal"
-    )
-    .classList
-    .add("show");
-
-}
-
-
-/* =====================================================
-   CLOSE SHARE MODAL
-===================================================== */
-
-function closeShareModal(){
-
-    document
-    .getElementById(
-        "shareModal"
-    )
-    .classList
-    .remove("show");
-
-}
-
-
-/* =====================================================
-   WHATSAPP SHARE
-===================================================== */
-
-function shareWhatsApp(){
-
-    if(!currentBook){
-
-        showToast(
-            "पहले eBook select करें"
-        );
-
-        return;
-
-    }
-
-
-    const title =
-        currentBook.Title ||
-        "Ebook";
-
-
-    const text =
-        "📖 " +
-        title +
-        "\n\n" +
-        "RP Ebook Store पर देखें:\n" +
-        currentShareUrl;
-
-
-    const url =
-        "https://wa.me/?text=" +
-        encodeURIComponent(
-            text
-        );
-
-
-    window.open(
-        url,
-        "_blank"
-    );
-
-}
-
-
-/* =====================================================
-   NATIVE SHARE
-===================================================== */
-
-async function shareCurrentBook(){
-
-    if(!currentBook){
-
-        showToast(
-            "eBook नहीं मिली"
-        );
-
-        return;
-
-    }
-
-
-    const title =
-        currentBook.Title ||
-        "RP Ebook";
-
-
-    const shareData = {
-
-        title:
-            title,
-
-        text:
-            "📖 " +
-            title +
-            " - RP Ebook Store",
-
-        url:
-            currentShareUrl
-
-    };
-
-
-    try{
-
-        if(
-            navigator.share
-        ){
-
-            await navigator.share(
-                shareData
-            );
-
-        }else{
-
-            await copyText(
-                currentShareUrl
-            );
-
-            showToast(
-                "Link copy हो गया"
-            );
-
-        }
-
-    }catch(error){
-
-        /*
-           User ने share popup बंद किया हो
-           तो कोई error message जरूरी नहीं.
-        */
-
-        console.log(
-            "Share cancelled"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   COPY CURRENT LINK
-===================================================== */
-
-async function copyCurrentBookLink(){
-
-    if(!currentShareUrl){
-
-        return;
-
-    }
-
-
-    const success =
-        await copyText(
-            currentShareUrl
-        );
-
-
-    if(success){
-
-        showToast(
-            "eBook link copy हो गया ✅"
-        );
-
-    }else{
-
-        showToast(
-            "Link copy नहीं हुआ"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   COPY TEXT
-===================================================== */
-
-async function copyText(
-    text
-){
-
-    try{
-
-        if(
-            navigator.clipboard &&
-            window.isSecureContext
-        ){
-
-            await navigator.clipboard.writeText(
-                text
-            );
-
-            return true;
-
-        }
-
-
-        const textarea =
-            document.createElement(
-                "textarea"
-            );
-
-
-        textarea.value =
-            text;
-
-
-        textarea.style.position =
-            "fixed";
-
-        textarea.style.opacity =
-            "0";
-
-
-        document.body.appendChild(
-            textarea
-        );
-
-
-        textarea.focus();
-
-        textarea.select();
-
-
-        const result =
-            document.execCommand(
-                "copy"
-            );
-
-
-        textarea.remove();
-
-
-        return result;
-
-    }catch(error){
+    catch(error){
 
         console.error(
             error
         );
 
-        return false;
+        box.innerHTML = `
+
+            <div class="library-empty">
+
+                Library load नहीं हो सकी।
+
+            </div>
+
+        `;
 
     }
 
@@ -3458,183 +5020,65 @@ async function copyText(
 
 
 /* =====================================================
-   ESCAPE HTML
+   OPEN LIBRARY BOOK
 ===================================================== */
 
-function escapeHtml(
-    value
+function openLibraryBook(
+    id
 ){
 
-    const div =
-        document.createElement(
-            "div"
+    closeLibrary();
+
+
+    window.location.href =
+        getEbookUrl(id);
+
+}
+
+
+/* =====================================================
+   CHECK URL ON LOAD
+===================================================== */
+
+function checkUrlEbook(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
         );
 
 
-    div.textContent =
-        value;
-
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-   ESCAPE ATTRIBUTE
-===================================================== */
-
-function escapeAttribute(
-    value
-){
-
-    return String(
-        value
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    );
-
-}
-
-
-/* =====================================================
-   ESCAPE JS
-===================================================== */
-
-function escapeJs(
-    value
-){
-
-    return String(
-        value
-    )
-    .replace(
-        /\\/g,
-        "\\\\"
-    )
-    .replace(
-        /'/g,
-        "\\'"
-    )
-    .replace(
-        /"/g,
-        '\\"'
-    )
-    .replace(
-        /\n/g,
-        "\\n"
-    )
-    .replace(
-        /\r/g,
-        "\\r"
-    );
-
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-let toastTimer;
-
-
-function showToast(
-    message
-){
-
-    const toast =
-        document.getElementById(
-            "toast"
+    const id =
+        params.get(
+            "ebook"
         );
 
 
-    toast.textContent =
-        message;
+    if(id){
 
+        /*
+         * loadEbooks() के बाद
+         * selected ebook खुलेगा.
+         */
 
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            function(){
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
-}
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-function toggleMobileMenu(){
-
-    document
-    .getElementById(
-        "mobileMenu"
-    )
-    .classList
-    .toggle(
-        "open"
-    );
-
-}
-
-
-/* =====================================================
-   CLOSE MODAL ON BACKGROUND CLICK
-===================================================== */
-
-document
-.getElementById(
-    "shareModal"
-)
-.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target ===
-            this
-        ){
-
-            closeShareModal();
-
-        }
+        return;
 
     }
-);
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+checkUrlEbook();
+
+loadEbooks();
 
 </script>
 
+
 </body>
+
 </html>
