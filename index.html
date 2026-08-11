@@ -4832,12 +4832,9 @@ async function buyBook(
         */
 
         const cashfree =
-            Cashfree({
-
-                mode:"sandbox"
-
-            });
-
+    Cashfree({
+        mode:"production"
+    });
 
         await cashfree.checkout({
 
