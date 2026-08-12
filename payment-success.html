@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 
 <head>
 
@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Payment Successful</title>
+  <title>Payment Verification</title>
 
   <style>
 
@@ -25,29 +25,39 @@
       background: white;
       padding: 25px;
       border-radius: 12px;
-      max-width: 400px;
-      margin: auto;
+      max-width: 420px;
+      margin: 40px auto;
       box-shadow: 0 0 10px #ccc;
     }
 
-    button {
-      background: #16a34a;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
+    h2 {
+      margin-bottom: 15px;
     }
 
     #status {
-      margin: 20px;
-      line-height: 1.6;
+      margin: 20px 0;
+      line-height: 1.7;
     }
 
     #download {
       display: none;
       text-decoration: none;
+    }
+
+    .download-btn {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      background: #15803d;
     }
 
   </style>
@@ -59,7 +69,9 @@
 
   <div class="box">
 
-    <h2>✅ Payment Successful</h2>
+    <h2 id="heading">
+      Payment Verification
+    </h2>
 
     <p id="status">
       Payment verify ho raha hai...
@@ -71,9 +83,9 @@
       rel="noopener"
     >
 
-      <button>
+      <span class="download-btn">
         📥 Download Ebook
-      </button>
+      </span>
 
     </a>
 
@@ -101,6 +113,9 @@
     const status =
       document.getElementById("status");
 
+    const heading =
+      document.getElementById("heading");
+
     const download =
       document.getElementById("download");
 
@@ -111,15 +126,21 @@
 
     if (!order_id) {
 
+      heading.innerHTML =
+        "❌ Payment Error";
+
       status.innerHTML =
-        "❌ Order ID नहीं मिला।";
+        "Order ID नहीं मिला। कृपया दोबारा payment करें।";
 
     }
 
     else if (!ebook_id) {
 
+      heading.innerHTML =
+        "❌ Payment Error";
+
       status.innerHTML =
-        "❌ Ebook ID नहीं मिली।";
+        "Ebook ID नहीं मिली। कृपया दोबारा payment करें।";
 
     }
 
@@ -137,6 +158,9 @@
     async function verifyPayment() {
 
       try {
+
+        status.innerHTML =
+          "⏳ Payment verify ho raha hai...";
 
         const response =
           await fetch(
@@ -168,27 +192,31 @@
 
 
         // ==============================
-        // PAYMENT SUCCESS
+        // PAYMENT VERIFIED
         // ==============================
 
-        if (data.success) {
+        if (
+          response.ok &&
+          data.success &&
+          data.pdf_url
+        ) {
+
+          heading.innerHTML =
+            "✅ Payment Verified";
 
           status.innerHTML =
-            "Payment Verified ✅<br><br>" +
+            "आपका payment successfully verify हो गया है।<br><br>" +
             "<strong>" +
             (data.title || "Your Ebook") +
-            "</strong>";
+            "</strong><br><br>" +
+            "नीचे Download Ebook पर क्लिक करें।";
 
 
-          if (data.pdf_url) {
+          download.href =
+            data.pdf_url;
 
-            download.href =
-              data.pdf_url;
-
-            download.style.display =
-              "inline-block";
-
-          }
+          download.style.display =
+            "inline-block";
 
         }
 
@@ -199,10 +227,13 @@
 
         else {
 
+          heading.innerHTML =
+            "⚠️ Payment Not Verified";
+
           status.innerHTML =
             data.message ||
             data.error ||
-            "Payment pending.";
+            "Payment अभी verify नहीं हुआ। कृपया कुछ समय बाद दोबारा प्रयास करें।";
 
         }
 
@@ -211,10 +242,16 @@
 
       catch (error) {
 
-        console.error(error);
+        console.error(
+          "Payment verification error:",
+          error
+        );
+
+        heading.innerHTML =
+          "❌ Verification Error";
 
         status.innerHTML =
-          "❌ Error: " +
+          "Payment verify करते समय समस्या हुई।<br><br>" +
           error.message;
 
       }
