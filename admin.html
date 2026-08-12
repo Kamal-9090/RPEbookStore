@@ -696,7 +696,87 @@ textarea{
     </p>
 
 </div>
+<!-- =====================================================
+     PURCHASES / ORDERS
+===================================================== -->
 
+<div class="card">
+
+    <h2>
+        🛒 Purchases / Orders
+    </h2>
+
+    <button
+        class="primary"
+        onclick="loadPurchases()"
+        style="margin-bottom:15px;"
+    >
+        🔄 Refresh Purchases
+    </button>
+
+    <div
+        id="purchaseMessage"
+        class="message"
+    >
+        Purchases load करने के लिए Refresh दबाएँ।
+    </div>
+
+    <div
+        style="
+            overflow-x:auto;
+            margin-top:15px;
+        "
+    >
+
+        <table
+            id="purchasesTable"
+            style="
+                width:100%;
+                border-collapse:collapse;
+                display:none;
+                min-width:1000px;
+            "
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Ebook</th>
+
+                    <th>Email</th>
+
+                    <th>Mobile</th>
+
+                    <th>Order ID</th>
+
+                    <th>Payment ID</th>
+
+                    <th>Amount</th>
+
+                    <th>Status</th>
+
+                    <th>Purchased At</th>
+
+                    <th>Downloads</th>
+
+                    <th>Last Download</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody
+                id="purchasesBody"
+            ></tbody>
+
+        </table>
+
+    </div>
+
+</div>
 
 <!-- =====================================================
      ADD / EDIT EBOOK
@@ -3553,7 +3633,358 @@ supabaseClient
 
     }
 );
+// =====================================================
+// LOAD PURCHASES / ORDERS
+// =====================================================
 
+async function loadPurchases() {
+
+    const message =
+        document.getElementById(
+            "purchaseMessage"
+        );
+
+    const table =
+        document.getElementById(
+            "purchasesTable"
+        );
+
+    const body =
+        document.getElementById(
+            "purchasesBody"
+        );
+
+
+    message.innerHTML =
+        "⏳ Purchases load हो रहे हैं...";
+
+    table.style.display =
+        "none";
+
+    body.innerHTML = "";
+
+
+    try {
+
+        // -----------------------------------------
+        // GET CURRENT SUPABASE SESSION
+        // -----------------------------------------
+
+        const {
+            data: sessionData
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        const session =
+            sessionData?.session;
+
+
+        if (!session) {
+
+            message.innerHTML =
+                "❌ Admin session नहीं मिला। कृपया Logout करके फिर Login करें।";
+
+            return;
+
+        }
+
+
+        // -----------------------------------------
+        // CALL ADMIN-PURCHASES FUNCTION
+        // -----------------------------------------
+
+        const response =
+            await fetch(
+                `${SUPABASE_URL}/functions/v1/admin-purchases`,
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${session.access_token}`,
+
+                        "apikey":
+                           SUPABASE_KEY
+
+                    },
+
+                    body:
+                        JSON.stringify({})
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error ||
+                data.message ||
+                "Purchases load failed"
+            );
+
+        }
+
+
+        if (
+            !data.success
+        ) {
+
+            throw new Error(
+                data.error ||
+                "Unable to load purchases"
+            );
+
+        }
+
+
+        const purchases =
+            data.purchases || [];
+
+
+        // -----------------------------------------
+        // NO PURCHASES
+        // -----------------------------------------
+
+        if (
+            purchases.length === 0
+        ) {
+
+            message.innerHTML =
+                "📭 अभी कोई purchase नहीं मिला।";
+
+            return;
+
+        }
+
+
+        // -----------------------------------------
+        // DISPLAY PURCHASES
+        // -----------------------------------------
+
+        purchases.forEach(
+            (purchase) => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${escapePurchaseHtml(
+                            purchase.id
+                        )}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapePurchaseHtml(
+                                purchase.ebook_title
+                            )}
+                        </strong>
+                        <br>
+                        <small>
+                            ID:
+                            ${escapePurchaseHtml(
+                                purchase.ebook_id
+                            )}
+                        </small>
+                    </td>
+
+                    <td>
+                        ${escapePurchaseHtml(
+                            purchase.customer_email
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapePurchaseHtml(
+                            purchase.customer_phone
+                        )}
+                    </td>
+
+                    <td>
+                        <small>
+                            ${escapePurchaseHtml(
+                                purchase.order_id
+                            )}
+                        </small>
+                    </td>
+
+                    <td>
+                        <small>
+                            ${escapePurchaseHtml(
+                                purchase.payment_id
+                            )}
+                        </small>
+                    </td>
+
+                    <td>
+                        ₹${escapePurchaseHtml(
+                            purchase.amount
+                        )}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapePurchaseHtml(
+                                purchase.payment_status
+                            )}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${formatPurchaseDate(
+                            purchase.purchased_at
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapePurchaseHtml(
+                            purchase.download_count || 0
+                        )}
+                    </td>
+
+                    <td>
+                        ${
+                            purchase.last_download_at
+                            ? formatPurchaseDate(
+                                purchase.last_download_at
+                              )
+                            : "—"
+                        }
+                    </td>
+
+                `;
+
+
+                body.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+        table.style.display =
+            "table";
+
+
+        message.innerHTML =
+            `✅ Total Purchases: <strong>${purchases.length}</strong>`;
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Purchases error:",
+            error
+        );
+
+
+        message.innerHTML =
+            "❌ " +
+            escapePurchaseHtml(
+                error.message
+            );
+
+    }
+
+}
+
+
+// =====================================================
+// ESCAPE HTML
+// =====================================================
+
+function escapePurchaseHtml(
+    value
+) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "—";
+
+    }
+
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+// =====================================================
+// FORMAT DATE
+// =====================================================
+
+function formatPurchaseDate(
+    value
+) {
+
+    if (!value) {
+
+        return "—";
+
+    }
+
+
+    try {
+
+        return new Date(
+            value
+        ).toLocaleString(
+            "en-IN"
+        );
+
+    }
+
+    catch {
+
+        return String(
+            value
+        );
+
+    }
+
+}
 </script>
 
 </body>
